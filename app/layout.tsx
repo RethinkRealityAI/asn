@@ -1,21 +1,14 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import { quicksand, clash, generalSans } from "./fonts";
+import { GrainOverlay } from "@/components/motion/GrainOverlay";
+import { Header } from "@/components/chrome/Header";
+import { Footer } from "@/components/chrome/Footer";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 export const metadata: Metadata = {
-  title: "Shea Allnaturals",
-  description: "Sun & Soil botanical skincare",
+  title: "Shea Allnaturals — Pure botanicals, beautifully made.",
+  description:
+    "Hand-crafted botanical skincare rooted in West-African tradition. Shea butter, argan oil, black soap, and cold-pressed oils — made in Barrie, Ontario.",
 };
 
 export default function RootLayout({
@@ -26,9 +19,24 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${quicksand.variable} ${clash.variable} ${generalSans.variable} h-full antialiased`}
+      data-scroll-behavior="smooth"
+      className={`${quicksand.variable} ${clash.variable} ${generalSans.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col bg-white text-espresso">
+        {/* Grain overlay: fixed, aria-hidden, pointer-events-none */}
+        <GrainOverlay />
+
+        {/* Placeholder header — Task 2.1 replaces with frosted-glass scroll-aware version */}
+        <Header />
+
+        {/* Page content */}
+        <main className="flex-1 relative z-10">
+          {children}
+        </main>
+
+        {/* Footer */}
+        <Footer />
+      </body>
     </html>
   );
 }
