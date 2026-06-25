@@ -1,0 +1,15 @@
+{
+  "badges": [
+    "/badges/eco-friendly.webp",
+    "/badges/fair-trade.webp",
+    "/badges/family-owned.webp",
+    "/badges/supporting-farmers.webp"
+  ],
+  "elements": [
+    "/decor/mudcloth.webp",
+    "/decor/shea-nuts.webp",
+    "/decor/leaves.webp",
+    "/decor/shea-butter.webp",
+    "/decor/oil.webp"
+  ]
+}
