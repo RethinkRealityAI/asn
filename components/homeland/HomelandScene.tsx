@@ -132,18 +132,17 @@ const ELEMENTS: FloatingElement[] = [
   },
   // Right column — product: Cocoa Shea Butter
   {
-    src: "/media/cocoa-shea-butter/02.webp",
+    src: "/media/cocoa-shea-butter/01.webp",
     alt: "Cocoa Shea Butter",
     className: "absolute pointer-events-none select-none",
     style: {
       top: "8%",
       right: "18%",
       width: "clamp(90px, 11vw, 160px)",
-      borderRadius: "14px",
-      boxShadow: "0 16px 48px rgba(0,0,0,0.4)",
+      borderRadius: "22px",
+      boxShadow: "0 18px 50px -10px rgba(20,40,25,0.45)",
       zIndex: 4,
       transform: "rotate(4deg)",
-      opacity: 0.88,
     },
     parallaxRange: [-15, 20],
     index: 5,

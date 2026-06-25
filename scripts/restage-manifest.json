@@ -1,0 +1,266 @@
+[
+  {
+    "handle": "argan-oil-hair-locks-butter",
+    "name": "Argan Oil Hair & Locks Butter",
+    "src": "public/media/argan-oil-hair-locks-butter/01.webp",
+    "featured": false
+  },
+  {
+    "handle": "argan-oil-shampoo",
+    "name": "Argan Oil Shampoo",
+    "src": "public/media/argan-oil-shampoo/01.webp",
+    "featured": true
+  },
+  {
+    "handle": "argan-oil-conditioner",
+    "name": "Argan Oil Conditioner",
+    "src": "public/media/argan-oil-conditioner/01.webp",
+    "featured": false
+  },
+  {
+    "handle": "shea-butter-shampoo",
+    "name": "Shea Butter Shampoo",
+    "src": "public/media/shea-butter-shampoo/01.webp",
+    "featured": false
+  },
+  {
+    "handle": "hair-body-cleanser",
+    "name": "Hair & Body Cleanser",
+    "src": "public/media/hair-body-cleanser/01.webp",
+    "featured": false
+  },
+  {
+    "handle": "organic-argan-almond-olive-oils",
+    "name": "Organic Argan/Almond/Olive oils",
+    "src": "public/media/organic-argan-almond-olive-oils/01.webp",
+    "featured": false
+  },
+  {
+    "handle": "shea-butter-massage-oil",
+    "name": "Shea Butter Massage Oil",
+    "src": "public/media/shea-butter-massage-oil/01.webp",
+    "featured": true
+  },
+  {
+    "handle": "shea-butter-moisturizer-2",
+    "name": "Shea Butter Moisturizer",
+    "src": "public/media/shea-butter-moisturizer-2/01.webp",
+    "featured": false
+  },
+  {
+    "handle": "shea-butter-with-olive-oil-2",
+    "name": "Shea Butter with Olive Oil",
+    "src": "public/media/shea-butter-with-olive-oil-2/01.webp",
+    "featured": false
+  },
+  {
+    "handle": "whole-shea-butter",
+    "name": "Whole Shea Butter",
+    "src": "public/media/whole-shea-butter/01.webp",
+    "featured": false
+  },
+  {
+    "handle": "cocoa-shea-butter",
+    "name": "Cocoa-Shea Butter",
+    "src": "public/media/cocoa-shea-butter/01.webp",
+    "featured": true
+  },
+  {
+    "handle": "argan-oil-body-butter",
+    "name": "Argan Oil Body Butter",
+    "src": "public/media/argan-oil-body-butter/01.webp",
+    "featured": true
+  },
+  {
+    "handle": "100-pure-shea-butter-2",
+    "name": "100% Pure Shea Butter",
+    "src": "public/media/100-pure-shea-butter-2/01.webp",
+    "featured": true
+  },
+  {
+    "handle": "body-and-bum-butter",
+    "name": "Body and Bum Butt",
+    "src": "public/media/body-and-bum-butter/01.webp",
+    "featured": false
+  },
+  {
+    "handle": "all-over-oil",
+    "name": "All-Over Oil",
+    "src": "public/media/all-over-oil/01.webp",
+    "featured": true
+  },
+  {
+    "handle": "100-pure-virgin-olive-oil",
+    "name": "100% Pure Virgin Olive Oil",
+    "src": "public/media/100-pure-virgin-olive-oil/01.webp",
+    "featured": false
+  },
+  {
+    "handle": "100-organic-argan-oil-2",
+    "name": "100% Organic Argan Oil",
+    "src": "public/media/100-organic-argan-oil-2/01.webp",
+    "featured": true
+  },
+  {
+    "handle": "skin-renewal-facial-cream",
+    "name": "Skin Renewal Facial Cream",
+    "src": "public/media/skin-renewal-facial-cream/01.webp",
+    "featured": false
+  },
+  {
+    "handle": "babassu-natural-butter",
+    "name": "Babassu Natural Butter",
+    "src": "public/media/babassu-natural-butter/01.webp",
+    "featured": false
+  },
+  {
+    "handle": "neem-oil-acne-face-cream",
+    "name": "Neem Oil Acne Face Cream",
+    "src": "public/media/neem-oil-acne-face-cream/01.webp",
+    "featured": false
+  },
+  {
+    "handle": "100-sweet-almond-oil",
+    "name": "100% Sweet Almond Oil",
+    "src": "public/media/100-sweet-almond-oil/01.webp",
+    "featured": true
+  },
+  {
+    "handle": "nigerian-scrub-kain-kain",
+    "name": "Nigerian Scrub (Kain-Kain)",
+    "src": "public/media/nigerian-scrub-kain-kain/01.webp",
+    "featured": false
+  },
+  {
+    "handle": "ylang-ylang-essential-oil",
+    "name": "Ylang Ylang Essential Oil",
+    "src": "public/media/ylang-ylang-essential-oil/01.webp",
+    "featured": false
+  },
+  {
+    "handle": "vanilla-fragrant-oil",
+    "name": "Vanilla Fragrant Oil",
+    "src": "public/media/vanilla-fragrant-oil/01.webp",
+    "featured": false
+  },
+  {
+    "handle": "orange-essential-oil",
+    "name": "Orange Essential Oil",
+    "src": "public/media/orange-essential-oil/01.webp",
+    "featured": false
+  },
+  {
+    "handle": "rosemary-essential-oil",
+    "name": "Rosemary Essential Oil",
+    "src": "public/media/rosemary-essential-oil/01.webp",
+    "featured": false
+  },
+  {
+    "handle": "peppermint-essential-oil",
+    "name": "Peppermint Essential Oil",
+    "src": "public/media/peppermint-essential-oil/01.webp",
+    "featured": true
+  },
+  {
+    "handle": "lemongrass-essential-oil",
+    "name": "Lemongrass Essential Oil",
+    "src": "public/media/lemongrass-essential-oil/01.webp",
+    "featured": false
+  },
+  {
+    "handle": "lavender-essential-oill",
+    "name": "Lavender Essential Oil",
+    "src": "public/media/lavender-essential-oill/01.webp",
+    "featured": false
+  },
+  {
+    "handle": "grapefruit-essential-oil-pink",
+    "name": "Grapefruit Essential Oil (Pink)",
+    "src": "public/media/grapefruit-essential-oil-pink/01.webp",
+    "featured": false
+  },
+  {
+    "handle": "tea-tree-essential-oil",
+    "name": "Tea Tree Essential Oil",
+    "src": "public/media/tea-tree-essential-oil/01.webp",
+    "featured": false
+  },
+  {
+    "handle": "shea-butter-treatment-conditioner",
+    "name": "Shea Butter Treatment Conditioner",
+    "src": "public/media/shea-butter-treatment-conditioner/01.webp",
+    "featured": false
+  },
+  {
+    "handle": "shea-butter-leave-in-conditioner",
+    "name": "Shea Butter Leave-In Conditioner",
+    "src": "public/media/shea-butter-leave-in-conditioner/01.webp",
+    "featured": false
+  },
+  {
+    "handle": "shea-butter-lip-balm",
+    "name": "Shea butter Lip balm",
+    "src": "public/media/shea-butter-lip-balm/01.webp",
+    "featured": false
+  },
+  {
+    "handle": "shea-feet-butter-2",
+    "name": "Shea Feet Butter",
+    "src": "public/media/shea-feet-butter-2/01.webp",
+    "featured": false
+  },
+  {
+    "handle": "shea-butter-nail-cuticle-remedy",
+    "name": "Shea Butter Nail & Cuticle Remedy",
+    "src": "public/media/shea-butter-nail-cuticle-remedy/01.webp",
+    "featured": false
+  },
+  {
+    "handle": "shea-butter-facial-wash",
+    "name": "Shea Butter Facial Wash",
+    "src": "public/media/shea-butter-facial-wash/01.webp",
+    "featured": false
+  },
+  {
+    "handle": "shea-butter-cleansing-bar",
+    "name": "Shea Butter Cleansing Bar",
+    "src": "public/media/shea-butter-cleansing-bar/01.webp",
+    "featured": false
+  },
+  {
+    "handle": "black-soap-facial-wash",
+    "name": "Black Soap Facial Wash",
+    "src": "public/media/black-soap-facial-wash/01.webp",
+    "featured": true
+  },
+  {
+    "handle": "shea-butter-body-wash-2",
+    "name": "Shea Butter Body Wash",
+    "src": "public/media/shea-butter-body-wash-2/01.webp",
+    "featured": false
+  },
+  {
+    "handle": "shea-butter-hair-scalp-oil-2",
+    "name": "Shea Butter Hair & Scalp Oil",
+    "src": "public/media/shea-butter-hair-scalp-oil-2/01.webp",
+    "featured": true
+  },
+  {
+    "handle": "tea-tree-oil",
+    "name": "Tea Tree Oil",
+    "src": "public/media/tea-tree-oil/01.webp",
+    "featured": false
+  },
+  {
+    "handle": "sheaargan-oilsheaargan-oilsheaargan-oil",
+    "name": "Argan-Shea Oil",
+    "src": "public/media/sheaargan-oilsheaargan-oilsheaargan-oil/01.webp",
+    "featured": false
+  },
+  {
+    "handle": "100-black-jamaican-castor-oil",
+    "name": "100% Black Jamaican Castor Oil",
+    "src": "public/media/100-black-jamaican-castor-oil/01.webp",
+    "featured": true
+  }
+]
