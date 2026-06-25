@@ -27,6 +27,7 @@ import { WARM, DUR } from "@/lib/motion/easings";
 import { VariantSwatch } from "./VariantSwatch";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { useCart } from "@/components/cart/useCart";
 
 // ── CAD money formatter ─────────────────────────────────────────────────────
 const cadFmt = new Intl.NumberFormat("en-CA", {
@@ -108,6 +109,7 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
     const sizes = getSizeValues(product);
     return sizes[0] ?? "";
   });
+  const { add, openCart } = useCart();
 
   const { priceRange, title, handle, images, productType, tags } = product;
   const badge = deriveBadge(tags);
@@ -125,7 +127,17 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
   const img = images[0];
 
   function handleAddClick() {
-    console.log("Add to cart:", handle, selectedSize || "default");
+    // Find the variant matching the currently-selected size, or fall back to first
+    const variant =
+      product.variants.find((v) =>
+        v.selectedOptions.some(
+          (o) => o.name === "Size" && o.value === selectedSize
+        )
+      ) ?? product.variants[0];
+    if (variant) {
+      add(product, variant, 1);
+      openCart();
+    }
   }
 
   // Image zoom: only on pointer:fine hover with motion allowed

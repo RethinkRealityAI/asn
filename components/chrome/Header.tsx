@@ -30,6 +30,7 @@ import { Wordmark } from "./Wordmark";
 import { MobileMenu } from "./MobileMenu";
 import { usePrefersReducedMotion } from "@/lib/motion/use-reduced-motion";
 import { WARM, DUR } from "@/lib/motion/easings";
+import { useCart } from "@/components/cart/useCart";
 
 const NAV_LINKS = [
   { label: "Shop", href: "#" },
@@ -42,11 +43,9 @@ const NAV_LINKS = [
 /** Scroll distance (px) before the glass bar appears */
 const SCROLL_THRESHOLD = 80;
 
-/** Cart item count — hardcoded placeholder until cart state is wired */
-const CART_COUNT: number = 2;
-
 export function Header() {
   const reducedMotion = usePrefersReducedMotion();
+  const { count: cartCount, openCart } = useCart();
 
   // Whether the frosted glass background is visible.
   // Reduced-motion users always see it; others start transparent.
@@ -195,9 +194,10 @@ export function Header() {
                   </svg>
                 </button>
 
-                {/* Cart — always visible */}
+                {/* Cart — always visible; opens drawer */}
                 <button
-                  aria-label={`Open cart, ${CART_COUNT} item${CART_COUNT !== 1 ? "s" : ""}`}
+                  onClick={openCart}
+                  aria-label={`Open cart, ${cartCount} item${cartCount !== 1 ? "s" : ""}`}
                   className={[
                     "relative p-2 rounded-full",
                     "text-espresso/70 hover:text-espresso hover:bg-espresso/8",
@@ -220,8 +220,8 @@ export function Header() {
                     <line x1="3" y1="6" x2="21" y2="6" />
                     <path d="M16 10a4 4 0 0 1-8 0" />
                   </svg>
-                  {/* Cart count badge */}
-                  {CART_COUNT > 0 && (
+                  {/* Live cart count badge */}
+                  {cartCount > 0 && (
                     <span
                       aria-hidden="true"
                       className={[
@@ -231,7 +231,7 @@ export function Header() {
                         "text-[9px] font-bold leading-none",
                       ].join(" ")}
                     >
-                      {CART_COUNT}
+                      {cartCount}
                     </span>
                   )}
                 </button>

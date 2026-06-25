@@ -4,6 +4,8 @@ import { GrainOverlay } from "@/components/motion/GrainOverlay";
 import { Header } from "@/components/chrome/Header";
 import { Footer } from "@/components/chrome/Footer";
 import { CustomCursor } from "@/components/chrome/CustomCursor";
+import { CartProvider } from "@/components/cart/CartProvider";
+import { CartDrawer } from "@/components/cart/CartDrawer";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -27,16 +29,23 @@ export default function RootLayout({
         {/* Grain overlay: fixed, aria-hidden, pointer-events-none */}
         <GrainOverlay />
 
-        {/* Placeholder header — Task 2.1 replaces with frosted-glass scroll-aware version */}
-        <Header />
+        {/* CartProvider: owns cart state + drawer visibility for the whole app.
+            CartDrawer is mounted once here so it's always accessible. */}
+        <CartProvider>
+          {/* Header — cart icon reads live count from CartProvider */}
+          <Header />
 
-        {/* Page content */}
-        <main className="flex-1 relative z-10">
-          {children}
-        </main>
+          {/* Page content */}
+          <main className="flex-1 relative z-10">
+            {children}
+          </main>
 
-        {/* Footer */}
-        <Footer />
+          {/* Footer */}
+          <Footer />
+
+          {/* Cart drawer — single instance, animated in/out via AnimatePresence */}
+          <CartDrawer />
+        </CartProvider>
 
         {/* Custom cursor: marigold ring, desktop/pointer:fine only.
             Self-disables on touch + reduced-motion. SSR-safe (renders null
