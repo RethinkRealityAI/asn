@@ -1,17 +1,16 @@
 /**
- * Home page — Task 2.5: Premium design-spike homepage.
+ * Home page — Task 2.5 + design richness pass.
  *
- * Server Component — fetches catalog data, renders three sections:
- *   1. VideoHero — dimmed promo-video backdrop hero (replaces 3D scroll-scrub)
- *   2. Featured  — "Find your essentials" product grid (12 re-staged cards)
- *   3. Homeland  — cinematic dark espresso band: "Skincare with a homeland."
+ * Server Component — fetches catalog data, renders sections:
+ *   1. VideoHero      — warm-filtered atmospheric video backdrop hero
+ *   2. Featured       — "Find your essentials" product grid (12 re-staged cards)
+ *                       with subtle decor accent in the header
+ *   3. BotanicalBand  — trust badges (4 credential roundels) replacing SVG icons
+ *   4. HomelandBand   — deep GREEN scroll-pop scene (was espresso)
+ *   5. WhereToBuyBand — typographic retail stockist strip
  *
- * The 3D hero (Hero3D / HeroScene / HeroFallback) is PARKED — files kept for
- * reuse elsewhere. Not imported here so it doesn't enter the homepage bundle.
- *
- * Data strategy (updated wave-1):
- *   - Fetch the 12 re-staged handles by name in the prescribed order.
- *   - Promise.all so fetches are parallel; filter out any null results.
+ * Data strategy:
+ *   - Fetch the 12 re-staged handles in parallel; filter nulls.
  *   - Order is exact (oils, butters, jars, soap diversity).
  *
  * Never blue. Honors prefers-reduced-motion (RevealText / ProductCard handle it).
@@ -21,14 +20,14 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { VideoHero } from "@/components/three/VideoHero";
-// Hero3D, HeroScene, HeroFallback — parked for reuse; not imported on homepage.
 import { ProductCard } from "@/components/product/ProductCard";
 import { RevealText } from "@/components/motion/RevealText";
+import { TrustBadges } from "@/components/trust/TrustBadges";
+import { HomelandScene } from "@/components/homeland/HomelandScene";
 import { store } from "@/lib/shopify";
 import type { Product } from "@/lib/shopify/types";
 
 // ── Featured set — wave-1 re-staged handles, exact order ─────────────────────
-// Diverse mix: oils, butters, jars, soap. All 12 have clean cream re-staged imagery.
 const FEATURED_HANDLES = [
   "peppermint-essential-oil",
   "100-organic-argan-oil-2",
@@ -47,11 +46,9 @@ const FEATURED_HANDLES = [
 // ── Data fetching ─────────────────────────────────────────────────────────────
 
 async function getFeaturedProducts(): Promise<Product[]> {
-  // Fetch the exact 12 re-staged products in parallel, preserve order.
   const results = await Promise.all(
     FEATURED_HANDLES.map((h) => store.getProduct(h))
   );
-  // Filter out any null/undefined (graceful degradation if a handle is missing).
   return results.filter((p): p is Product => p != null);
 }
 
@@ -62,17 +59,20 @@ export default async function Home() {
 
   return (
     <>
-      {/* ── 1. Hero — dimmed promo-video backdrop ────────────────────────── */}
+      {/* ── 1. Hero — warm atmospheric video backdrop ────────────────────── */}
       <VideoHero />
 
       {/* ── 2. Featured products ─────────────────────────────────────────── */}
       <FeaturedSection products={featured} />
 
-      {/* ── 2b. Botanical credentials band — strategic cream accent ──────── */}
+      {/* ── 3. Trust badges band ─────────────────────────────────────────── */}
       <BotanicalBand />
 
-      {/* ── 3. Homeland dark band ─────────────────────────────────────────── */}
+      {/* ── 4. Homeland green scroll-pop scene ───────────────────────────── */}
       <HomelandBand />
+
+      {/* ── 5. Where to buy ──────────────────────────────────────────────── */}
+      <WhereToBuyBand />
     </>
   );
 }
@@ -84,9 +84,46 @@ function FeaturedSection({ products }: { products: Product[] }) {
     <section
       id="products"
       aria-label="Featured products"
-      className="bg-white py-20 px-5 sm:px-8 lg:px-12"
+      className="relative bg-white py-20 px-5 sm:px-8 lg:px-12 overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto">
+      {/* ── Subtle decor accent — leaves peeking from top-right ──────────── */}
+      <div
+        aria-hidden="true"
+        className="absolute top-0 right-0 pointer-events-none select-none"
+        style={{
+          width: "clamp(100px, 14vw, 200px)",
+          opacity: 0.08,
+          transform: "translate(20%, -15%) rotate(-20deg)",
+        }}
+      >
+        <Image
+          src="/decor/leaves.webp"
+          alt=""
+          width={300}
+          height={300}
+          style={{ width: "100%", height: "auto" }}
+        />
+      </div>
+      {/* ── Subtle oil decor — bottom-left corner ────────────────────────── */}
+      <div
+        aria-hidden="true"
+        className="absolute bottom-0 left-0 pointer-events-none select-none"
+        style={{
+          width: "clamp(70px, 10vw, 140px)",
+          opacity: 0.07,
+          transform: "translate(-20%, 20%) rotate(15deg)",
+        }}
+      >
+        <Image
+          src="/decor/oil.webp"
+          alt=""
+          width={200}
+          height={280}
+          style={{ width: "100%", height: "auto" }}
+        />
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto">
         {/* Section header */}
         <div className="mb-12 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
           <div>
@@ -126,7 +163,6 @@ function FeaturedSection({ products }: { products: Product[] }) {
               key={product.handle}
               product={product}
               priority={i < 4}
-              // First 4 cards that have no tag-derived badge get a "Bestseller" badge for demo
               badgeOverride={
                 i < 4
                   ? { label: "Bestseller", classes: "bg-clay/12 text-clay border border-clay/30" }
@@ -150,131 +186,53 @@ function FeaturedSection({ products }: { products: Product[] }) {
   );
 }
 
-// ── Botanical credentials band — strategic cream accent strip ─────────────────
-// This is the ONE cream-surface section on the page. Pure botanicals messaging
-// with green trust cues and a leaf/red maple accent — natural + Canadian.
+// ── Trust badges band ─────────────────────────────────────────────────────────
+// Replaces the SVG-icon credential strip with actual badge images.
+// Cream surface with stagger-reveal animation.
 
 function BotanicalBand() {
-  const credentials = [
-    {
-      label: "Vegan",
-      detail: "No animal-derived ingredients",
-      // Green leaf icon (SVG inline) — botanical signal
-      icon: (
-        <svg
-          aria-hidden="true"
-          viewBox="0 0 20 20"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="w-5 h-5 text-green"
-        >
-          <path d="M3 17c3-5 6-9 14-11-2 8-7 12-14 11Z" />
-          <path d="M3 17 10 8" />
-        </svg>
-      ),
-    },
-    {
-      label: "Cruelty-free",
-      detail: "Never tested on animals",
-      icon: (
-        <svg
-          aria-hidden="true"
-          viewBox="0 0 20 20"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="w-5 h-5 text-green"
-        >
-          <path d="M10 17s-7-4-7-9a7 7 0 0 1 14 0c0 5-7 9-7 9Z" />
-          <path d="m8 9 1.5 1.5L12 8" />
-        </svg>
-      ),
-    },
-    {
-      label: "100% Natural",
-      detail: "No parabens, no sulphates, no synthetics",
-      icon: (
-        <svg
-          aria-hidden="true"
-          viewBox="0 0 20 20"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="w-5 h-5 text-green"
-        >
-          <circle cx="10" cy="10" r="7" />
-          <path d="m7 10 2 2 4-4" />
-        </svg>
-      ),
-    },
-    {
-      label: "Made in Canada",
-      detail: "Handcrafted in Barrie, Ontario",
-      // Leaf/red maple accent — Canadian identity
-      icon: (
-        <svg
-          aria-hidden="true"
-          viewBox="0 0 20 20"
-          fill="currentColor"
-          className="w-5 h-5 text-leaf"
-        >
-          {/* Maple leaf simplified path */}
-          <path d="M10 2 11.5 6h3l-2.5 2 1 3-3-2-3 2 1-3L5.5 6h3Z" />
-          <rect x="9" y="12" width="2" height="4" rx="0.5" />
-        </svg>
-      ),
-    },
-  ];
-
   return (
     <section
-      aria-label="Botanical credentials"
-      className="bg-cream border-y border-espresso/08 py-10 px-5 sm:px-8 lg:px-12"
+      aria-label="Our credentials"
+      className="bg-cream border-y border-espresso/08 py-12 px-5 sm:px-8 lg:px-12"
     >
       <div className="max-w-7xl mx-auto">
-        <ul className="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8">
-          {credentials.map(({ label, detail, icon }) => (
-            <li key={label} className="flex flex-col items-center sm:items-start gap-2 text-center sm:text-left">
-              <div className="flex items-center gap-2">
-                {icon}
-                <span className="text-sm font-semibold text-espresso">{label}</span>
-              </div>
-              <span className="text-xs text-espresso/55 leading-relaxed">{detail}</span>
-            </li>
-          ))}
-        </ul>
+        {/* Overline */}
+        <p className="text-center text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-espresso/40 mb-8">
+          Why Shea Allnaturals
+        </p>
+        {/* Badge grid — TrustBadges is client-side for the stagger animation */}
+        <TrustBadges />
       </div>
     </section>
   );
 }
 
-// ── Homeland dark band ────────────────────────────────────────────────────────
+// ── Homeland green band ───────────────────────────────────────────────────────
+// Deep botanical green backdrop with mudcloth texture and scroll-pop decor.
 
 function HomelandBand() {
   return (
     <section
       id="story"
       aria-label="Skincare with a homeland"
-      className="relative bg-espresso text-cream overflow-hidden"
+      className="relative overflow-hidden"
+      style={{ background: "#245F3C" /* slightly deeper than green token for richness */ }}
     >
-      {/* Radial warmth wash — orange-clay centre glow, grain shows through */}
+      {/* Radial warmth wash — warm centre glow to keep the green from reading cold */}
       <div
         aria-hidden="true"
         className="absolute inset-0 pointer-events-none"
         style={{
           background: [
-            "radial-gradient(ellipse 70% 60% at 30% 50%, rgba(226,116,43,0.13) 0%, transparent 70%)",
-            "radial-gradient(ellipse 50% 80% at 80% 30%, rgba(235,165,44,0.07) 0%, transparent 60%)",
+            "radial-gradient(ellipse 70% 60% at 30% 50%, rgba(235,165,44,0.09) 0%, transparent 70%)",
+            "radial-gradient(ellipse 50% 80% at 80% 30%, rgba(226,116,43,0.06) 0%, transparent 60%)",
           ].join(", "),
         }}
       />
+
+      {/* Mudcloth texture + floating decor elements (client component) */}
+      <HomelandScene />
 
       <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 py-24 lg:py-32">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
@@ -292,7 +250,7 @@ function HomelandBand() {
               delay={0.1}
             />
 
-            <p className="mt-6 text-cream/70 text-base sm:text-lg leading-relaxed max-w-md">
+            <p className="mt-6 text-cream/75 text-base sm:text-lg leading-relaxed max-w-md">
               Every jar starts with raw shea nuts and botanical oils sourced
               directly from West Africa — then cold-pressed, blended, and
               small-batch finished here in Barrie, Ontario. No fillers. No
@@ -302,7 +260,7 @@ function HomelandBand() {
             <div className="mt-10 flex items-center gap-5 flex-wrap">
               <Link
                 href="/pages/our-story"
-                className="inline-flex items-center gap-2 rounded-full bg-marigold text-espresso px-7 py-3 text-sm font-semibold hover:bg-orange hover:text-cream transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-marigold focus-visible:ring-offset-2 focus-visible:ring-offset-espresso"
+                className="inline-flex items-center gap-2 rounded-full bg-marigold text-espresso px-7 py-3 text-sm font-semibold hover:bg-orange hover:text-cream transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-marigold focus-visible:ring-offset-2 focus-visible:ring-offset-green"
               >
                 Our story →
               </Link>
@@ -315,57 +273,13 @@ function HomelandBand() {
             </div>
           </div>
 
-          {/* Image column — editorial stacked product duo */}
-          <div className="relative flex justify-center lg:justify-end">
-            <div className="relative w-full max-w-sm lg:max-w-md h-[420px] sm:h-[480px]">
-              {/* Back card — Cocoa Shea Butter */}
-              <div
-                className="absolute top-0 left-0 w-[52%] rounded-2xl overflow-hidden shadow-[0_20px_60px_0_rgba(0,0,0,0.5)]"
-                style={{ transform: "rotate(-4deg)" }}
-              >
-                <div className="relative aspect-[4/5]" style={{ background: "#2A1E14" }}>
-                  <Image
-                    src="/media/cocoa-shea-butter/02.webp"
-                    alt="Cocoa Shea Butter"
-                    fill
-                    sizes="(max-width: 768px) 40vw, 22vw"
-                    className="object-cover mix-blend-luminosity opacity-75"
-                  />
-                </div>
-              </div>
-
-              {/* Front card — 100% Pure Shea Butter */}
-              <div
-                className="absolute bottom-0 right-0 w-[60%] rounded-2xl overflow-hidden shadow-[0_28px_80px_0_rgba(0,0,0,0.6)]"
-                style={{ transform: "rotate(2.5deg)" }}
-              >
-                <div className="relative aspect-[4/5]" style={{ background: "#3A2A1C" }}>
-                  <Image
-                    src="/media/100-pure-shea-butter-2/01.webp"
-                    alt="100% Pure Shea Butter"
-                    fill
-                    sizes="(max-width: 768px) 45vw, 26vw"
-                    className="object-cover mix-blend-luminosity opacity-80"
-                    priority
-                  />
-                </div>
-              </div>
-
-              {/* Decorative marigold rings */}
-              <div
-                aria-hidden="true"
-                className="absolute -bottom-6 -right-6 w-36 h-36 rounded-full border border-marigold/20 pointer-events-none"
-              />
-              <div
-                aria-hidden="true"
-                className="absolute -bottom-12 -right-12 w-52 h-52 rounded-full border border-marigold/10 pointer-events-none"
-              />
-            </div>
-          </div>
+          {/* Right column — spacer; the decor elements (from HomelandScene)
+              fill this zone with the floating product imagery */}
+          <div className="hidden lg:block" aria-hidden="true" />
         </div>
 
         {/* Ingredient callout strip */}
-        <div className="mt-20 pt-10 border-t border-cream/10 grid sm:grid-cols-3 gap-6 text-center sm:text-left">
+        <div className="mt-20 pt-10 border-t border-cream/12 grid sm:grid-cols-3 gap-6 text-center sm:text-left">
           {[
             { label: "Shea Butter", detail: "Unrefined, hand-scooped" },
             { label: "Argan Oil", detail: "Cold-pressed, Moroccan-origin" },
@@ -379,6 +293,85 @@ function HomelandBand() {
             </div>
           ))}
         </div>
+      </div>
+    </section>
+  );
+}
+
+// ── Where to Buy strip ────────────────────────────────────────────────────────
+// Typographic retailer strip — no fake logos, just refined espresso names.
+// Cream background, separated from footer by a warm border.
+
+const STOCKISTS = [
+  "Walmart",
+  "Shoppers Drug Mart",
+  "Pharmaplus",
+  "Jean Coutu",
+  "Rexall",
+];
+
+function WhereToBuyBand() {
+  return (
+    <section
+      aria-label="Where to buy"
+      className="relative bg-cream border-t border-espresso/08 py-14 px-5 sm:px-8 lg:px-12 overflow-hidden"
+    >
+      {/* Faint shea-nuts decor — top right */}
+      <div
+        aria-hidden="true"
+        className="absolute top-0 right-0 pointer-events-none select-none"
+        style={{
+          width: "clamp(80px, 10vw, 140px)",
+          opacity: 0.06,
+          transform: "translate(15%, -10%) rotate(30deg)",
+        }}
+      >
+        <Image
+          src="/decor/shea-nuts.webp"
+          alt=""
+          width={250}
+          height={250}
+          style={{ width: "100%", height: "auto" }}
+        />
+      </div>
+
+      <div className="relative z-10 max-w-5xl mx-auto text-center">
+        {/* Heading */}
+        <p className="text-[0.6rem] font-semibold uppercase tracking-[0.25em] text-espresso/35 mb-2">
+          Also available at
+        </p>
+        <h2 className="font-display text-2xl sm:text-3xl font-semibold text-espresso mb-10 tracking-tight">
+          Find us in store
+        </h2>
+
+        {/* Retailer names — clean typographic treatment with marigold dot separators */}
+        <div className="flex flex-wrap justify-center items-center gap-3 sm:gap-4">
+          {STOCKISTS.map((name, i) => (
+            <span key={name} className="flex items-center gap-3 sm:gap-4">
+              {i > 0 && (
+                <span
+                  aria-hidden="true"
+                  className="block w-1 h-1 rounded-full shrink-0"
+                  style={{ background: "rgba(235,165,44,0.6)" }}
+                />
+              )}
+              <span className="text-sm sm:text-base font-semibold text-espresso/55 tracking-wide">
+                {name}
+              </span>
+            </span>
+          ))}
+        </div>
+
+        <p className="mt-8 text-xs text-espresso/40 max-w-xs mx-auto leading-relaxed">
+          Available online and in select retail locations across Canada.
+        </p>
+
+        <Link
+          href="/where-to-buy"
+          className="mt-6 inline-flex items-center gap-1.5 text-xs font-semibold text-clay/80 hover:text-clay underline-offset-4 hover:underline transition-colors duration-200 uppercase tracking-[0.15em]"
+        >
+          Full store finder →
+        </Link>
       </div>
     </section>
   );

@@ -42,6 +42,14 @@ export function VideoHero() {
       aria-label="Shea Allnaturals hero"
     >
       {/* ── Video background ──────────────────────────────────────────────── */}
+      {/*
+        CSS filter treatment: desaturate + warm sepia + slight blur so old blue
+        labels are not legible and no brand-violating hue bleeds through.
+        brightness(0.78) keeps it dark enough that the scrim below can ensure
+        AA contrast without going pitch-black. blur(3px) smears fine label
+        text into pure atmosphere. saturate(0.35) kills the blue channel.
+        sepia(0.28) adds warm amber-tobacco cast matching the brand palette.
+      */}
       <video
         ref={videoRef}
         className="absolute inset-0 w-full h-full object-cover"
@@ -52,6 +60,10 @@ export function VideoHero() {
         preload="metadata"
         poster="/video/hero-poster.jpg"
         aria-hidden="true"
+        style={{
+          filter: "saturate(0.35) sepia(0.28) brightness(0.78) blur(3px)",
+          transform: "scale(1.03)", /* compensate blur edge-bleeding */
+        }}
       >
         {/* WebM first (smaller / VP9 quality); MP4 as universal fallback */}
         <source src="/video/hero.webm" type="video/webm" />
@@ -60,23 +72,30 @@ export function VideoHero() {
 
       {/* ── Warm dim scrim ────────────────────────────────────────────────── */}
       {/*
-        Two-layer scrim for AA legibility without killing the visual:
-        1. Overall espresso tint (55% opacity) — deepens the frame evenly.
-        2. Left-to-right directional gradient — heavier on the left where the
-           text lives, fades to near-transparent on the right so the video
-           oils/product shot still reads on desktop.
-        Combined effect: text on left → WCAG AA+ contrast; video visible right.
+        Three-layer scrim for maximum warmth + AA legibility:
+        1. Overall espresso tint (60%) — deepens the already-filtered frame.
+        2. Warm amber bottom-to-top gradient — like firelight rising from below.
+        3. Left-to-right directional gradient — heaviest where the text card sits.
+        Combined: headline area is near-black espresso; right side shows warm video.
       */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-espresso/55"
+        className="absolute inset-0 bg-espresso/60"
       />
       <div
         aria-hidden="true"
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(to right, rgba(30,17,10,0.65) 0%, rgba(30,17,10,0.30) 45%, rgba(30,17,10,0.10) 75%, rgba(30,17,10,0) 100%)",
+            "linear-gradient(to top, rgba(42,20,8,0.55) 0%, rgba(42,20,8,0.15) 50%, transparent 100%)",
+        }}
+      />
+      <div
+        aria-hidden="true"
+        className="absolute inset-0"
+        style={{
+          background:
+            "linear-gradient(to right, rgba(30,17,10,0.72) 0%, rgba(30,17,10,0.40) 45%, rgba(30,17,10,0.12) 75%, rgba(30,17,10,0) 100%)",
         }}
       />
 
