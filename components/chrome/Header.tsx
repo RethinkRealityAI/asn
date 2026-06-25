@@ -25,6 +25,7 @@
  */
 
 import { useState, useCallback } from "react";
+import Link from "next/link";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { Wordmark } from "./Wordmark";
 import { MobileMenu } from "./MobileMenu";
@@ -33,10 +34,10 @@ import { WARM, DUR } from "@/lib/motion/easings";
 import { useCart } from "@/components/cart/useCart";
 
 const NAV_LINKS = [
-  { label: "Shop", href: "#" },
-  { label: "Collections", href: "#" },
+  { label: "Shop", href: "/shop" },
+  { label: "Collections", href: "/collections" },
   { label: "Our Story", href: "#" },
-  { label: "Wholesale", href: "#" },
+  { label: "Wholesale", href: "/collections/bulk-wholesale" },
   { label: "Journal", href: "#" },
 ];
 
@@ -106,7 +107,7 @@ export function Header() {
             <div className="flex h-16 items-center justify-between gap-4">
 
               {/* ── Wordmark ─────────────────────────────────────────── */}
-              <a
+              <Link
                 href="/"
                 aria-label="Shea Allnaturals home"
                 className={[
@@ -115,7 +116,7 @@ export function Header() {
                 ].join(" ")}
               >
                 <Wordmark className="text-espresso" size="text-xl sm:text-2xl" />
-              </a>
+              </Link>
 
               {/* ── Desktop nav links ─────────────────────────────────── */}
               <nav
@@ -123,7 +124,7 @@ export function Header() {
                 className="hidden md:flex items-center gap-1"
               >
                 {NAV_LINKS.map(({ label, href }) => (
-                  <a
+                  <Link
                     key={label}
                     href={href}
                     className={[
@@ -135,7 +136,7 @@ export function Header() {
                     ].join(" ")}
                   >
                     {label}
-                  </a>
+                  </Link>
                 ))}
               </nav>
 

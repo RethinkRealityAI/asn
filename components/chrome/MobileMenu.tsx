@@ -9,16 +9,17 @@
  */
 
 import { useEffect, useRef } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Wordmark } from "./Wordmark";
 import { usePrefersReducedMotion } from "@/lib/motion/use-reduced-motion";
 import { WARM, DUR } from "@/lib/motion/easings";
 
 const NAV_LINKS = [
-  { label: "Shop", href: "#" },
-  { label: "Collections", href: "#" },
+  { label: "Shop", href: "/shop" },
+  { label: "Collections", href: "/collections" },
   { label: "Our Story", href: "#" },
-  { label: "Wholesale", href: "#" },
+  { label: "Wholesale", href: "/collections/bulk-wholesale" },
   { label: "Journal", href: "#" },
 ];
 
@@ -113,13 +114,13 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
             >
               {/* Header row */}
               <div className="flex items-center justify-between px-6 h-16">
-                <a
+                <Link
                   href="/"
                   aria-label="Shea Allnaturals home"
                   onClick={onClose}
                 >
                   <Wordmark className="text-espresso" size="text-xl" />
-                </a>
+                </Link>
                 <button
                   ref={closeButtonRef}
                   aria-label="Close navigation menu"
@@ -153,7 +154,7 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                 <ul className="px-4 pb-8 space-y-1">
                   {NAV_LINKS.map(({ label, href }) => (
                     <li key={label}>
-                      <a
+                      <Link
                         href={href}
                         onClick={onClose}
                         className={[
@@ -165,7 +166,7 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                         ].join(" ")}
                       >
                         {label}
-                      </a>
+                      </Link>
                     </li>
                   ))}
                 </ul>
@@ -173,20 +174,20 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                 {/* Divider + secondary actions */}
                 <div className="border-t border-espresso/10 mx-4 mb-4" />
                 <div className="px-4 pb-8 flex gap-3">
-                  <a
-                    href="#"
+                  <Link
+                    href="/shop"
                     onClick={onClose}
                     className="flex-1 text-center rounded-full bg-clay text-cream font-semibold px-6 py-3 text-sm hover:bg-orange transition-colors"
                   >
                     Shop now
-                  </a>
-                  <a
+                  </Link>
+                  <Link
                     href="#"
                     onClick={onClose}
                     className="flex-1 text-center rounded-full border border-espresso/30 text-espresso font-semibold px-6 py-3 text-sm hover:bg-espresso/5 transition-colors"
                   >
                     Our story
-                  </a>
+                  </Link>
                 </div>
               </nav>
             </div>

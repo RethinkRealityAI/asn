@@ -99,7 +99,7 @@ function FeaturedSection({ products }: { products: Product[] }) {
 
           {/* "Shop all" — desktop */}
           <Link
-            href="/collections/all"
+            href="/shop"
             className="hidden sm:inline-flex items-center gap-1.5 text-sm font-semibold text-espresso/70 hover:text-clay transition-colors duration-200 shrink-0 pb-1 group"
           >
             Shop all
@@ -126,7 +126,7 @@ function FeaturedSection({ products }: { products: Product[] }) {
         {/* "Shop all" — mobile */}
         <div className="mt-10 flex justify-center sm:hidden">
           <Link
-            href="/collections/all"
+            href="/shop"
             className="inline-flex items-center gap-2 rounded-full border border-espresso/20 px-6 py-2.5 text-sm font-semibold text-espresso hover:border-clay hover:text-clay transition-colors duration-200"
           >
             Shop all products →
@@ -189,7 +189,7 @@ function HomelandBand() {
                 Our story →
               </Link>
               <Link
-                href="/collections/all"
+                href="/shop"
                 className="text-sm font-semibold text-cream/70 hover:text-cream transition-colors duration-200"
               >
                 Shop essentials
