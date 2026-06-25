@@ -3,6 +3,7 @@ import { quicksand, clash, generalSans } from "./fonts";
 import { GrainOverlay } from "@/components/motion/GrainOverlay";
 import { Header } from "@/components/chrome/Header";
 import { Footer } from "@/components/chrome/Footer";
+import { CustomCursor } from "@/components/chrome/CustomCursor";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -36,6 +37,11 @@ export default function RootLayout({
 
         {/* Footer */}
         <Footer />
+
+        {/* Custom cursor: marigold ring, desktop/pointer:fine only.
+            Self-disables on touch + reduced-motion. SSR-safe (renders null
+            on server and first paint). */}
+        <CustomCursor />
       </body>
     </html>
   );

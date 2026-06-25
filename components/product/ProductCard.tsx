@@ -255,8 +255,11 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
               />
             </div>
 
-            {/* Desktop (pointer:fine): animated hover slide-up */}
-            <div className="hidden pointer-fine:block">
+            {/* Desktop (pointer:fine): animated hover slide-up.
+                The outer div reserves the exact height of the QuickAddBar
+                (52px = py-2*2 + icon height) so non-hovered cards stay the
+                same height as hovered cards and the grid never reflows. */}
+            <div className="hidden pointer-fine:block" style={{ minHeight: "52px" }}>
               <AnimatePresence>
                 {hovered && (
                   <motion.div
