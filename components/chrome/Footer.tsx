@@ -11,10 +11,10 @@ import { Wordmark } from "./Wordmark";
 import { Button } from "@/components/ui/button";
 
 const SHOP_LINKS = [
-  { label: "Face & Body Oils", href: "/collections/face-body-oils" },
-  { label: "Shea & Butters", href: "/collections/shea-butters" },
-  { label: "Hair Care", href: "/collections/hair-care" },
-  { label: "Soaps & Washes", href: "/collections/soaps-washes" },
+  { label: "Face & Body Oils", href: "/collections/essential-oils-fragrances" },
+  { label: "Shea & Butters", href: "/collections/butters-moisturizers" },
+  { label: "Hair Care", href: "/collections/family-hair-care" },
+  { label: "Soaps & Washes", href: "/collections/washes-soaps" },
   { label: "Bulk & Wholesale", href: "/collections/bulk-wholesale" },
 ];
 
