@@ -32,7 +32,8 @@ export function PLPHeader({
   return (
     <header
       className={cn(
-        "w-full bg-gradient-to-b from-cream to-[#F5ECDA]/60",
+        // White header — clean; bottom divider separates from content below
+        "w-full bg-white",
         "border-b border-espresso/08",
         "px-4 sm:px-6 lg:px-8 py-10 sm:py-14",
         className

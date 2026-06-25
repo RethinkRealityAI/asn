@@ -58,7 +58,7 @@ export default async function ShopPage() {
   );
 
   return (
-    <div className="min-h-screen bg-cream pt-[calc(3.5rem+2rem)]">
+    <div className="min-h-screen bg-white pt-[calc(3.5rem+2rem)]">
       <PLPClient
         products={retail}
         collections={collections}

@@ -10,6 +10,7 @@
  */
 
 import { useState, useId } from "react";
+import type React from "react";
 import type { Product, Variant } from "@/lib/shopify/types";
 import { VariantSwatch } from "@/components/product/VariantSwatch";
 import { AddToCartButton } from "@/components/cart/AddToCartButton";
@@ -42,12 +43,51 @@ function getVariantForSize(product: Product, sizeValue: string): Variant | null 
   );
 }
 
-// ── Trust badges ─────────────────────────────────────────────────────────────
+// ── Trust badges — SVG icons, green botanical + leaf/red maple signals ───────
 
-const TRUST_ITEMS = [
-  { icon: "🚚", label: "Free shipping over $75" },
-  { icon: "🐰", label: "Cruelty-free" },
-  { icon: "🍁", label: "Made in Canada" },
+const TRUST_ITEMS: { icon: React.ReactNode; label: string }[] = [
+  {
+    // Truck icon — marigold/orange for secondary info
+    icon: (
+      <svg aria-hidden="true" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 text-marigold shrink-0">
+        <rect x="1" y="6" width="12" height="9" rx="1.5" />
+        <path d="M13 9h3l2 3v3h-5V9Z" />
+        <circle cx="5" cy="17" r="1.5" />
+        <circle cx="15" cy="17" r="1.5" />
+      </svg>
+    ),
+    label: "Free shipping over $75",
+  },
+  {
+    // Leaf icon — green botanical/cruelty-free credential
+    icon: (
+      <svg aria-hidden="true" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 text-green shrink-0">
+        <path d="M3 17c3-5 6-9 14-11-2 8-7 12-14 11Z" />
+        <path d="M3 17 10 8" />
+      </svg>
+    ),
+    label: "Vegan · Cruelty-free",
+  },
+  {
+    // Check circle — green "natural" signal
+    icon: (
+      <svg aria-hidden="true" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 text-green shrink-0">
+        <circle cx="10" cy="10" r="7" />
+        <path d="m7 10 2 2 4-4" />
+      </svg>
+    ),
+    label: "100% Natural",
+  },
+  {
+    // Maple leaf — leaf/red Canada identity accent
+    icon: (
+      <svg aria-hidden="true" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 text-leaf shrink-0">
+        <path d="M10 2 11.8 6.5H15l-2.5 2.2 1 3.3-3.5-2-3.5 2 1-3.3L5 6.5h3.2Z" />
+        <rect x="9.25" y="12" width="1.5" height="4" rx="0.5" />
+      </svg>
+    ),
+    label: "Handcrafted in Canada",
+  },
 ];
 
 // ── Component ────────────────────────────────────────────────────────────────
@@ -97,6 +137,14 @@ export function ProductInfo({ product }: ProductInfoProps) {
       <h1 className="font-display text-3xl md:text-4xl font-bold text-espresso leading-tight">
         {product.title}
       </h1>
+
+      {/* ── Availability — green "In stock" dot ──────────────────────────── */}
+      {product.variants[0]?.available !== false && (
+        <p className="flex items-center gap-1.5 text-xs font-medium text-green">
+          <span aria-hidden="true" className="inline-block w-2 h-2 rounded-full bg-green" />
+          In stock
+        </p>
+      )}
 
       {/* ── Price ────────────────────────────────────────────────────────── */}
       <div className="flex items-baseline gap-3">
@@ -190,17 +238,17 @@ export function ProductInfo({ product }: ProductInfoProps) {
         />
       )}
 
-      {/* ── Trust row ─────────────────────────────────────────────────────── */}
+      {/* ── Trust row — green leaf/check cues + red maple accent ────────── */}
       <ul
         aria-label="Product assurances"
-        className="flex flex-wrap gap-x-5 gap-y-2 mt-1"
+        className="flex flex-wrap gap-x-5 gap-y-2.5 mt-1 pt-4 border-t border-espresso/08"
       >
         {TRUST_ITEMS.map(({ icon, label }) => (
           <li
             key={label}
-            className="flex items-center gap-1.5 text-xs text-espresso/60 font-medium"
+            className="flex items-center gap-1.5 text-xs text-espresso/65 font-medium"
           >
-            <span aria-hidden="true">{icon}</span>
+            {icon}
             {label}
           </li>
         ))}

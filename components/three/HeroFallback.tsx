@@ -20,8 +20,8 @@ import { HeroOverlay } from "./HeroOverlay";
 
 export function HeroFallback() {
   return (
-    <section className="relative w-full min-h-screen overflow-hidden bg-cream">
-      {/* Static poster — warm peppermint-oil still on cream */}
+    <section className="relative w-full min-h-screen overflow-hidden bg-white">
+      {/* Static poster — warm peppermint-oil still */}
       <Image
         src="/hero-poster.webp"
         alt="Shea Allnaturals peppermint essential oil on a warm cream backdrop"
@@ -31,10 +31,10 @@ export function HeroFallback() {
         className="object-cover object-center"
       />
 
-      {/* Soft cream vignette to keep the headline legible over the image */}
+      {/* Soft white vignette on the left — keeps the headline legible over the image */}
       <div
         aria-hidden
-        className="absolute inset-0 bg-[radial-gradient(120%_90%_at_30%_45%,rgba(245,236,218,0.55)_0%,rgba(245,236,218,0.15)_45%,rgba(245,236,218,0)_70%)]"
+        className="absolute inset-0 bg-[radial-gradient(120%_90%_at_28%_45%,rgba(255,255,255,0.60)_0%,rgba(255,255,255,0.18)_42%,rgba(255,255,255,0)_68%)]"
       />
 
       {/* Shared CTA overlay (no scroll cue — nothing to scrub) */}

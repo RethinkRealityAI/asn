@@ -64,6 +64,9 @@ export default async function Home() {
       {/* ── 2. Featured products ─────────────────────────────────────────── */}
       <FeaturedSection products={featured} />
 
+      {/* ── 2b. Botanical credentials band — strategic cream accent ──────── */}
+      <BotanicalBand />
+
       {/* ── 3. Homeland dark band ─────────────────────────────────────────── */}
       <HomelandBand />
     </>
@@ -77,7 +80,7 @@ function FeaturedSection({ products }: { products: Product[] }) {
     <section
       id="products"
       aria-label="Featured products"
-      className="bg-cream py-20 px-5 sm:px-8 lg:px-12"
+      className="bg-white py-20 px-5 sm:px-8 lg:px-12"
     >
       <div className="max-w-7xl mx-auto">
         {/* Section header */}
@@ -119,6 +122,12 @@ function FeaturedSection({ products }: { products: Product[] }) {
               key={product.handle}
               product={product}
               priority={i < 4}
+              // First 4 cards that have no tag-derived badge get a "Bestseller" badge for demo
+              badgeOverride={
+                i < 4
+                  ? { label: "Bestseller", classes: "bg-clay/12 text-clay border border-clay/30" }
+                  : undefined
+              }
             />
           ))}
         </div>
@@ -132,6 +141,111 @@ function FeaturedSection({ products }: { products: Product[] }) {
             Shop all products →
           </Link>
         </div>
+      </div>
+    </section>
+  );
+}
+
+// ── Botanical credentials band — strategic cream accent strip ─────────────────
+// This is the ONE cream-surface section on the page. Pure botanicals messaging
+// with green trust cues and a leaf/red maple accent — natural + Canadian.
+
+function BotanicalBand() {
+  const credentials = [
+    {
+      label: "Vegan",
+      detail: "No animal-derived ingredients",
+      // Green leaf icon (SVG inline) — botanical signal
+      icon: (
+        <svg
+          aria-hidden="true"
+          viewBox="0 0 20 20"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="w-5 h-5 text-green"
+        >
+          <path d="M3 17c3-5 6-9 14-11-2 8-7 12-14 11Z" />
+          <path d="M3 17 10 8" />
+        </svg>
+      ),
+    },
+    {
+      label: "Cruelty-free",
+      detail: "Never tested on animals",
+      icon: (
+        <svg
+          aria-hidden="true"
+          viewBox="0 0 20 20"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="w-5 h-5 text-green"
+        >
+          <path d="M10 17s-7-4-7-9a7 7 0 0 1 14 0c0 5-7 9-7 9Z" />
+          <path d="m8 9 1.5 1.5L12 8" />
+        </svg>
+      ),
+    },
+    {
+      label: "100% Natural",
+      detail: "No parabens, no sulphates, no synthetics",
+      icon: (
+        <svg
+          aria-hidden="true"
+          viewBox="0 0 20 20"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="w-5 h-5 text-green"
+        >
+          <circle cx="10" cy="10" r="7" />
+          <path d="m7 10 2 2 4-4" />
+        </svg>
+      ),
+    },
+    {
+      label: "Made in Canada",
+      detail: "Handcrafted in Barrie, Ontario",
+      // Leaf/red maple accent — Canadian identity
+      icon: (
+        <svg
+          aria-hidden="true"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+          className="w-5 h-5 text-leaf"
+        >
+          {/* Maple leaf simplified path */}
+          <path d="M10 2 11.5 6h3l-2.5 2 1 3-3-2-3 2 1-3L5.5 6h3Z" />
+          <rect x="9" y="12" width="2" height="4" rx="0.5" />
+        </svg>
+      ),
+    },
+  ];
+
+  return (
+    <section
+      aria-label="Botanical credentials"
+      className="bg-cream border-y border-espresso/08 py-10 px-5 sm:px-8 lg:px-12"
+    >
+      <div className="max-w-7xl mx-auto">
+        <ul className="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8">
+          {credentials.map(({ label, detail, icon }) => (
+            <li key={label} className="flex flex-col items-center sm:items-start gap-2 text-center sm:text-left">
+              <div className="flex items-center gap-2">
+                {icon}
+                <span className="text-sm font-semibold text-espresso">{label}</span>
+              </div>
+              <span className="text-xs text-espresso/55 leading-relaxed">{detail}</span>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );

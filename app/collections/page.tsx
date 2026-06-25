@@ -32,9 +32,9 @@ export default async function CollectionsPage() {
   );
 
   return (
-    <div className="min-h-screen bg-cream pt-[calc(3.5rem+2rem)]">
+    <div className="min-h-screen bg-white pt-[calc(3.5rem+2rem)]">
       {/* Page header */}
-      <header className="w-full bg-gradient-to-b from-cream to-[#F5ECDA]/60 border-b border-espresso/08 px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
+      <header className="w-full bg-white border-b border-espresso/08 px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
         <div className="max-w-screen-xl mx-auto flex flex-col gap-3">
           <nav aria-label="Breadcrumb">
             <ol className="flex items-center gap-1.5 text-xs text-espresso/50">

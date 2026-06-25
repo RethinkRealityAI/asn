@@ -63,6 +63,13 @@
   /* Shape */
   --radius-card: 18px;
 
+  /* Product card shadows — layered 3D floating effect */
+  --shadow-card: 0 1px 2px rgba(42,30,20,.06), 0 12px 28px -8px rgba(42,30,20,.12);
+  --shadow-card-hover: 0 2px 4px rgba(42,30,20,.06), 0 20px 48px -8px rgba(42,30,20,.20);
+
+  /* Image zone warm-white fill — blends cream-backdrop re-staged images */
+  --color-image-zone: #FCFAF6;
+
   /* Font stacks — shadcn primitives use font-sans; map it to our body face */
   --font-sans:     var(--font-body), ui-sans-serif, sans-serif;
   --font-mono:     ui-monospace, SFMono-Regular, Menlo, monospace;

@@ -86,16 +86,17 @@ export function Hero3D() {
       aria-label="Shea Allnaturals hero"
     >
       {/* Sticky stage — pinned to the viewport across the scroll distance. */}
-      <div className="sticky top-0 h-screen w-full overflow-hidden bg-cream">
-        {/* Warm radial wash behind the bottle (no blue). */}
+      <div className="sticky top-0 h-screen w-full overflow-hidden bg-white">
+        {/* Clean white canvas — the brand accent is the bottle, not the background. */}
+        {/* Subtle warm radial glow behind the bottle position only — not a full cream wash. */}
         <div
           aria-hidden
-          className="absolute inset-0 bg-[radial-gradient(120%_90%_at_50%_42%,#FBF4E6_0%,#F5ECDA_52%,#EAD9BC_100%)]"
+          className="absolute inset-0 bg-[radial-gradient(38%_52%_at_68%_54%,rgba(245,236,218,0.70)_0%,rgba(245,236,218,0.20)_55%,transparent_80%)]"
         />
-        {/* Soft golden bloom — shifted right to follow the bottle's new right-lane position. */}
+        {/* Soft marigold bloom accent — gentle warmth at the bottle's light source. */}
         <div
           aria-hidden
-          className="absolute inset-0 bg-[radial-gradient(45%_42%_at_72%_55%,rgba(235,165,44,0.18)_0%,rgba(235,165,44,0)_70%)]"
+          className="absolute inset-0 bg-[radial-gradient(22%_30%_at_72%_48%,rgba(235,165,44,0.13)_0%,rgba(235,165,44,0)_70%)]"
         />
 
         {/* 3D canvas (client-only chunk). Absolutely positioned full-bleed. */}

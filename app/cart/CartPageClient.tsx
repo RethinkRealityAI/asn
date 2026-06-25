@@ -51,7 +51,7 @@ export function CartPageClient() {
   }
 
   return (
-    <div className="min-h-screen bg-cream pt-[calc(3.5rem+2rem)]">
+    <div className="min-h-screen bg-white pt-[calc(3.5rem+2rem)]">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
         {/* Breadcrumb */}
         <nav aria-label="Breadcrumb" className="mb-6">
@@ -404,7 +404,7 @@ function CheckoutStub() {
 
 function EmptyCart() {
   return (
-    <div className="min-h-screen bg-cream pt-[calc(3.5rem+2rem)] flex items-center justify-center">
+    <div className="min-h-screen bg-white pt-[calc(3.5rem+2rem)] flex items-center justify-center">
       <div className="text-center space-y-6 px-4 py-20">
         {/* Shopping bag icon */}
         <svg

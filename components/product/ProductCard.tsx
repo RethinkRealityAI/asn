@@ -46,17 +46,19 @@ const BADGE_KEYWORDS: { keyword: string; label: string; classes: string }[] = [
   {
     keyword: "bestseller",
     label: "Bestseller",
-    classes: "bg-marigold/20 text-espresso border border-marigold/40",
+    // Clay/leaf red — energy signal
+    classes: "bg-clay/12 text-clay border border-clay/30",
   },
   {
     keyword: "best seller",
     label: "Bestseller",
-    classes: "bg-marigold/20 text-espresso border border-marigold/40",
+    classes: "bg-clay/12 text-clay border border-clay/30",
   },
   {
     keyword: "new",
     label: "New",
-    classes: "bg-clay/15 text-clay border border-clay/30",
+    // Leaf red — fresh/launch signal
+    classes: "bg-leaf/12 text-leaf border border-leaf/30",
   },
   {
     keyword: "sale",
@@ -66,12 +68,23 @@ const BADGE_KEYWORDS: { keyword: string; label: string; classes: string }[] = [
   {
     keyword: "popular",
     label: "Popular",
-    classes: "bg-marigold/20 text-espresso border border-marigold/40",
+    classes: "bg-clay/12 text-clay border border-clay/30",
   },
   {
     keyword: "featured",
     label: "Featured",
-    classes: "bg-green/10 text-green border border-green/30",
+    // Green — botanical/natural signal
+    classes: "bg-green/10 text-green border border-green/25",
+  },
+  {
+    keyword: "natural",
+    label: "Natural",
+    classes: "bg-green/10 text-green border border-green/25",
+  },
+  {
+    keyword: "organic",
+    label: "Organic",
+    classes: "bg-green/10 text-green border border-green/25",
   },
 ];
 
@@ -99,10 +112,16 @@ export interface ProductCardProps {
   product: Product;
   /** Pass true for above-the-fold cards to eagerly load the image */
   priority?: boolean;
+  /**
+   * Override badge label + style. When provided, supersedes tag-derived badge.
+   * Useful for featured grids where you want to force "Bestseller" on
+   * products whose tags don't carry a matching keyword.
+   */
+  badgeOverride?: { label: string; classes: string };
 }
 
 // ── Component ───────────────────────────────────────────────────────────────
-export function ProductCard({ product, priority = false }: ProductCardProps) {
+export function ProductCard({ product, priority = false, badgeOverride }: ProductCardProps) {
   const reducedMotion = usePrefersReducedMotion();
   const [hovered, setHovered] = useState(false);
   const [selectedSize, setSelectedSize] = useState<string>(() => {
@@ -112,7 +131,8 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
   const { add, openCart } = useCart();
 
   const { priceRange, title, handle, images, productType, tags } = product;
-  const badge = deriveBadge(tags);
+  // Tag-derived badge takes priority; badgeOverride is a fallback when no tags match
+  const badge = deriveBadge(tags) ?? badgeOverride ?? null;
   const sizeValues = getSizeValues(product);
   const hasSwatches = sizeValues.length > 0;
 
@@ -147,11 +167,15 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
   return (
     <article
       className={cn(
-        "group relative flex flex-col rounded-[--radius-card] border border-espresso/12",
-        "bg-cream overflow-hidden",
-        "shadow-[0_2px_12px_0_rgba(42,30,20,0.06)]",
-        "transition-shadow duration-300 ease-[--ease-warm]",
-        "hover:shadow-[0_6px_28px_0_rgba(42,30,20,0.14)]",
+        "group relative flex flex-col rounded-[--radius-card]",
+        // White card surface — clean, premium; no border or hairline only
+        "bg-white overflow-hidden",
+        // Layered 3D floating shadow: tight contact + large soft ambient (warm espresso tint)
+        "shadow-[var(--shadow-card)]",
+        // Hover: lift + expanded shadow. Reduced-motion: shadow-only, no translateY
+        "motion-safe:transition-[transform,box-shadow] motion-reduce:transition-shadow duration-300 ease-[--ease-warm]",
+        !reducedMotion && "hover:-translate-y-1.5",
+        "hover:shadow-[var(--shadow-card-hover)]",
         // Marigold focus ring for keyboard navigation
         "focus-within:outline-none focus-within:ring-2 focus-within:ring-marigold focus-within:ring-offset-2",
       )}
@@ -181,13 +205,13 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
         tabIndex={-1}
         aria-hidden="true"
         className="relative block w-full overflow-hidden"
-        style={{ paddingBottom: "125%" /* 5/4 = 1.25 → 125% */ }}
+        style={{ paddingBottom: "125%" /* 4:5 ratio, 5/4 = 1.25 → 125% */ }}
       >
         <motion.div
-          className="absolute inset-0 bg-[#FAF5EC]"
+          className="absolute inset-0"
           animate={{ scale: imageScale }}
           transition={{ ease: WARM, duration: DUR.base }}
-          style={{ transformOrigin: "center center" }}
+          style={{ transformOrigin: "center center", background: "var(--color-image-zone)" }}
         >
           {img ? (
             <Image
@@ -208,20 +232,23 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
 
       {/* ── Info block ──────────────────────────────────────────────────── */}
       <div className="flex flex-col gap-1 px-4 pt-3 pb-3">
-        {/* Product type / eyebrow */}
+        {/* Product type / eyebrow — green for botanical/natural credential */}
         {productType && (
-          <p className="text-[10px] font-semibold uppercase tracking-widest text-marigold truncate">
+          <p className="text-[10px] font-semibold uppercase tracking-widest text-green truncate">
             {productType}
           </p>
         )}
 
-        {/* Title — links to PDP */}
+        {/* Title — links to PDP; clamped to 2 lines with min-h to keep grid uniform */}
         <Link
           href={`/products/${handle}`}
           className={cn(
             "font-display text-base font-semibold text-espresso leading-snug",
             "line-clamp-2 hover:text-clay transition-colors duration-200",
-            "outline-none focus-visible:ring-2 focus-visible:ring-marigold focus-visible:ring-offset-1 rounded-sm"
+            "outline-none focus-visible:ring-2 focus-visible:ring-marigold focus-visible:ring-offset-1 rounded-sm",
+            // min-h = 2 × line-height (1.375 × 1rem × 2) → ~2.75rem so single-line titles
+            // don't make shorter cards — grid stays perfectly uniform
+            "[min-height:2.75rem]"
           )}
         >
           {title}
@@ -319,8 +346,8 @@ function QuickAddBar({
     <div
       className={cn(
         "flex items-center gap-2 rounded-xl px-3 py-2",
-        // Subtle glass: cream/30 backdrop-blur-[4px] — matches glass README "subtle" variant
-        "bg-[#F5ECDA]/30 backdrop-blur-[4px]",
+        // Subtle warm fill — not glass (card is white; glass would read grey). Cream tint only.
+        "bg-cream/40 backdrop-blur-[4px]",
         "border border-espresso/10",
       )}
     >
