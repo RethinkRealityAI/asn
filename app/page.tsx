@@ -3,13 +3,13 @@
  *
  * Server Component — fetches catalog data, renders three sections:
  *   1. Hero3D   — scroll-scrubbed 3D peppermint-oil moment (unchanged)
- *   2. Featured — "Find your essentials" product grid (8 retail cards)
+ *   2. Featured — "Find your essentials" product grid (12 re-staged cards)
  *   3. Homeland — cinematic dark espresso band: "Skincare with a homeland."
  *
- * Data strategy:
- *   - Fetch all products and the bulk-wholesale collection in parallel.
- *   - Exclude bulk handles, prefer products with local images and price < $60.
- *   - Take the first 8 that pass the filter.
+ * Data strategy (updated wave-1):
+ *   - Fetch the 12 re-staged handles by name in the prescribed order.
+ *   - Promise.all so fetches are parallel; filter out any null results.
+ *   - Order is exact (oils, butters, jars, soap diversity).
  *
  * Never blue. Honors prefers-reduced-motion (RevealText / ProductCard handle it).
  */
@@ -23,35 +23,38 @@ import { RevealText } from "@/components/motion/RevealText";
 import { store } from "@/lib/shopify";
 import type { Product } from "@/lib/shopify/types";
 
+// ── Featured set — wave-1 re-staged handles, exact order ─────────────────────
+// Diverse mix: oils, butters, jars, soap. All 12 have clean cream re-staged imagery.
+const FEATURED_HANDLES = [
+  "peppermint-essential-oil",
+  "100-organic-argan-oil-2",
+  "cocoa-shea-butter",
+  "100-pure-shea-butter-2",
+  "argan-oil-body-butter",
+  "all-over-oil",
+  "100-black-jamaican-castor-oil",
+  "shea-butter-massage-oil",
+  "black-soap-facial-wash",
+  "100-sweet-almond-oil",
+  "argan-oil-shampoo",
+  "shea-butter-hair-scalp-oil-2",
+] as const;
+
 // ── Data fetching ─────────────────────────────────────────────────────────────
 
-async function getFeaturedRetailProducts(count = 8): Promise<Product[]> {
-  // Fetch all products and bulk-wholesale collection simultaneously
-  const [allProducts, bulkCollection] = await Promise.all([
-    store.getProducts(),
-    store.getCollection("bulk-wholesale"),
-  ]);
-
-  const bulkHandles = new Set(bulkCollection?.productHandles ?? []);
-
-  // Retail filter:
-  //   • Not in bulk-wholesale collection
-  //   • Has at least one image (local WebP path)
-  //   • Min variant price under $60
-  const retail = allProducts.filter((p) => {
-    if (bulkHandles.has(p.handle)) return false;
-    if (p.images.length === 0) return false;
-    if (p.priceRange.min.amount >= 60) return false;
-    return true;
-  });
-
-  return retail.slice(0, count);
+async function getFeaturedProducts(): Promise<Product[]> {
+  // Fetch the exact 12 re-staged products in parallel, preserve order.
+  const results = await Promise.all(
+    FEATURED_HANDLES.map((h) => store.getProduct(h))
+  );
+  // Filter out any null/undefined (graceful degradation if a handle is missing).
+  return results.filter((p): p is Product => p != null);
 }
 
 // ── Page ──────────────────────────────────────────────────────────────────────
 
 export default async function Home() {
-  const featured = await getFeaturedRetailProducts(8);
+  const featured = await getFeaturedProducts();
 
   return (
     <>
@@ -109,7 +112,7 @@ function FeaturedSection({ products }: { products: Product[] }) {
           </Link>
         </div>
 
-        {/* Product grid — 2 cols → 3 → 4 */}
+        {/* Product grid — 2 cols → 3 → 4; 12 cards = 3 clean rows of 4 */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-6">
           {products.map((product, i) => (
             <ProductCard

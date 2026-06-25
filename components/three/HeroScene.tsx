@@ -114,8 +114,16 @@ function Bottle({ scrollYProgress }: BottleProps) {
       const scl = baseScale * revealScale;
       outer.current.scale.setScalar(scl);
 
-      // Dolly: move the whole rig forward (+z toward camera) and lift slightly.
-      outer.current.position.z = s.dolly * 1.1;
+      // Right-lane offset: shift bottle into the right half of the hero so
+      // it clears the left-aligned headline CTA card at all scroll positions.
+      // +1.5 world units right (at fov=38, camera z=6 → world width ≈ 4.3 at
+      // the model plane, so +1.5 is ~35% right of center — comfortably in the
+      // right lane without clipping the edge).
+      outer.current.position.x = 1.5;
+
+      // Dolly: gentle ease forward — cut from 1.1 to 0.45 so the bottle
+      // stays tasteful and never balloons over the left-side headline.
+      outer.current.position.z = s.dolly * 0.45;
       // Idle drift — a gentle bob + sway so it breathes at rest.
       outer.current.position.y =
         Math.sin(t * 0.6) * 0.04 + s.dolly * 0.05;

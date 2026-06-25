@@ -92,10 +92,10 @@ export function Hero3D() {
           aria-hidden
           className="absolute inset-0 bg-[radial-gradient(120%_90%_at_50%_42%,#FBF4E6_0%,#F5ECDA_52%,#EAD9BC_100%)]"
         />
-        {/* Soft golden bloom centered on the product. */}
+        {/* Soft golden bloom — shifted right to follow the bottle's new right-lane position. */}
         <div
           aria-hidden
-          className="absolute inset-0 bg-[radial-gradient(45%_42%_at_55%_55%,rgba(235,165,44,0.18)_0%,rgba(235,165,44,0)_70%)]"
+          className="absolute inset-0 bg-[radial-gradient(45%_42%_at_72%_55%,rgba(235,165,44,0.18)_0%,rgba(235,165,44,0)_70%)]"
         />
 
         {/* 3D canvas (client-only chunk). Absolutely positioned full-bleed. */}
