@@ -28,7 +28,7 @@ import { motion } from "framer-motion";
 import { usePrefersReducedMotion } from "@/lib/motion/use-reduced-motion";
 import { WARM, DUR } from "@/lib/motion/easings";
 import { cn } from "@/lib/utils";
-import type { ElementType, ReactNode } from "react";
+import type { ComponentType, ReactNode } from "react";
 
 type HeadingTag = "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "span";
 
@@ -61,7 +61,12 @@ export function RevealText({
   // Split on newlines — empty parts become blank spacer lines which we filter
   const lines = raw.split("\n").filter((l) => l.trim().length > 0);
 
-  const MotionTag = motion[Tag as keyof typeof motion] as ElementType;
+  // Cast through a permissive component type: the dynamic `motion[Tag]` index
+  // otherwise resolves to a union that newer @types/react treats as accepting
+  // `never` children. ComponentType<any> restores normal children typing.
+  const MotionTag = motion[
+    Tag as keyof typeof motion
+  ] as ComponentType<Record<string, unknown>>;
 
   // Reduced motion: render plain element, no masks, no animation
   if (reduced) {

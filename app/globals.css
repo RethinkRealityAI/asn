@@ -179,3 +179,19 @@ body {
     background-position: 60% 40%, 40% 60%, 50% 50%;
   }
 }
+
+/* ─── Hero scroll-cue dot — gentle vertical bob inside the mouse outline ─── */
+@keyframes scrollcue {
+  0% {
+    transform: translateY(0);
+    opacity: 0.2;
+  }
+  50% {
+    transform: translateY(8px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 0.2;
+  }
+}
