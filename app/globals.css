@@ -3,6 +3,8 @@
 @import "shadcn/tailwind.css";
 
 @custom-variant dark (&:is(.dark *));
+@custom-variant pointer-fine (@media (pointer: fine));
+@custom-variant pointer-coarse (@media (pointer: coarse));
 
 /* ─── Root primitives (non-Tailwind CSS vars) ─── */
 :root {
