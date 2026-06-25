@@ -82,7 +82,7 @@ export function Hero3D() {
     <section
       ref={sectionRef}
       className="relative w-full"
-      style={{ height: "180vh" }}
+      style={{ height: "135vh" }}
       aria-label="Shea Allnaturals hero"
     >
       {/* Sticky stage — pinned to the viewport across the scroll distance. */}
