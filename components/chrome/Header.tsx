@@ -36,9 +36,9 @@ import { useCart } from "@/components/cart/useCart";
 const NAV_LINKS = [
   { label: "Shop", href: "/shop" },
   { label: "Collections", href: "/collections" },
-  { label: "Our Story", href: "#" },
+  { label: "Our Story", href: "/our-story" },
   { label: "Wholesale", href: "/collections/bulk-wholesale" },
-  { label: "Journal", href: "#" },
+  { label: "Journal", href: "/journal" },
 ];
 
 /** Scroll distance (px) before the glass bar appears */

@@ -6,23 +6,24 @@
  *  - Bottom row: copyright left, legal links right
  */
 
+import Link from "next/link";
 import { Wordmark } from "./Wordmark";
 import { Button } from "@/components/ui/button";
 
 const SHOP_LINKS = [
-  { label: "Face & Body Oils", href: "#" },
-  { label: "Shea & Butters", href: "#" },
-  { label: "Hair Care", href: "#" },
-  { label: "Soaps & Washes", href: "#" },
-  { label: "Bulk & Wholesale", href: "#" },
+  { label: "Face & Body Oils", href: "/collections/face-body-oils" },
+  { label: "Shea & Butters", href: "/collections/shea-butters" },
+  { label: "Hair Care", href: "/collections/hair-care" },
+  { label: "Soaps & Washes", href: "/collections/soaps-washes" },
+  { label: "Bulk & Wholesale", href: "/collections/bulk-wholesale" },
 ];
 
 const COMPANY_LINKS = [
-  { label: "Our Story", href: "#" },
-  { label: "Ingredients", href: "#" },
-  { label: "Where to Buy", href: "#" },
-  { label: "Journal", href: "#" },
-  { label: "Contact", href: "#" },
+  { label: "Our Story", href: "/our-story" },
+  { label: "Ingredients", href: "/ingredients" },
+  { label: "Where to Buy", href: "/where-to-buy" },
+  { label: "Journal", href: "/journal" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export function Footer() {
@@ -56,12 +57,12 @@ export function Footer() {
             <ul className="flex flex-col gap-2.5">
               {SHOP_LINKS.map(({ label, href }) => (
                 <li key={label}>
-                  <a
+                  <Link
                     href={href}
                     className="text-sm text-cream/80 transition-colors hover:text-cream"
                   >
                     {label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -75,12 +76,12 @@ export function Footer() {
             <ul className="flex flex-col gap-2.5">
               {COMPANY_LINKS.map(({ label, href }) => (
                 <li key={label}>
-                  <a
+                  <Link
                     href={href}
                     className="text-sm text-cream/80 transition-colors hover:text-cream"
                   >
                     {label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
