@@ -2,9 +2,12 @@
  * Home page — Task 2.5: Premium design-spike homepage.
  *
  * Server Component — fetches catalog data, renders three sections:
- *   1. Hero3D   — scroll-scrubbed 3D peppermint-oil moment (unchanged)
- *   2. Featured — "Find your essentials" product grid (12 re-staged cards)
- *   3. Homeland — cinematic dark espresso band: "Skincare with a homeland."
+ *   1. VideoHero — dimmed promo-video backdrop hero (replaces 3D scroll-scrub)
+ *   2. Featured  — "Find your essentials" product grid (12 re-staged cards)
+ *   3. Homeland  — cinematic dark espresso band: "Skincare with a homeland."
+ *
+ * The 3D hero (Hero3D / HeroScene / HeroFallback) is PARKED — files kept for
+ * reuse elsewhere. Not imported here so it doesn't enter the homepage bundle.
  *
  * Data strategy (updated wave-1):
  *   - Fetch the 12 re-staged handles by name in the prescribed order.
@@ -17,7 +20,8 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { Hero3D } from "@/components/three/Hero3D";
+import { VideoHero } from "@/components/three/VideoHero";
+// Hero3D, HeroScene, HeroFallback — parked for reuse; not imported on homepage.
 import { ProductCard } from "@/components/product/ProductCard";
 import { RevealText } from "@/components/motion/RevealText";
 import { store } from "@/lib/shopify";
@@ -58,8 +62,8 @@ export default async function Home() {
 
   return (
     <>
-      {/* ── 1. Hero — scroll-scrubbed 3D peppermint reveal ─────────────── */}
-      <Hero3D />
+      {/* ── 1. Hero — dimmed promo-video backdrop ────────────────────────── */}
+      <VideoHero />
 
       {/* ── 2. Featured products ─────────────────────────────────────────── */}
       <FeaturedSection products={featured} />
