@@ -162,3 +162,20 @@ body {
     @apply font-sans;
   }
 }
+
+/* ─── Glass layer: liquid-drift keyframe ─────────────────────────────────────
+   Used by the "liquid" glass variant's background-position animation.
+   Warm "Sun & Soil" tint — cream/marigold gradients, no blue.
+──────────────────────────────────────────────────────────────────────────── */
+@keyframes liquid-drift {
+  0%,
+  100% {
+    background-position: 0% 0%, 100% 100%, 50% 50%;
+  }
+  33% {
+    background-position: 30% 20%, 70% 80%, 50% 50%;
+  }
+  66% {
+    background-position: 60% 40%, 40% 60%, 50% 50%;
+  }
+}
