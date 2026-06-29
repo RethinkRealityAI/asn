@@ -61,7 +61,11 @@ const LAYERS: HeroLayer[] = [
   {
     src: "/decor/cloth2.webp",
     alt: "",
-    pos: { top: "4%", left: "-4%", width: "108%" },
+    pos: {
+      top: "2%", left: "3%", width: "120%",
+      WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 10%, black 100%)",
+      maskImage: "linear-gradient(to right, transparent 0%, black 10%, black 100%)",
+    },
     depth: 0.12,
     zIndex: 3,
     delay: 0.04,
