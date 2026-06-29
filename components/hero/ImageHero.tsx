@@ -57,12 +57,12 @@ interface HeroLayer {
 // Real products (background-removed from our actual catalog photos): the argan
 // bottle standing between the two butter tubs, with an oversized leaf bundle.
 const LAYERS: HeroLayer[] = [
-  // Mudcloth drape — warm backdrop the products nestle into (behind everything)
+  // Mudcloth drape — wide center backdrop so all products nestle into it
   {
     src: "/decor/cloth.webp",
     alt: "",
-    pos: { bottom: "-6%", right: "-8%", width: "62%" },
-    depth: 0.18,
+    pos: { top: "4%", left: "-4%", width: "108%" },
+    depth: 0.12,
     zIndex: 3,
     delay: 0.04,
     floatClass: "animate-[hero-float_14s_ease-in-out_infinite_0.4s]",
