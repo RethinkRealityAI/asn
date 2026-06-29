@@ -2,61 +2,74 @@
  * Home page — premium redesign pass.
  *
  * Sections:
- *   1. ImageHero    — bright WHITE hero, vibrant parallax product bottles ("wow")
- *   2. Featured     — "Find your essentials" product wall (12 re-staged cards)
- *   3. CraftBand    — the CLEAN (un-dimmed) promo video + copy + 4 credential icons
- *   4. HomelandBand — deep-green heritage scene with LARGE product imagery
- *   5. MediaTeaser  — heritage films + press, links to /media
- *   6. WhereToBuyBand — typographic stockist strip
+ *   1. ImageHero      — bright WHITE hero, vibrant parallax product bottles ("wow")
+ *   2. Collections    — "Shop by collection" category wall (collections are surfaced
+ *                       here on the home page instead of in the top nav)
+ *   3. CraftBand      — the CLEAN (un-dimmed) promo video + copy + 4 credential icons
+ *   4. HomelandBand   — deep-green heritage scene with LARGE product imagery
+ *   5. MediaTeaser    — heritage films + press, links to /media
+ *   6. WhereToBuyBand — orange stockist band with liquid-glass cards
  *
  * Botanical cutouts are used as consistent CORNER accents (AccentCorners),
  * not scattered floats. Never blue. Honors prefers-reduced-motion.
  */
 
-import Image from "next/image";
 import Link from "next/link";
 
 import { ImageHero } from "@/components/hero/ImageHero";
-import { ProductCard } from "@/components/product/ProductCard";
+import { CategoryCard } from "@/components/plp/CategoryCard";
 import { RevealText } from "@/components/motion/RevealText";
 import { AccentCorners } from "@/components/motion/AccentCorners";
+import type { AccentDecor } from "@/components/motion/AccentCorners";
 import { CraftBand } from "@/components/home/CraftBand";
 import { HomelandBand } from "@/components/home/HomelandBand";
 import { MediaTeaser } from "@/components/home/MediaTeaser";
 import { STORES } from "@/lib/content/stores";
 import { store } from "@/lib/shopify";
-import type { Product } from "@/lib/shopify/types";
 
-// ── Featured set — wave-1 re-staged handles, exact order ─────────────────────
-const FEATURED_HANDLES = [
-  "peppermint-essential-oil",
-  "100-organic-argan-oil-2",
-  "cocoa-shea-butter",
-  "100-pure-shea-butter-2",
-  "argan-oil-body-butter",
-  "all-over-oil",
-  "100-black-jamaican-castor-oil",
-  "shea-butter-massage-oil",
-  "black-soap-facial-wash",
-  "100-sweet-almond-oil",
-  "argan-oil-shampoo",
-  "shea-butter-hair-scalp-oil-2",
-] as const;
+const ACCENTS: AccentDecor[] = ["argan", "castor", "shea"];
+const MAX_HOME_COLLECTIONS = 8;
 
-async function getFeaturedProducts(): Promise<Product[]> {
-  const results = await Promise.all(
-    FEATURED_HANDLES.map((h) => store.getProduct(h))
-  );
-  return results.filter((p): p is Product => p != null);
+interface CollectionCard {
+  handle: string;
+  title: string;
+  count: number;
+  cover: string | null;
 }
 
 export default async function Home() {
-  const featured = await getFeaturedProducts();
+  const [allCollections, allProducts] = await Promise.all([
+    store.getCollections(),
+    store.getProducts(),
+  ]);
+
+  // handle → first image url, for collection cover art
+  const coverByHandle = new Map<string, string | undefined>(
+    allProducts.map((p) => [p.handle, p.images[0]?.url])
+  );
+  const coverFor = (handles: string[]): string | null => {
+    for (const h of handles) {
+      const url = coverByHandle.get(h);
+      if (url) return url;
+    }
+    return null;
+  };
+
+  const retail = allCollections.filter((c) => !/bulk|wholesale/i.test(c.handle));
+  const cards: CollectionCard[] = retail
+    .slice(0, MAX_HOME_COLLECTIONS)
+    .map((c) => ({
+      handle: c.handle,
+      title: c.title,
+      count: c.productHandles.length,
+      cover: coverFor(c.productHandles),
+    }));
+  const hasMore = retail.length > cards.length;
 
   return (
     <>
       <ImageHero />
-      <FeaturedSection products={featured} />
+      <CollectionsSection cards={cards} hasMore={hasMore} />
       <CraftBand />
       <HomelandBand />
       <MediaTeaser />
@@ -65,15 +78,32 @@ export default async function Home() {
   );
 }
 
-// ── Featured products section ─────────────────────────────────────────────────
+// ── Shop by collection ──────────────────────────────────────────────────────────
 
-function FeaturedSection({ products }: { products: Product[] }) {
+function CollectionsSection({
+  cards,
+  hasMore,
+}: {
+  cards: CollectionCard[];
+  hasMore: boolean;
+}) {
   return (
     <section
-      id="products"
-      aria-label="Featured products"
+      id="collections"
+      aria-label="Shop by collection"
       className="relative overflow-hidden bg-white px-5 py-24 sm:px-8 lg:px-12"
     >
+      {/* Subtle African mudcloth texture (matches the hero + homeland) */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0"
+        style={{
+          backgroundImage: "url(/decor/mudcloth.webp)",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          opacity: 0.05,
+        }}
+      />
       <AccentCorners corners={{ tl: "argan", br: "castor" }} size={150} />
 
       <div className="relative z-10 mx-auto max-w-7xl">
@@ -84,47 +114,53 @@ function FeaturedSection({ products }: { products: Product[] }) {
               Handcrafted in Barrie, Ontario
             </p>
             <RevealText
-              text={"Find your essentials."}
+              text={"Shop by collection."}
               as="h2"
               className="font-display text-4xl font-semibold leading-[1.05] tracking-tight text-espresso sm:text-5xl lg:text-6xl"
             />
             <p className="mt-4 max-w-md text-base leading-relaxed text-espresso/60">
-              Pure botanicals, cold-pressed oils and shea butter — made the old
-              way, for skin that remembers.
+              Pure botanicals, cold-pressed oils and shea butter — grouped into
+              rituals for face, body and hair.
             </p>
           </div>
 
-          <Link
-            href="/shop"
-            className="group hidden shrink-0 items-center gap-1.5 pb-1 text-sm font-semibold text-espresso/70 transition-colors duration-200 hover:text-clay sm:inline-flex"
-          >
-            Shop all
-            <span className="inline-block translate-x-0 transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">→</span>
-          </Link>
+          {hasMore && (
+            <Link
+              href="/collections"
+              className="group hidden shrink-0 items-center gap-1.5 pb-1 text-sm font-semibold text-espresso/70 transition-colors duration-200 hover:text-clay sm:inline-flex"
+            >
+              View all collections
+              <span className="inline-block translate-x-0 transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">→</span>
+            </Link>
+          )}
         </div>
 
-        {/* Product wall — generous gaps, large cards */}
-        <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 sm:gap-6 lg:grid-cols-4 lg:gap-7">
-          {products.map((product, i) => (
-            <ProductCard
-              key={product.handle}
-              product={product}
-              priority={i < 4}
-              badgeOverride={
-                i < 4 ? { label: "Bestseller", classes: "bg-green text-white" } : undefined
-              }
-            />
+        {/* Collection wall — generous gaps, large cards */}
+        <ul className="grid grid-cols-2 gap-5 sm:grid-cols-3 sm:gap-6 lg:grid-cols-4 lg:gap-7">
+          {cards.map((c, i) => (
+            <li key={c.handle}>
+              <CategoryCard
+                href={`/collections/${c.handle}`}
+                title={c.title}
+                count={c.count}
+                cover={c.cover}
+                accent={ACCENTS[i % ACCENTS.length]}
+                priority={i < 4}
+              />
+            </li>
           ))}
-        </div>
+        </ul>
 
-        <div className="mt-12 flex justify-center sm:hidden">
-          <Link
-            href="/shop"
-            className="inline-flex items-center gap-2 rounded-full border border-espresso/20 px-6 py-2.5 text-sm font-semibold text-espresso transition-colors duration-200 hover:border-clay hover:text-clay"
-          >
-            Shop all products →
-          </Link>
-        </div>
+        {hasMore && (
+          <div className="mt-12 flex justify-center sm:hidden">
+            <Link
+              href="/collections"
+              className="inline-flex items-center gap-2 rounded-full border border-espresso/20 px-6 py-2.5 text-sm font-semibold text-espresso transition-colors duration-200 hover:border-clay hover:text-clay"
+            >
+              View all collections →
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   );

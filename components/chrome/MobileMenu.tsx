@@ -17,7 +17,6 @@ import { WARM, DUR } from "@/lib/motion/easings";
 
 const NAV_LINKS = [
   { label: "Shop", href: "/shop" },
-  { label: "Collections", href: "/collections" },
   { label: "Wholesale", href: "/wholesale" },
   { label: "Media", href: "/media" },
   { label: "Contact", href: "/contact" },
@@ -177,7 +176,7 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                   <Link
                     href="/shop"
                     onClick={onClose}
-                    className="flex-1 text-center rounded-full bg-clay text-cream font-semibold px-6 py-3 text-sm hover:bg-orange transition-colors"
+                    className="flex-1 text-center rounded-full bg-green text-cream font-semibold px-6 py-3 text-sm ring-1 ring-inset ring-orange/55 hover:bg-green/90 transition-colors"
                   >
                     Shop now
                   </Link>

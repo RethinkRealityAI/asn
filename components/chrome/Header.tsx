@@ -35,7 +35,6 @@ import { useCart } from "@/components/cart/useCart";
 
 const NAV_LINKS = [
   { label: "Shop", href: "/shop" },
-  { label: "Collections", href: "/collections" },
   { label: "Wholesale", href: "/wholesale" },
   { label: "Media", href: "/media" },
   { label: "Contact", href: "/contact" },

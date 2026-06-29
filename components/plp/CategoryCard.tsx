@@ -62,7 +62,7 @@ export function CategoryCard({ href, title, count, cover, accent = "argan", prio
         </div>
         <span
           aria-hidden
-          className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-clay text-cream transition-transform duration-300 group-hover:translate-x-0.5"
+          className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-green text-cream transition-transform duration-300 group-hover:translate-x-0.5"
         >
           →
         </span>

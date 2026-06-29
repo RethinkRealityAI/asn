@@ -201,6 +201,17 @@ export function ImageHero() {
       aria-label="Shea Allnaturals hero"
       className="relative w-full overflow-hidden bg-white"
     >
+      {/* Subtle African mudcloth texture — ties the white home sections to the homeland scene */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0"
+        style={{
+          backgroundImage: "url(/decor/mudcloth.webp)",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          opacity: 0.05,
+        }}
+      />
       {/* Warm radial glow — keeps the white from feeling clinical, makes bottles pop */}
       <div
         aria-hidden="true"
@@ -219,7 +230,7 @@ export function ImageHero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ ease: WARM, duration: DUR.base }}
           >
-            Pure · botanical · made in Canada 🍁
+            Proudly made in Canada 🍁
           </motion.p>
 
           <RevealText
@@ -249,7 +260,7 @@ export function ImageHero() {
                 href="/shop"
                 className={cn(
                   buttonVariants({ size: "lg" }),
-                  "rounded-full bg-clay px-8 font-semibold text-cream transition-colors duration-200 hover:bg-orange"
+                  "rounded-full bg-green px-8 font-semibold text-cream ring-1 ring-inset ring-orange/55 shadow-[0_10px_28px_-10px_rgba(226,116,43,0.5)] transition-all duration-200 hover:bg-green/90 hover:ring-orange hover:shadow-[0_12px_30px_-8px_rgba(226,116,43,0.62)]"
                 )}
               >
                 Shop the collection
