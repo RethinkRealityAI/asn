@@ -1,0 +1,121 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+
+import { LiteYouTube } from "@/components/media/LiteYouTube";
+import { AccentCorners } from "@/components/motion/AccentCorners";
+import { MEDIA_VIDEOS, PRESS, YT_CHANNEL } from "@/lib/content/media";
+
+export const metadata: Metadata = {
+  title: "Media & Press — Shea Allnaturals",
+  description:
+    "Heritage films and press from Shea Allnaturals — the traditional shea-butter-making process in Fufu, Nigeria, our community work, and featured coverage.",
+};
+
+export default function MediaPage() {
+  const [featured, ...rest] = MEDIA_VIDEOS;
+
+  return (
+    <div className="min-h-screen bg-white pt-[calc(3.5rem+2.5rem)]">
+      {/* Header */}
+      <header className="relative overflow-hidden border-b border-espresso/08 bg-cream px-5 py-14 sm:px-8 lg:px-12 lg:py-20">
+        <AccentCorners corners={{ tl: "argan", br: "castor" }} size={150} opacity={0.1} />
+        <div className="relative z-10 mx-auto max-w-7xl">
+          <nav aria-label="Breadcrumb" className="mb-4">
+            <ol className="flex items-center gap-1.5 text-xs text-espresso/50">
+              <li><Link href="/" className="transition-colors hover:text-espresso">Home</Link></li>
+              <li aria-hidden="true">/</li>
+              <li aria-current="page" className="font-medium text-espresso/80">Media &amp; Press</li>
+            </ol>
+          </nav>
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-marigold">Media &amp; press</p>
+          <h1 className="font-display text-4xl font-semibold leading-tight tracking-tight text-espresso sm:text-5xl lg:text-6xl">
+            The story, in motion.
+          </h1>
+          <p className="mt-4 max-w-2xl text-base leading-relaxed text-espresso/65 sm:text-lg">
+            From the shea groves of West Africa to small-batch blending in Barrie —
+            the people, the process, and the press behind every jar.
+          </p>
+        </div>
+      </header>
+
+      {/* Featured film */}
+      <section aria-label="Featured film" className="relative overflow-hidden px-5 pt-16 sm:px-8 lg:px-12">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
+            <LiteYouTube id={featured.id} title={featured.title} />
+            <div>
+              <p className="text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-green">{featured.meta}</p>
+              <h2 className="mt-2 font-display text-3xl font-semibold leading-tight text-espresso sm:text-4xl">
+                {featured.title}
+              </h2>
+              <p className="mt-4 max-w-md text-base leading-relaxed text-espresso/65">{featured.blurb}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* More films */}
+      <section aria-label="More films" className="relative overflow-hidden px-5 py-16 sm:px-8 lg:px-12">
+        <AccentCorners corners={{ tr: "shea", bl: "argan" }} size={130} opacity={0.08} />
+        <div className="relative z-10 mx-auto max-w-7xl">
+          <h2 className="mb-10 font-display text-2xl font-semibold text-espresso sm:text-3xl">More from our channel</h2>
+          <div className="grid gap-8 md:grid-cols-2">
+            {rest.map((v) => (
+              <figure key={v.id} className="flex flex-col gap-4">
+                <LiteYouTube id={v.id} title={v.title} />
+                <figcaption>
+                  <p className="text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-green">{v.meta}</p>
+                  <p className="mt-1 font-display text-lg font-semibold text-espresso">{v.title}</p>
+                  <p className="mt-1.5 text-sm leading-relaxed text-espresso/60">{v.blurb}</p>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+
+          <div className="mt-10">
+            <a
+              href={YT_CHANNEL}
+              target="_blank"
+              rel="noreferrer noopener"
+              className="inline-flex items-center gap-2 rounded-full border border-espresso/20 px-6 py-2.5 text-sm font-semibold text-espresso transition-colors hover:border-clay hover:text-clay"
+            >
+              Visit our YouTube channel →
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Press */}
+      <section aria-label="Press" className="relative overflow-hidden border-t border-espresso/08 bg-cream px-5 py-16 sm:px-8 lg:px-12">
+        <AccentCorners corners={{ tl: "castor", br: "argan" }} size={130} opacity={0.09} />
+        <div className="relative z-10 mx-auto max-w-7xl">
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-marigold">As featured in</p>
+          <h2 className="mb-10 font-display text-2xl font-semibold text-espresso sm:text-3xl">Press &amp; recognition</h2>
+          <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {PRESS.map((p) => (
+              <li
+                key={p.outlet}
+                className="rounded-[1.5rem] border border-espresso/10 bg-white p-6 shadow-[var(--shadow-card)]"
+              >
+                <p className="font-display text-lg font-semibold text-espresso">{p.outlet}</p>
+                <p className="mt-1 text-sm text-espresso/70">{p.title}</p>
+                <p className="mt-3 text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-green">{p.meta}</p>
+              </li>
+            ))}
+            {/* Heritage note card */}
+            <li className="rounded-[1.5rem] border border-marigold/30 bg-marigold/10 p-6">
+              <p className="font-display text-lg font-semibold text-espresso">A decade of craft</p>
+              <p className="mt-1 text-sm text-espresso/70">
+                Sharing pure, botanical skincare and supporting the West-African
+                communities at the heart of it.
+              </p>
+              <Link href="/contact" className="mt-3 inline-flex text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-clay hover:underline">
+                Work with us →
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </section>
+    </div>
+  );
+}

@@ -12,6 +12,7 @@
  */
 
 import { cn } from "@/lib/utils";
+import { AccentCorners } from "@/components/motion/AccentCorners";
 
 export interface PLPHeaderProps {
   title: string;
@@ -33,13 +34,14 @@ export function PLPHeader({
     <header
       className={cn(
         // White header — clean; bottom divider separates from content below
-        "w-full bg-white",
+        "relative w-full overflow-hidden bg-white",
         "border-b border-espresso/08",
         "px-4 sm:px-6 lg:px-8 py-10 sm:py-14",
         className
       )}
     >
-      <div className="max-w-screen-xl mx-auto flex flex-col gap-3">
+      <AccentCorners corners={{ tr: "argan", bl: "shea" }} size={120} opacity={0.08} />
+      <div className="relative z-10 max-w-screen-xl mx-auto flex flex-col gap-3">
         {/* Breadcrumb slot */}
         {breadcrumb && (
           <div className="text-xs font-body text-espresso/50">{breadcrumb}</div>

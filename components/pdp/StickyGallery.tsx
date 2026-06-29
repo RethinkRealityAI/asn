@@ -86,8 +86,8 @@ export function StickyGallery({ images, title }: StickyGalleryProps) {
                   "border-2 transition-all duration-200 outline-none",
                   "focus-visible:ring-2 focus-visible:ring-marigold focus-visible:ring-offset-1",
                   isActive
-                    ? "border-clay"
-                    : "border-espresso/15 hover:border-espresso/40"
+                    ? "border-green"
+                    : "border-espresso/12 hover:border-green/50"
                 )}
               >
                 <Image
@@ -95,7 +95,7 @@ export function StickyGallery({ images, title }: StickyGalleryProps) {
                   alt={img.altText || `${title} — image ${idx + 1}`}
                   fill
                   sizes="64px"
-                  className="object-contain p-1 bg-[#FAF5EC]"
+                  className="object-contain p-1 bg-white"
                 />
               </button>
             );
@@ -106,8 +106,10 @@ export function StickyGallery({ images, title }: StickyGalleryProps) {
       {/* ── Main image ───────────────────────────────────────────────────── */}
       <div
         className={cn(
-          "relative overflow-hidden rounded-2xl bg-[#FAF5EC] order-1 md:order-2 flex-1",
-          "border border-espresso/8"
+          "relative overflow-hidden rounded-[28px] order-1 md:order-2 flex-1",
+          // Glassy card with a soft green accent border — no dull beige
+          "border border-green/25 bg-gradient-to-br from-white to-[#EEF5EE]/70",
+          "shadow-[var(--shadow-card)] [box-shadow:inset_0_1px_0_0_rgba(255,255,255,0.7),0_12px_28px_-8px_rgba(42,30,20,0.12)]"
         )}
         style={{ aspectRatio: "1 / 1" }}
         onMouseEnter={() => setHovered(true)}

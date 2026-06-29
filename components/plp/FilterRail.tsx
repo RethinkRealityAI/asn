@@ -342,7 +342,7 @@ export function FilterRail({ facets, value, onChange }: FilterRailProps) {
     >
       <div
         className={cn(
-          "rounded-[--radius-card] p-4",
+          "rounded-[var(--radius-card)] p-4",
           glassVariantStyles.subtle
         )}
       >

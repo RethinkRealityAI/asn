@@ -18,9 +18,9 @@ import { WARM, DUR } from "@/lib/motion/easings";
 const NAV_LINKS = [
   { label: "Shop", href: "/shop" },
   { label: "Collections", href: "/collections" },
-  { label: "Our Story", href: "/our-story" },
-  { label: "Wholesale", href: "/collections/bulk-wholesale" },
-  { label: "Journal", href: "/journal" },
+  { label: "Wholesale", href: "/wholesale" },
+  { label: "Media", href: "/media" },
+  { label: "Contact", href: "/contact" },
 ];
 
 interface MobileMenuProps {
@@ -105,11 +105,11 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
             {/* Frosted glass panel */}
             <div
               className={[
-                // frosted glass treatment (matches header)
-                "backdrop-blur-[16px] backdrop-saturate-[1.6]",
-                "bg-[#F5ECDA]/90",
-                "border-b border-[#F5ECDA]/60",
-                "shadow-[0_4px_24px_rgba(42,30,20,0.12)]",
+                // Clean warm-white liquid glass (matches header)
+                "backdrop-blur-[22px] backdrop-saturate-[1.5]",
+                "bg-[#FCF8F1]/92",
+                "border-b border-white/50",
+                "shadow-[0_8px_30px_rgba(42,30,20,0.12)]",
               ].join(" ")}
             >
               {/* Header row */}
@@ -119,7 +119,7 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                   aria-label="Shea Allnaturals home"
                   onClick={onClose}
                 >
-                  <Wordmark className="text-espresso" size="text-xl" />
+                  <Wordmark className="h-7" />
                 </Link>
                 <button
                   ref={closeButtonRef}
@@ -182,11 +182,11 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                     Shop now
                   </Link>
                   <Link
-                    href="/our-story"
+                    href="/contact"
                     onClick={onClose}
                     className="flex-1 text-center rounded-full border border-espresso/30 text-espresso font-semibold px-6 py-3 text-sm hover:bg-espresso/5 transition-colors"
                   >
-                    Our story
+                    Contact us
                   </Link>
                 </div>
               </nav>

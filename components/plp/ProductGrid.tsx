@@ -44,7 +44,7 @@ function SkeletonCard() {
     <div
       className={cn(
         // White card surface + layered shadow to match ProductCard skeleton
-        "rounded-[--radius-card] bg-white overflow-hidden",
+        "rounded-[var(--radius-card)] bg-white overflow-hidden",
         "shadow-[var(--shadow-card)]",
         "animate-pulse"
       )}

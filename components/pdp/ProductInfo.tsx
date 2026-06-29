@@ -148,15 +148,15 @@ export function ProductInfo({ product }: ProductInfoProps) {
 
       {/* ── Price ────────────────────────────────────────────────────────── */}
       <div className="flex items-baseline gap-3">
-        <span className="text-2xl font-semibold text-espresso">
+        <span className="text-3xl font-semibold text-espresso">
           {formatMoney(activePrice.amount)}
         </span>
         {hasDiscount && (
-          <span className="text-base text-espresso/40 line-through">
+          <span className="text-lg text-espresso/40 line-through">
             {formatMoney(compareAtPrice!.amount)}
           </span>
         )}
-        <span className="text-xs text-espresso/40 font-normal">CAD</span>
+        <span className="text-sm text-espresso/40 font-normal">CAD</span>
       </div>
 
       {/* ── Size swatch ──────────────────────────────────────────────────── */}
@@ -246,7 +246,7 @@ export function ProductInfo({ product }: ProductInfoProps) {
         {TRUST_ITEMS.map(({ icon, label }) => (
           <li
             key={label}
-            className="flex items-center gap-1.5 text-xs text-espresso/65 font-medium"
+            className="flex items-center gap-1.5 text-sm text-espresso/70 font-medium"
           >
             {icon}
             {label}

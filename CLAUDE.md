@@ -21,18 +21,28 @@ Premium **headless e-commerce** rebuild for **Shea Allnaturals** (formerly "All 
 - **Components:** `components/{chrome,product,plp,pdp,cart,motion,three,glass,homeland}`. Re-staged product images at `public/media/<handle>/01.webp` (originals backed up `00-orig.webp`). Decorative cutouts `public/decor/`, trust badges `public/badges/`, hero video `public/video/`.
 
 ## Conventions (hard rules)
-- **NEVER use blue.** Warm "Sun & Soil" palette only: cream `#F5ECDA`, marigold `#EBA52C`, orange `#E2742B`, clay `#D24E2B` (primary CTA), green `#2F7D4F` (natural credentials), espresso `#2A1E14` (text), leaf/maple red `#D5372A` (Canada + badges). **Site background is WHITE; cream is a strategic accent only.**
+- **Palette is warm "Sun & Soil" only** in the UI: cream `#F5ECDA`, marigold `#EBA52C`, orange `#E2742B`, clay `#D24E2B` (primary CTA), green `#2F7D4F` (natural credentials), espresso `#2A1E14` (text), leaf/maple red `#D5372A`. **Site background is WHITE; cream is a strategic accent only** — the client dislikes brown/beige overuse, so favour green/orange/marigold pops on white; espresso only where it grounds (footer, body text).
+- **⚠️ LOGO EXCEPTION — the wordmark is NAVY BLUE `#1d2c71`** (`public/brand/wordmark-{horizontal,stacked}.png`, recolored from the brown via a sharp pixel pass; red maple leaf kept). Client decision 2026-06-28: keep the original blue logo so the site matches the blue logo printed on existing product labels (brand recognition), until labels are reprinted. The brown HD originals remain in `../NEW DESIGN/`. The rest of the UI stays warm/no-blue.
 - **Honor `prefers-reduced-motion`** on every animation. **AA contrast.** Sentence case.
 - **Glass (glasscn) is for OVERLAY CHROME only** (nav, cart drawer, hero/quick-add overlays) — never on product cards (on white it reads grey). Product cards = white, rounded (`--radius-card` 28px), layered drop shadow, hover-lift, uniform height.
-- **Imagery recipe (Higgsfield):** re-stage products via `image_auto`/`nano_banana_pro` with the product photo + the brand **seal** emblem (job `6998b459…`) as references, on a clean white→cream backdrop, label = the Shea seal + product name in marigold/clay/cocoa, never blue. Full recipe + asset IDs in the memory note `reference-shea-higgsfield-assets`.
+- **Imagery (current direction — 2026-06-26):** use the **REAL product photos** (authentic bilingual labels) imported from the asset bundle via `npm run images`. The old **AI "seal" re-staging is RETIRED** — the client rejected the fabricated seal icon + generic wordmark; product labels must be authentic (old-blue-logo originals are fine). Enhance real photos only via **AI background-removal** (clean cutouts → `public/hero/`) + nestle **botanical decor** (`public/decor/` leaves/shea-nuts) to accentuate and cover cutout notches. The new **maple-leaf logo** (`public/brand/wordmark-{horizontal,stacked}.png`) is for **site chrome only** (and any *newly generated* product renders) — never AI-baked onto real product labels. Seal asset IDs remain in the memory note `reference-shea-higgsfield-assets` for reference only.
 
-## Status (2026-06-25)
-Done & live: Plan A spike → Plan B full storefront (shop/PLP/PDP/cart) → design revision to a **clean white site** with rounded elevated uniform cards → **43 products re-staged** with the seal label → **video hero** (dimmed/warm, no blue; 3D hero parked in `components/three/` for reuse) → **green scroll-pop "homeland" scene** (mudcloth + floating botanical cutouts) → trust badges + "where to buy" strip + decorative accents.
+## Status (2026-06-26 — premium redesign pass)
+Build green: **149 static pages**, `tsc` clean, **65/65 tests**. Live URL still https://asn-shea.netlify.app (redeploy pending owner preview).
 
-**Next steps** (see `docs/PROJECT-STATUS.md` for detail):
-1. Homeland: background-remove the 2 product shots so they float transparently (they currently read as cream cards on green).
-2. Fix the stray `/pages/our-story` prefetch 404 (real `/our-story` works — find the bad link).
-3. Collection imagery — a fitting image per collection.
-4. Site-manifest parity audit vs the old site's 198 URLs (`../NEW DESIGN/all_naturals_site_manifest.csv`).
-5. Optional: a fresh on-brand hero video (no old labels).
-6. **Plan C** — real Shopify (Storefront token + hosted checkout swapping the mock adapter/cart), Customer Accounts, predictive search, 301 redirect map, CWV/Lighthouse + a11y hardening.
+This pass (all shipped to the working tree):
+- **Real logo** (`public/brand/wordmark-{horizontal,stacked}.png`, proper red maple leaf + ™) replaces the old text wordmark in `Wordmark.tsx` (image-based, `variant` + `tone` props). Horizontal in chrome bars/headers; stacked on ComingSoon.
+- **Nav cleanup:** removed *Our Story* + *Journal (blog)*; added **Media** + **Contact** (Header, MobileMenu, Footer).
+- **Accent system:** `components/motion/AccentCorners.tsx` — the one consistent way to dress block corners with botanicals (replaces the old scattered floats). Applied across home/shop/collections/contact/media.
+- **Hero:** `components/hero/ImageHero.tsx` — bright WHITE hero, **real product cutouts** (peppermint/argan/shea-butter) + botanical accents, mouse + scroll parallax, staggered reveal, reduced-motion safe. (Video hero retired; `VideoHero`/3D hero still parked in `components/three/`.)
+- **CraftBand** (`components/home/`): the **clean** (un-dimmed) promo video (`public/video/promo.*`) + copy + the 4 credential icons.
+- **HomelandBand** rebuilt: **big** real product imagery (cocoa/shea-butter/castor) on green + botanical accents.
+- **MediaTeaser** + **`/media`**: real heritage films (Fufu shea-making 2022, community donation 2024, Whole Life Expo 2015) via `LiteYouTube`, ALIVE Magazine press. Data in `lib/content/media.ts`.
+- **`/contact`**: real address/phone/email/hours + socials + mailto `ContactForm` + Google Maps embed.
+- **`/collections`**: `CategoryCard` — real product cover + **frosted-glass label** (glass over imagery) + corner accent, fully rounded.
+- **Product imagery RESTORED to real photos** site-wide (`npm run images` re-import; **212 real images**, index rebuilt; 43 seal re-stages overwritten; 00-orig backups deleted). PDP galleries show all real images.
+
+**Next steps:**
+1. Owner preview → nudge hero/homeland product + accent positions (the parallax layer %s are first-pass).
+2. Redeploy to Netlify after sign-off.
+3. **Plan C** — real Shopify (Storefront token + hosted checkout), Customer Accounts, predictive search, 301 redirect map, CWV/Lighthouse + a11y hardening.

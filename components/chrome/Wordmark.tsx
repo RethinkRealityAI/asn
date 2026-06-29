@@ -1,62 +1,60 @@
 /**
- * Wordmark — "Shea 🍁 Allnaturals" text lockup.
+ * Wordmark — the official "Shea 🍁 Allnaturals" HD logo lockup.
  *
- * Renders as text (not an image) for crisp scaling and full recolorability.
- * Color = currentColor, so a parent simply sets text-espresso or text-cream.
- * The inline maple-leaf SVG always renders in leaf red (#D5372A).
+ * Renders the real brand artwork (cocoa letterforms + signature red maple-leaf
+ * divider + ™), not text, so the mark is always pixel-accurate and on-brand.
  *
- * Props:
- *   className — forwarded to the root <span>
- *   size      — controls font-size class (defaults to "text-2xl")
+ * Two versions (use whichever fits the space):
+ *   - "horizontal" (default, 1268×123) — bars, headers, footers, inline lockups.
+ *   - "stacked"    (1376×627)          — centered / compact / square moments.
+ *
+ * Sizing: control the rendered HEIGHT with a Tailwind class via `className`
+ * (e.g. "h-7 sm:h-8"); width stays auto from the intrinsic ratio → no layout shift.
+ *
+ * Tone:
+ *   - "dark"  (default) — artwork as-is (cocoa + red leaf). Use on white/cream.
+ *   - "light"           — pure-white knockout for dark grounds (espresso footer).
  */
 
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 interface WordmarkProps {
   className?: string;
-  /** Tailwind font-size class, e.g. "text-xl", "text-3xl". Default "text-2xl". */
-  size?: string;
+  /** "horizontal" (default) or "stacked". */
+  variant?: "horizontal" | "stacked";
+  /** "dark" = cocoa+red artwork (default); "light" = white knockout for dark grounds. */
+  tone?: "dark" | "light";
+  /** Eagerly load (use for the header logo above the fold). */
+  priority?: boolean;
 }
 
-export function Wordmark({ className, size = "text-2xl" }: WordmarkProps) {
+const ART = {
+  horizontal: { src: "/brand/logo-blue-horizontal.png", width: 1268, height: 123 },
+  stacked: { src: "/brand/logo-blue-stacked.png", width: 1376, height: 627 },
+} as const;
+
+export function Wordmark({
+  className,
+  variant = "horizontal",
+  tone = "dark",
+  priority = false,
+}: WordmarkProps) {
+  const art = ART[variant];
   return (
-    <span
+    <Image
+      src={art.src}
+      alt="Shea Allnaturals"
+      width={art.width}
+      height={art.height}
+      priority={priority}
+      sizes={variant === "stacked" ? "200px" : "(max-width: 640px) 220px, 330px"}
       className={cn(
-        "inline-flex items-center gap-1.5 font-wordmark font-semibold tracking-tight select-none",
-        size,
+        "w-auto select-none",
+        "h-7",
+        tone === "light" && "brightness-0 invert",
         className
       )}
-      aria-label="Shea Allnaturals"
-      role="img"
-    >
-      {/* "Shea" — inherits currentColor */}
-      <span>Shea</span>
-
-      {/* Maple leaf — fixed leaf red regardless of context */}
-      <svg
-        aria-hidden="true"
-        focusable="false"
-        viewBox="0 0 24 24"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        className="inline-block shrink-0 w-[0.85em] h-[0.85em]"
-      >
-        {/*
-          Canadian maple leaf silhouette, filled solid.
-          Path adapted from standard maple-leaf outline (11-lobed).
-        */}
-        <path
-          d="M12 2
-             L13.5 6.5 L17 5 L15 8.5 L19.5 9 L16.5 11.5 L18 14
-             L14 13 L14 16 L12 14 L10 16 L10 13 L6 14
-             L7.5 11.5 L4.5 9 L9 8.5 L7 5 L10.5 6.5 Z
-             M11 16 L11 22 L13 22 L13 16 Z"
-          fill="#D5372A"
-        />
-      </svg>
-
-      {/* "Allnaturals" — inherits currentColor */}
-      <span>Allnaturals</span>
-    </span>
+    />
   );
 }

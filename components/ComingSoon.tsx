@@ -19,7 +19,7 @@ export function ComingSoon({ title, description }: ComingSoonProps) {
   return (
     <div className="min-h-screen bg-cream flex flex-col items-center justify-center px-4 pt-[calc(3.5rem+2rem)]">
       <div className="text-center space-y-6 max-w-md">
-        <Wordmark className="text-espresso mx-auto" size="text-2xl" />
+        <Wordmark variant="stacked" className="h-20 mx-auto" />
 
         <div className="space-y-2">
           <h1 className="font-display text-3xl font-semibold text-espresso">

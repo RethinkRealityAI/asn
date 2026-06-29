@@ -1,18 +1,18 @@
 /**
- * /collections — Collections index page
+ * /collections — Collections index.
  *
- * Server Component: lists all non-bulk collections as a simple warm grid
- * of navigable cards. Each card links to its /collections/[handle] PLP.
- *
- * Bulk & Wholesale collection is listed separately at the bottom.
- *
- * Never blue. AA contrast.
+ * Server Component. Each collection renders as a premium CategoryCard with a
+ * representative product photo + frosted-glass label. Bulk & Wholesale is
+ * listed separately. Botanical corner accents tie it to the site. Never blue.
  */
 
 import type { Metadata } from "next";
 import Link from "next/link";
 
 import { store } from "@/lib/shopify";
+import { CategoryCard } from "@/components/plp/CategoryCard";
+import { AccentCorners } from "@/components/motion/AccentCorners";
+import type { AccentDecor } from "@/components/motion/AccentCorners";
 
 export const metadata: Metadata = {
   title: "Collections — Shea Allnaturals",
@@ -20,105 +20,84 @@ export const metadata: Metadata = {
     "Browse Shea Allnaturals collections — shea butter, argan oil, black soap, hair care, body care, and more. Handcrafted botanical skincare from Barrie, Ontario.",
 };
 
+const ACCENTS: AccentDecor[] = ["argan", "castor", "shea"];
+
 export default async function CollectionsPage() {
   const allCollections = await store.getCollections();
+  const allProducts = await store.getProducts();
 
-  // Split: retail collections first, bulk last
-  const retail = allCollections.filter(
-    (c) => !/bulk|wholesale/i.test(c.handle)
+  // handle → first image url
+  const coverByHandle = new Map<string, string | undefined>(
+    allProducts.map((p) => [p.handle, p.images[0]?.url])
   );
-  const bulk = allCollections.filter((c) =>
-    /bulk|wholesale/i.test(c.handle)
-  );
+  const coverFor = (handles: string[]): string | null => {
+    for (const h of handles) {
+      const url = coverByHandle.get(h);
+      if (url) return url;
+    }
+    return null;
+  };
+
+  const retail = allCollections.filter((c) => !/bulk|wholesale/i.test(c.handle));
+  const bulk = allCollections.filter((c) => /bulk|wholesale/i.test(c.handle));
 
   return (
     <div className="min-h-screen bg-white pt-[calc(3.5rem+2rem)]">
       {/* Page header */}
-      <header className="w-full bg-white border-b border-espresso/08 px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
-        <div className="max-w-screen-xl mx-auto flex flex-col gap-3">
+      <header className="relative w-full overflow-hidden border-b border-espresso/08 bg-cream px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+        <AccentCorners corners={{ tl: "argan", br: "castor" }} size={150} opacity={0.1} />
+        <div className="relative z-10 mx-auto flex max-w-screen-xl flex-col gap-3">
           <nav aria-label="Breadcrumb">
             <ol className="flex items-center gap-1.5 text-xs text-espresso/50">
-              <li>
-                <Link href="/" className="hover:text-espresso transition-colors">
-                  Home
-                </Link>
-              </li>
+              <li><Link href="/" className="transition-colors hover:text-espresso">Home</Link></li>
               <li aria-hidden="true">/</li>
-              <li aria-current="page" className="text-espresso/80 font-medium">
-                Collections
-              </li>
+              <li aria-current="page" className="font-medium text-espresso/80">Collections</li>
             </ol>
           </nav>
           <p className="text-[11px] font-semibold uppercase tracking-widest text-marigold">
             {retail.length} collection{retail.length !== 1 ? "s" : ""}
           </p>
-          <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-espresso leading-tight">
-            Collections
+          <h1 className="font-display text-3xl font-semibold leading-tight tracking-tight text-espresso sm:text-4xl lg:text-5xl">
+            Shop by collection.
           </h1>
-          <p className="font-body text-base sm:text-lg text-espresso/65 max-w-2xl leading-relaxed">
-            Shop by category — from shea butter and argan oil to hair care, body care, and more.
+          <p className="max-w-2xl font-body text-base leading-relaxed text-espresso/65 sm:text-lg">
+            From shea butter and argan oil to hair care, body care and more —
+            find your ritual.
           </p>
         </div>
       </header>
 
       {/* Collections grid */}
-      <main className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        <ul className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-          {retail.map((col) => (
+      <main className="mx-auto max-w-screen-xl px-4 py-12 sm:px-6 lg:px-8">
+        <ul className="grid grid-cols-2 gap-5 sm:grid-cols-3 sm:gap-6 lg:grid-cols-4">
+          {retail.map((col, i) => (
             <li key={col.handle}>
-              <Link
+              <CategoryCard
                 href={`/collections/${col.handle}`}
-                className={[
-                  "flex flex-col gap-2 p-5 rounded-[--radius-card]",
-                  "bg-white border border-espresso/10",
-                  "shadow-[0_2px_12px_0_rgba(42,30,20,0.05)]",
-                  "hover:shadow-[0_6px_24px_0_rgba(42,30,20,0.12)]",
-                  "hover:border-marigold/30 hover:bg-cream",
-                  "transition-all duration-200 ease-[--ease-warm]",
-                  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-marigold focus-visible:ring-offset-2",
-                ].join(" ")}
-              >
-                <span className="font-display text-base font-semibold text-espresso leading-snug">
-                  {col.title}
-                </span>
-                <span className="text-xs text-espresso/50 font-body">
-                  {col.productHandles.length} product
-                  {col.productHandles.length !== 1 ? "s" : ""}
-                </span>
-              </Link>
+                title={col.title}
+                count={col.productHandles.length}
+                cover={coverFor(col.productHandles)}
+                accent={ACCENTS[i % ACCENTS.length]}
+                priority={i < 4}
+              />
             </li>
           ))}
         </ul>
 
-        {/* Bulk & Wholesale section */}
+        {/* Bulk & Wholesale */}
         {bulk.length > 0 && (
-          <section className="mt-12 pt-10 border-t border-espresso/10">
-            <h2 className="font-display text-xl font-semibold text-espresso mb-4">
-              Wholesale
-            </h2>
-            <ul className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-              {bulk.map((col) => (
+          <section className="mt-16 border-t border-espresso/10 pt-12">
+            <h2 className="mb-6 font-display text-xl font-semibold text-espresso">Wholesale &amp; bulk</h2>
+            <ul className="grid grid-cols-2 gap-5 sm:grid-cols-3 sm:gap-6 lg:grid-cols-4">
+              {bulk.map((col, i) => (
                 <li key={col.handle}>
-                  <Link
+                  <CategoryCard
                     href={`/collections/${col.handle}`}
-                    className={[
-                      "flex flex-col gap-2 p-5 rounded-[--radius-card]",
-                      "bg-white border border-espresso/10",
-                      "shadow-[0_2px_12px_0_rgba(42,30,20,0.05)]",
-                      "hover:shadow-[0_6px_24px_0_rgba(42,30,20,0.12)]",
-                      "hover:border-marigold/30 hover:bg-cream",
-                      "transition-all duration-200 ease-[--ease-warm]",
-                      "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-marigold focus-visible:ring-offset-2",
-                    ].join(" ")}
-                  >
-                    <span className="font-display text-base font-semibold text-espresso leading-snug">
-                      {col.title}
-                    </span>
-                    <span className="text-xs text-espresso/50 font-body">
-                      {col.productHandles.length} product
-                      {col.productHandles.length !== 1 ? "s" : ""}
-                    </span>
-                  </Link>
+                    title={col.title}
+                    count={col.productHandles.length}
+                    cover={coverFor(col.productHandles)}
+                    accent={ACCENTS[i % ACCENTS.length]}
+                  />
                 </li>
               ))}
             </ul>

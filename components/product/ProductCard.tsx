@@ -1,31 +1,27 @@
 "use client";
 
 /**
- * ProductCard
+ * ProductCard — premium liquid-glass product card.
  *
- * Bespoke premium product card for the Shea Allnaturals storefront.
- * - Warm cream surface, rounded-[--radius-card], hairline espresso border
- * - Image: next/image fill inside a reserved aspect-[4/5] container
- * - Hover (pointer:fine + no reduced-motion): image zooms + glass quick-add bar slides up
- * - Touch / reduced-motion: quick-add bar is statically visible (no slide), image doesn't zoom
- * - Badge: derived from product.tags ("Bestseller" / "New" / "Sale" etc.)
- * - Price: single or "From $X" range, CAD Intl formatting
- * - Entire card keyboard-navigable; focus-visible marigold ring; title links to /products/<handle>
+ * - Squarer footprint: square image zone, compact info, one Add button.
+ * - Surface: translucent liquid glass (white→faint-green) with an inner
+ *   highlight, soft green hairline, and a layered float shadow; hover lifts it.
+ * - Badge: solid green pill, white text.
+ * - One clean clay "Add" button (no cream container, no inline swatches —
+ *   size selection lives on the PDP).
+ * - Entire card keyboard-navigable; image zoom on hover (reduced-motion safe).
  *
  * Never blue. Honors prefers-reduced-motion.
- * Custom Tailwind variant pointer-fine: defined in globals.css via @custom-variant.
  */
 
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
-import type { Product, Variant } from "@/lib/shopify/types";
+import type { Product } from "@/lib/shopify/types";
 import { usePrefersReducedMotion } from "@/lib/motion/use-reduced-motion";
 import { WARM, DUR } from "@/lib/motion/easings";
-import { VariantSwatch } from "./VariantSwatch";
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useCart } from "@/components/cart/useCart";
 
@@ -41,82 +37,32 @@ function formatMoney(amount: number): string {
   return cadFmt.format(amount);
 }
 
-// ── Badge derivation ────────────────────────────────────────────────────────
+// ── Badge derivation — solid pills, white text ───────────────────────────────
+const GREEN = "bg-green text-white";
 const BADGE_KEYWORDS: { keyword: string; label: string; classes: string }[] = [
-  {
-    keyword: "bestseller",
-    label: "Bestseller",
-    // Clay/leaf red — energy signal
-    classes: "bg-clay/12 text-clay border border-clay/30",
-  },
-  {
-    keyword: "best seller",
-    label: "Bestseller",
-    classes: "bg-clay/12 text-clay border border-clay/30",
-  },
-  {
-    keyword: "new",
-    label: "New",
-    // Leaf red — fresh/launch signal
-    classes: "bg-leaf/12 text-leaf border border-leaf/30",
-  },
-  {
-    keyword: "sale",
-    label: "Sale",
-    classes: "bg-orange/15 text-orange border border-orange/30",
-  },
-  {
-    keyword: "popular",
-    label: "Popular",
-    classes: "bg-clay/12 text-clay border border-clay/30",
-  },
-  {
-    keyword: "featured",
-    label: "Featured",
-    // Green — botanical/natural signal
-    classes: "bg-green/10 text-green border border-green/25",
-  },
-  {
-    keyword: "natural",
-    label: "Natural",
-    classes: "bg-green/10 text-green border border-green/25",
-  },
-  {
-    keyword: "organic",
-    label: "Organic",
-    classes: "bg-green/10 text-green border border-green/25",
-  },
+  { keyword: "bestseller", label: "Bestseller", classes: GREEN },
+  { keyword: "best seller", label: "Bestseller", classes: GREEN },
+  { keyword: "new", label: "New", classes: "bg-clay text-white" },
+  { keyword: "sale", label: "Sale", classes: "bg-orange text-white" },
+  { keyword: "popular", label: "Popular", classes: GREEN },
+  { keyword: "featured", label: "Featured", classes: GREEN },
+  { keyword: "natural", label: "Natural", classes: GREEN },
+  { keyword: "organic", label: "Organic", classes: GREEN },
 ];
 
-function deriveBadge(
-  tags: string[]
-): { label: string; classes: string } | null {
+function deriveBadge(tags: string[]): { label: string; classes: string } | null {
   const lower = tags.map((t) => t.toLowerCase());
   for (const { keyword, label, classes } of BADGE_KEYWORDS) {
-    if (lower.some((t) => t.includes(keyword))) {
-      return { label, classes };
-    }
+    if (lower.some((t) => t.includes(keyword))) return { label, classes };
   }
   return null;
-}
-
-// ── Size option extraction ──────────────────────────────────────────────────
-function getSizeValues(product: Product): string[] {
-  const sizeOpt = product.options.find((o) => o.name === "Size");
-  if (!sizeOpt) return [];
-  return sizeOpt.values.filter((v) => v !== "Default Title");
 }
 
 // ── Props ───────────────────────────────────────────────────────────────────
 export interface ProductCardProps {
   product: Product;
-  /** Pass true for above-the-fold cards to eagerly load the image */
   priority?: boolean;
-  /**
-   * Override badge label + style. When provided, supersedes tag-derived badge.
-   * Useful for featured grids where you want to force "Bestseller" on
-   * products whose tags don't carry a matching keyword.
-   */
+  /** Override badge label + style; supersedes tag-derived badge. */
   badgeOverride?: { label: string; classes: string };
 }
 
@@ -124,70 +70,50 @@ export interface ProductCardProps {
 export function ProductCard({ product, priority = false, badgeOverride }: ProductCardProps) {
   const reducedMotion = usePrefersReducedMotion();
   const [hovered, setHovered] = useState(false);
-  const [selectedSize, setSelectedSize] = useState<string>(() => {
-    const sizes = getSizeValues(product);
-    return sizes[0] ?? "";
-  });
   const { add, openCart } = useCart();
 
   const { priceRange, title, handle, images, productType, tags } = product;
-  // Tag-derived badge takes priority; badgeOverride is a fallback when no tags match
   const badge = deriveBadge(tags) ?? badgeOverride ?? null;
-  const sizeValues = getSizeValues(product);
-  const hasSwatches = sizeValues.length > 0;
 
-  // Price display
   const minAmt = priceRange.min.amount;
   const maxAmt = priceRange.max.amount;
-  const priceDisplay =
-    minAmt === maxAmt
-      ? formatMoney(minAmt)
-      : `From ${formatMoney(minAmt)}`;
+  const priceDisplay = minAmt === maxAmt ? formatMoney(minAmt) : `From ${formatMoney(minAmt)}`;
 
   const img = images[0];
 
-  function handleAddClick() {
-    // Find the variant matching the currently-selected size, or fall back to first
-    const variant =
-      product.variants.find((v) =>
-        v.selectedOptions.some(
-          (o) => o.name === "Size" && o.value === selectedSize
-        )
-      ) ?? product.variants[0];
+  function handleAdd() {
+    const variant = product.variants[0];
     if (variant) {
       add(product, variant, 1);
       openCart();
     }
   }
 
-  // Image zoom: only on pointer:fine hover with motion allowed
-  const imageScale =
-    !reducedMotion && hovered ? 1.05 : 1;
+  const imageScale = !reducedMotion && hovered ? 1.05 : 1;
 
   return (
     <article
       className={cn(
-        "group relative flex flex-col rounded-[--radius-card]",
-        // White card surface — clean, premium; no border or hairline only
-        "bg-white overflow-hidden",
-        // Layered 3D floating shadow: tight contact + large soft ambient (warm espresso tint)
-        "shadow-[var(--shadow-card)]",
-        // Hover: lift + expanded shadow. Reduced-motion: shadow-only, no translateY
+        "group relative flex flex-col rounded-[var(--radius-card)] overflow-hidden",
+        // glasscn liquid-glass surface — beveled inset edges + warm sheen + soft float.
+        // (No backdrop-blur: over a flat white section it shows nothing but costs GPU.)
+        "border border-white/70",
+        "bg-white [background-image:radial-gradient(125%_80%_at_15%_4%,rgba(255,255,255,0.95)_0%,rgba(255,255,255,0)_55%),radial-gradient(120%_95%_at_88%_106%,rgba(235,165,44,0.16)_0%,rgba(255,255,255,0)_58%),linear-gradient(180deg,#ffffff_0%,#FBF6EE_100%)]",
+        "[box-shadow:inset_0_1px_0_0_rgba(255,255,255,0.95),inset_0_-14px_30px_-12px_rgba(235,165,44,0.18),inset_1px_0_0_0_rgba(255,255,255,0.6),inset_-1px_0_0_0_rgba(255,255,255,0.5),0_20px_48px_-16px_rgba(42,30,20,0.22)]",
         "motion-safe:transition-[transform,box-shadow] motion-reduce:transition-shadow duration-300 ease-[--ease-warm]",
         !reducedMotion && "hover:-translate-y-1.5",
-        "hover:shadow-[var(--shadow-card-hover)]",
-        // Marigold focus ring for keyboard navigation
+        "hover:[box-shadow:inset_0_1px_0_0_rgba(255,255,255,1),inset_0_-16px_34px_-12px_rgba(235,165,44,0.24),inset_1px_0_0_0_rgba(255,255,255,0.7),inset_-1px_0_0_0_rgba(255,255,255,0.6),0_30px_62px_-16px_rgba(42,30,20,0.3)]",
         "focus-within:outline-none focus-within:ring-2 focus-within:ring-marigold focus-within:ring-offset-2",
       )}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      {/* ── Badge ───────────────────────────────────────────────────────── */}
+      {/* ── Badge — solid green pill ─────────────────────────────────────── */}
       {badge && (
         <div className="absolute top-3 left-3 z-10">
           <span
             className={cn(
-              "inline-block px-2.5 py-0.5 rounded-full text-[10px] font-semibold tracking-wide uppercase",
+              "inline-block rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide shadow-sm",
               badge.classes
             )}
           >
@@ -196,30 +122,27 @@ export function ProductCard({ product, priority = false, badgeOverride }: Produc
         </div>
       )}
 
-      {/* ── Image container — 4:5 aspect ratio, no layout shift ─────────
-          Using a position-relative wrapper with padding-bottom trick so the
-          aspect ratio is reserved before the image loads.
-      ──────────────────────────────────────────────────────────────────── */}
+      {/* ── Image — square, object-contain ───────────────────────────────── */}
       <Link
         href={`/products/${handle}`}
         tabIndex={-1}
         aria-hidden="true"
         className="relative block w-full overflow-hidden"
-        style={{ paddingBottom: "125%" /* 4:5 ratio, 5/4 = 1.25 → 125% */ }}
+        style={{ aspectRatio: "1 / 1" }}
       >
         <motion.div
           className="absolute inset-0"
           animate={{ scale: imageScale }}
           transition={{ ease: WARM, duration: DUR.base }}
-          style={{ transformOrigin: "center center", background: "var(--color-image-zone)" }}
+          style={{ transformOrigin: "center center" }}
         >
           {img ? (
             <Image
               src={img.url}
               alt={img.altText || title}
               fill
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-              className="object-contain p-4"
+              sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+              className="object-cover"
               priority={priority}
             />
           ) : (
@@ -230,144 +153,44 @@ export function ProductCard({ product, priority = false, badgeOverride }: Produc
         </motion.div>
       </Link>
 
-      {/* ── Info block ──────────────────────────────────────────────────── */}
-      <div className="flex flex-col gap-1 px-4 pt-3 pb-3">
-        {/* Product type / eyebrow — green for botanical/natural credential */}
+      {/* ── Info ─────────────────────────────────────────────────────────── */}
+      <div className="flex flex-col gap-1 px-4 pt-3 pb-2">
         {productType && (
-          <p className="text-[10px] font-semibold uppercase tracking-widest text-green truncate">
+          <p className="truncate text-[10px] font-semibold uppercase tracking-widest text-green">
             {productType}
           </p>
         )}
-
-        {/* Title — links to PDP; clamped to 2 lines with min-h to keep grid uniform */}
         <Link
           href={`/products/${handle}`}
           className={cn(
             "font-display text-base font-semibold text-espresso leading-snug",
             "line-clamp-2 hover:text-clay transition-colors duration-200",
             "outline-none focus-visible:ring-2 focus-visible:ring-marigold focus-visible:ring-offset-1 rounded-sm",
-            // min-h = 2 × line-height (1.375 × 1rem × 2) → ~2.75rem so single-line titles
-            // don't make shorter cards — grid stays perfectly uniform
             "[min-height:2.75rem]"
           )}
         >
           {title}
         </Link>
-
-        {/* Price */}
-        <p className="text-sm font-medium text-espresso mt-0.5">
+        <p className="mt-0.5 text-sm font-medium text-espresso">
           {priceDisplay}
-          <span className="text-espresso/40 font-normal ml-1 text-xs">CAD</span>
+          <span className="ml-1 text-xs font-normal text-espresso/40">CAD</span>
         </p>
       </div>
 
-      {/* ── Quick-add bar ─────────────────────────────────────────────────
-          Strategy:
-          - reduced-motion=true → always-visible, no animation
-          - pointer:coarse (touch) → always-visible via CSS (pointer-coarse variant)
-          - pointer:fine + motion ok → JS-hover animated slide-up
-
-          We render two nodes and let CSS/JS decide which shows:
-            1. Static node (always visible on touch + reduced-motion)
-            2. Animated node (pointer:fine desktop, JS-hover controlled)
-      ──────────────────────────────────────────────────────────────────── */}
-      <div className="px-4 pb-4">
-        {reducedMotion ? (
-          /* Reduced-motion: always visible, no animation */
-          <QuickAddBar
-            sizeValues={sizeValues}
-            hasSwatches={hasSwatches}
-            selectedSize={selectedSize}
-            onSizeChange={setSelectedSize}
-            onAdd={handleAddClick}
-          />
-        ) : (
-          <>
-            {/* Touch devices (pointer:coarse): always visible, hidden on desktop */}
-            <div className="pointer-fine:hidden">
-              <QuickAddBar
-                sizeValues={sizeValues}
-                hasSwatches={hasSwatches}
-                selectedSize={selectedSize}
-                onSizeChange={setSelectedSize}
-                onAdd={handleAddClick}
-              />
-            </div>
-
-            {/* Desktop (pointer:fine): animated hover slide-up.
-                The outer div reserves the exact height of the QuickAddBar
-                (52px = py-2*2 + icon height) so non-hovered cards stay the
-                same height as hovered cards and the grid never reflows. */}
-            <div className="hidden pointer-fine:block" style={{ minHeight: "52px" }}>
-              <AnimatePresence>
-                {hovered && (
-                  <motion.div
-                    key="quick-add-desktop"
-                    initial={{ y: 10, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    exit={{ y: 6, opacity: 0 }}
-                    transition={{ ease: WARM, duration: DUR.fast }}
-                  >
-                    <QuickAddBar
-                      sizeValues={sizeValues}
-                      hasSwatches={hasSwatches}
-                      selectedSize={selectedSize}
-                      onSizeChange={setSelectedSize}
-                      onAdd={handleAddClick}
-                    />
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-          </>
-        )}
+      {/* ── One clean Add button ─────────────────────────────────────────── */}
+      <div className="mt-auto px-4 pb-4">
+        <button
+          onClick={handleAdd}
+          aria-label={`Add ${title} to cart`}
+          className={cn(
+            "w-full rounded-full bg-clay py-2.5 text-sm font-semibold text-cream",
+            "transition-colors duration-200 hover:bg-orange",
+            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-marigold focus-visible:ring-offset-2"
+          )}
+        >
+          Add to cart
+        </button>
       </div>
     </article>
-  );
-}
-
-// ── Quick-add bar — subtle glass surface with swatches + Add button ──────────
-interface QuickAddBarProps {
-  sizeValues: string[];
-  hasSwatches: boolean;
-  selectedSize: string;
-  onSizeChange: (v: string) => void;
-  onAdd: () => void;
-}
-
-function QuickAddBar({
-  sizeValues,
-  hasSwatches,
-  selectedSize,
-  onSizeChange,
-  onAdd,
-}: QuickAddBarProps) {
-  return (
-    <div
-      className={cn(
-        "flex items-center gap-2 rounded-xl px-3 py-2",
-        // Subtle warm fill — not glass (card is white; glass would read grey). Cream tint only.
-        "bg-cream/40 backdrop-blur-[4px]",
-        "border border-espresso/10",
-      )}
-    >
-      {hasSwatches && (
-        <VariantSwatch
-          values={sizeValues}
-          value={selectedSize}
-          onChange={onSizeChange}
-          className="flex-1 min-w-0"
-        />
-      )}
-      <Button
-        size="sm"
-        variant="default"
-        onClick={onAdd}
-        className={cn(!hasSwatches && "flex-1", "shrink-0")}
-        aria-label="Add to cart"
-      >
-        Add
-      </Button>
-    </div>
   );
 }

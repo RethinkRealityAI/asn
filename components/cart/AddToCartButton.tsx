@@ -50,12 +50,12 @@ export function AddToCartButton({
   return (
     <MagneticButton className={cn("w-full", className)}>
       <Button
-        size="sm"
+        size="lg"
         variant="default"
         onClick={handleClick}
         aria-label={added ? `${label} — added` : label}
         className={cn(
-          "w-full transition-all",
+          "w-full rounded-full text-base font-semibold transition-all",
           added && "bg-leaf/80 hover:bg-leaf/80",
         )}
         disabled={!variant.available}

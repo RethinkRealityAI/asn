@@ -44,6 +44,8 @@ export interface PLPClientProps {
   title: string;
   subtitle?: string;
   breadcrumb?: React.ReactNode;
+  /** Hide the filter rail entirely (e.g. wholesale, where facets don't apply). */
+  hideFilters?: boolean;
 }
 
 export function PLPClient({
@@ -54,6 +56,7 @@ export function PLPClient({
   title,
   subtitle,
   breadcrumb,
+  hideFilters = false,
 }: PLPClientProps) {
   const [filters, setFilters] = useState<FilterState>(initial ?? {});
 
@@ -75,31 +78,28 @@ export function PLPClient({
 
       {/* ── Main layout ──────────────────────────────────────────────────── */}
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
+        {hideFilters ? (
+          /* No filters (e.g. wholesale) — grid spans the full width */
+          <ProductGrid products={filtered} className="w-full" />
+        ) : (
+          <>
+            {/* Mobile: filter trigger above the grid */}
+            <div className="mb-5 lg:hidden">
+              <FilterRail facets={facets} value={filters} onChange={setFilters} />
+            </div>
 
-        {/* Mobile: filter trigger is visible < lg via FilterRail's own lg:hidden div.
-            We pull it out of the flex row so it sits above the grid on mobile. */}
-        <div className="mb-5 lg:hidden">
-          {/* FilterRail renders only its mobile trigger button here (lg:hidden
-              inside FilterRail means the desktop aside is suppressed) */}
-          <FilterRail facets={facets} value={filters} onChange={setFilters} />
-        </div>
+            {/* Desktop: flex row — sidebar | grid */}
+            <div className="hidden lg:flex gap-8 items-start">
+              <FilterRail facets={facets} value={filters} onChange={setFilters} />
+              <ProductGrid products={filtered} className="flex-1 min-w-0" />
+            </div>
 
-        {/* Desktop: flex row — sidebar | grid */}
-        <div className="hidden lg:flex gap-8 items-start">
-          <FilterRail facets={facets} value={filters} onChange={setFilters} />
-          <ProductGrid
-            products={filtered}
-            className="flex-1 min-w-0"
-          />
-        </div>
-
-        {/* Mobile: just the grid (filter trigger is above) */}
-        <div className="lg:hidden">
-          <ProductGrid
-            products={filtered}
-            className="w-full"
-          />
-        </div>
+            {/* Mobile: just the grid (filter trigger is above) */}
+            <div className="lg:hidden">
+              <ProductGrid products={filtered} className="w-full" />
+            </div>
+          </>
+        )}
       </div>
     </>
   );

@@ -17,17 +17,18 @@ import * as XLSX from "xlsx";
 
 // ── Paths ──────────────────────────────────────────────────────────────────
 const ROOT = path.resolve(__dirname, "..");
+// The asset bundle lives one level up from the app repo: AllSheaNaturals/NEW DESIGN/...
 const PRODUCT_IMAGES_DIR = path.resolve(
   ROOT,
-  "../../../../NEW DESIGN/all_naturals_assets/all_naturals_assets/product_images"
+  "../NEW DESIGN/all_naturals_assets/all_naturals_assets/product_images"
 );
 const MANIFEST_XLSX = path.resolve(
   ROOT,
-  "../../../../NEW DESIGN/all_naturals_image_manifest.xlsx"
+  "../NEW DESIGN/all_naturals_image_manifest.xlsx"
 );
 const MANIFEST_XLSX_ALT = path.resolve(
   ROOT,
-  "../../../../NEW DESIGN/all_naturals_assets/all_naturals_assets/all_naturals_image_manifest.xlsx"
+  "../NEW DESIGN/all_naturals_assets/all_naturals_assets/all_naturals_image_manifest.xlsx"
 );
 const CATALOG_PATH = path.resolve(ROOT, "lib/shopify/mock/catalog.json");
 const OUTPUT_BASE = path.resolve(ROOT, "public/media");

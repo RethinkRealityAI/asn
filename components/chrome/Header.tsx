@@ -36,9 +36,9 @@ import { useCart } from "@/components/cart/useCart";
 const NAV_LINKS = [
   { label: "Shop", href: "/shop" },
   { label: "Collections", href: "/collections" },
-  { label: "Our Story", href: "/our-story" },
-  { label: "Wholesale", href: "/collections/bulk-wholesale" },
-  { label: "Journal", href: "/journal" },
+  { label: "Wholesale", href: "/wholesale" },
+  { label: "Media", href: "/media" },
+  { label: "Contact", href: "/contact" },
 ];
 
 /** Scroll distance (px) before the glass bar appears */
@@ -87,11 +87,11 @@ export function Header() {
             aria-hidden="true"
             className={[
               "absolute inset-0 pointer-events-none",
-              // frosted glass treatment from lib/glass-variants.ts
-              "backdrop-blur-[16px] backdrop-saturate-[1.6]",
-              "bg-[#F5ECDA]/70",
-              "border-b border-[#F5ECDA]/60",
-              "shadow-[0_2px_20px_rgba(42,30,20,0.10)]",
+              // Clean warm-white liquid glass — translucent, not a solid beige bar.
+              "backdrop-blur-[22px] backdrop-saturate-[1.5]",
+              "bg-[#FCF8F1]/68",
+              "border-b border-white/50",
+              "shadow-[0_4px_24px_rgba(42,30,20,0.07)] [box-shadow:inset_0_1px_0_0_rgba(255,255,255,0.7),0_4px_24px_rgba(42,30,20,0.07)]",
             ].join(" ")}
             initial={false}
             animate={{ opacity: showGlass ? 1 : 0 }}
@@ -115,7 +115,7 @@ export function Header() {
                   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-marigold focus-visible:ring-offset-2",
                 ].join(" ")}
               >
-                <Wordmark className="text-espresso" size="text-xl sm:text-2xl" />
+                <Wordmark className="h-7 sm:h-8" priority />
               </Link>
 
               {/* ── Desktop nav links ─────────────────────────────────── */}

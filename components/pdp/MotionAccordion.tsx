@@ -94,7 +94,7 @@ export function MotionAccordion({
                 className={cn(
                   "flex w-full items-center justify-between gap-4",
                   "py-4 px-0 text-left outline-none",
-                  "text-sm font-semibold text-espresso",
+                  "text-base font-semibold text-espresso",
                   "transition-colors duration-150",
                   "hover:text-clay",
                   "focus-visible:ring-2 focus-visible:ring-marigold focus-visible:ring-offset-2 rounded-sm"
@@ -139,7 +139,7 @@ export function MotionAccordion({
                   }
                   className="overflow-hidden"
                 >
-                  <div className="pb-5 text-sm text-espresso/75 leading-relaxed space-y-2">
+                  <div className="pb-5 text-base text-espresso/80 leading-relaxed space-y-2">
                     {item.htmlContent ? (
                       <div
                         dangerouslySetInnerHTML={{ __html: item.htmlContent }}
