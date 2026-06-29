@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120">
+  <!-- Bògòlanfini-inspired mudcloth motif tile. Tonal espresso strokes; subtlety
+       is controlled by the consuming element's opacity. Tiles seamlessly. -->
+  <g fill="none" stroke="#2A1E14" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+    <!-- zigzag band -->
+    <polyline points="0,15 15,7 30,15 45,7 60,15 75,7 90,15 105,7 120,15"/>
+    <!-- open diamonds -->
+    <path d="M15,38 l9,9 l-9,9 l-9,-9 z M45,38 l9,9 l-9,9 l-9,-9 z M75,38 l9,9 l-9,9 l-9,-9 z M105,38 l9,9 l-9,9 l-9,-9 z"/>
+    <!-- dash band -->
+    <path stroke-width="3" d="M2,75 h11 M22,75 h11 M42,75 h11 M62,75 h11 M82,75 h11 M102,75 h11"/>
+    <!-- small crosses -->
+    <path d="M15,98 v14 M8,105 h14 M45,98 v14 M38,105 h14 M75,98 v14 M68,105 h14 M105,98 v14 M98,105 h14"/>
+  </g>
+</svg>

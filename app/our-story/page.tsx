@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { AccentCorners } from "@/components/motion/AccentCorners";
+import { PageHeader } from "@/components/chrome/PageHeader";
 
 export const metadata: Metadata = {
   title: "Our Story — Shea Allnaturals",
@@ -18,28 +19,15 @@ const VALUES = [
 export default function OurStoryPage() {
   return (
     <div className="min-h-screen bg-white pt-[calc(3.5rem+2.5rem)]">
-      {/* Header */}
-      <header className="relative overflow-hidden border-b border-espresso/08 bg-cream px-5 py-14 sm:px-8 lg:px-12 lg:py-20">
-        <AccentCorners corners={{ tl: "argan", br: "shea" }} size={150} opacity={0.1} />
-        <div className="relative z-10 mx-auto max-w-7xl">
-          <nav aria-label="Breadcrumb" className="mb-4">
-            <ol className="flex items-center gap-1.5 text-xs text-espresso/50">
-              <li><Link href="/" className="transition-colors hover:text-espresso">Home</Link></li>
-              <li aria-hidden="true">/</li>
-              <li aria-current="page" className="font-medium text-espresso/80">Our Story</li>
-            </ol>
-          </nav>
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-marigold">Our story</p>
-          <h1 className="font-display text-4xl font-semibold leading-tight tracking-tight text-espresso sm:text-5xl lg:text-6xl">
-            Heritage you can feel on your skin.
-          </h1>
-          <p className="mt-4 max-w-2xl text-base leading-relaxed text-espresso/65 sm:text-lg">
-            For over a decade we&rsquo;ve made small-batch skincare the old way —
-            pure, cold-pressed oils, shea and black soap — sourced fairly from
-            West Africa and blended by hand in Barrie, Ontario.
-          </p>
-        </div>
-      </header>
+      {/* Header — scenery (origin story) */}
+      <PageHeader
+        image="/headers/our-story.webp"
+        imageAlt="A shea tree on the West African savanna at golden hour"
+        crumbs={[{ label: "Home", href: "/" }, { label: "Our Story" }]}
+        eyebrow="Our story"
+        title="Heritage you can feel on your skin."
+        subtitle="For over a decade we've made small-batch skincare the old way — pure, cold-pressed oils, shea and black soap — sourced fairly from West Africa and blended by hand in Barrie, Ontario."
+      />
 
       {/* Narrative */}
       <section className="mx-auto max-w-3xl px-5 py-16 sm:px-8 lg:px-12">

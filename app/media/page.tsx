@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import { LiteYouTube } from "@/components/media/LiteYouTube";
 import { AccentCorners } from "@/components/motion/AccentCorners";
+import { PageHeader } from "@/components/chrome/PageHeader";
 import { MEDIA_VIDEOS, PRESS, YT_CHANNEL } from "@/lib/content/media";
 
 export const metadata: Metadata = {
@@ -17,26 +18,17 @@ export default function MediaPage() {
   return (
     <div className="min-h-screen bg-white pt-[calc(3.5rem+2.5rem)]">
       {/* Header */}
-      <header className="relative overflow-hidden border-b border-espresso/08 bg-cream px-5 py-14 sm:px-8 lg:px-12 lg:py-20">
-        <AccentCorners corners={{ tl: "argan", br: "castor" }} size={150} opacity={0.1} />
-        <div className="relative z-10 mx-auto max-w-7xl">
-          <nav aria-label="Breadcrumb" className="mb-4">
-            <ol className="flex items-center gap-1.5 text-xs text-espresso/50">
-              <li><Link href="/" className="transition-colors hover:text-espresso">Home</Link></li>
-              <li aria-hidden="true">/</li>
-              <li aria-current="page" className="font-medium text-espresso/80">Media &amp; Press</li>
-            </ol>
-          </nav>
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-marigold">Media &amp; press</p>
-          <h1 className="font-display text-4xl font-semibold leading-tight tracking-tight text-espresso sm:text-5xl lg:text-6xl">
-            The story, in motion.
-          </h1>
-          <p className="mt-4 max-w-2xl text-base leading-relaxed text-espresso/65 sm:text-lg">
-            From the shea groves of West Africa to small-batch blending in Barrie —
-            the people, the process, and the press behind every jar.
-          </p>
-        </div>
-      </header>
+      <PageHeader
+        crumbs={[{ label: "Home", href: "/" }, { label: "Media & Press" }]}
+        eyebrow="Media & press"
+        title="The story, in motion."
+        subtitle="From the shea groves of West Africa to small-batch blending in Barrie — the people, the process, and the press behind every jar."
+        products={[
+          { src: "/hero/cocoa.webp", alt: "Shea Allnaturals cocoa-shea butter", style: { position: "absolute", right: "12%", bottom: "-6%", width: "19%", maxWidth: "206px", zIndex: 1 } },
+          { src: "/hero/castor.webp", alt: "Shea Allnaturals castor oil", style: { position: "absolute", right: "27%", bottom: "0%", width: "9%", maxWidth: "104px", zIndex: 2 } },
+          { src: "/decor/shea.webp", alt: "", style: { position: "absolute", right: "30%", bottom: "-3%", width: "12%", maxWidth: "134px", zIndex: 0 } },
+        ]}
+      />
 
       {/* Featured film */}
       <section aria-label="Featured film" className="relative overflow-hidden px-5 pt-16 sm:px-8 lg:px-12">

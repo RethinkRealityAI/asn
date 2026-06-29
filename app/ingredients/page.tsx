@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { AccentCorners } from "@/components/motion/AccentCorners";
+import { PageHeader } from "@/components/chrome/PageHeader";
 
 export const metadata: Metadata = {
   title: "Ingredients — Shea Allnaturals",
@@ -24,27 +25,17 @@ export default function IngredientsPage() {
   return (
     <div className="min-h-screen bg-white pt-[calc(3.5rem+2.5rem)]">
       {/* Header */}
-      <header className="relative overflow-hidden border-b border-espresso/08 bg-cream px-5 py-14 sm:px-8 lg:px-12 lg:py-20">
-        <AccentCorners corners={{ tl: "castor", br: "argan" }} size={150} opacity={0.1} />
-        <div className="relative z-10 mx-auto max-w-7xl">
-          <nav aria-label="Breadcrumb" className="mb-4">
-            <ol className="flex items-center gap-1.5 text-xs text-espresso/50">
-              <li><Link href="/" className="transition-colors hover:text-espresso">Home</Link></li>
-              <li aria-hidden="true">/</li>
-              <li aria-current="page" className="font-medium text-espresso/80">Ingredients</li>
-            </ol>
-          </nav>
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-marigold">Ingredients</p>
-          <h1 className="font-display text-4xl font-semibold leading-tight tracking-tight text-espresso sm:text-5xl lg:text-6xl">
-            Whole shea, nothing stripped.
-          </h1>
-          <p className="mt-4 max-w-2xl text-base leading-relaxed text-espresso/65 sm:text-lg">
-            We use few ingredients, and we use them well — cold-pressed,
-            unrefined and honestly sourced. Here&rsquo;s what goes in, and what
-            never does.
-          </p>
-        </div>
-      </header>
+      <PageHeader
+        crumbs={[{ label: "Home", href: "/" }, { label: "Ingredients" }]}
+        eyebrow="Ingredients"
+        title="Whole shea, nothing stripped."
+        subtitle="We use few ingredients, and we use them well — cold-pressed, unrefined and honestly sourced. Here's what goes in, and what never does."
+        products={[
+          { src: "/hero/shea-butter.webp", alt: "Shea Allnaturals shea butter", style: { position: "absolute", right: "13%", bottom: "-6%", width: "20%", maxWidth: "216px", zIndex: 1 } },
+          { src: "/hero/argan.webp", alt: "Shea Allnaturals argan oil", style: { position: "absolute", right: "28%", bottom: "0%", width: "9%", maxWidth: "104px", zIndex: 2 } },
+          { src: "/decor/castor.webp", alt: "", style: { position: "absolute", right: "29%", bottom: "5%", width: "13%", maxWidth: "150px", zIndex: 0 } },
+        ]}
+      />
 
       {/* Hero botanicals */}
       <section aria-label="Our key botanicals" className="relative overflow-hidden mx-auto max-w-7xl px-5 py-16 sm:px-8 lg:px-12">

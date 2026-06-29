@@ -127,7 +127,7 @@ function CollectionsSection({
           {hasMore && (
             <Link
               href="/collections"
-              className="group hidden shrink-0 items-center gap-1.5 pb-1 text-sm font-semibold text-espresso/70 transition-colors duration-200 hover:text-clay sm:inline-flex"
+              className="group hidden shrink-0 items-center gap-1.5 pb-1 text-sm font-bold text-orange transition-colors duration-200 hover:text-orange/80 sm:inline-flex"
             >
               View all collections
               <span className="inline-block translate-x-0 transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">→</span>
@@ -155,7 +155,7 @@ function CollectionsSection({
           <div className="mt-12 flex justify-center sm:hidden">
             <Link
               href="/collections"
-              className="inline-flex items-center gap-2 rounded-full border border-espresso/20 px-6 py-2.5 text-sm font-semibold text-espresso transition-colors duration-200 hover:border-clay hover:text-clay"
+              className="inline-flex items-center gap-2 rounded-full bg-orange px-6 py-2.5 text-sm font-semibold text-cream transition-colors duration-200 hover:bg-orange/90"
             >
               View all collections →
             </Link>

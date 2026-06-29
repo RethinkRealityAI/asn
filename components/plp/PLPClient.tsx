@@ -46,6 +46,8 @@ export interface PLPClientProps {
   breadcrumb?: React.ReactNode;
   /** Hide the filter rail entirely (e.g. wholesale, where facets don't apply). */
   hideFilters?: boolean;
+  /** Hide the built-in PLP header (when the page supplies its own PageHeader). */
+  hideHeader?: boolean;
 }
 
 export function PLPClient({
@@ -57,6 +59,7 @@ export function PLPClient({
   subtitle,
   breadcrumb,
   hideFilters = false,
+  hideHeader = false,
 }: PLPClientProps) {
   const [filters, setFilters] = useState<FilterState>(initial ?? {});
 
@@ -68,13 +71,15 @@ export function PLPClient({
 
   return (
     <>
-      {/* Header renders with the live post-filter count */}
-      <PLPHeader
-        title={title}
-        subtitle={subtitle}
-        count={filtered.length}
-        breadcrumb={breadcrumb}
-      />
+      {/* Header renders with the live post-filter count (unless the page supplies its own) */}
+      {!hideHeader && (
+        <PLPHeader
+          title={title}
+          subtitle={subtitle}
+          count={filtered.length}
+          breadcrumb={breadcrumb}
+        />
+      )}
 
       {/* ── Main layout ──────────────────────────────────────────────────── */}
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">

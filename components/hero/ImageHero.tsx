@@ -57,6 +57,18 @@ interface HeroLayer {
 // Real products (background-removed from our actual catalog photos): the argan
 // bottle standing between the two butter tubs, with an oversized leaf bundle.
 const LAYERS: HeroLayer[] = [
+  // Mudcloth drape — warm backdrop the products nestle into (behind everything)
+  {
+    src: "/decor/cloth.webp",
+    alt: "",
+    pos: { bottom: "-6%", right: "-8%", width: "62%" },
+    depth: 0.18,
+    zIndex: 3,
+    delay: 0.04,
+    floatClass: "animate-[hero-float_14s_ease-in-out_infinite_0.4s]",
+    dropShadow: "drop-shadow(0 24px 38px rgba(42,30,20,0.16))",
+    opacity: 1,
+  },
   // Big mint-leaf bundle behind, top-right (enlarged)
   {
     src: "/decor/leaves.webp",
@@ -266,13 +278,6 @@ export function ImageHero() {
                 Shop the collection
               </Link>
             </MagneticButton>
-            <Link
-              href="#story"
-              className="group inline-flex items-center gap-1.5 text-sm font-semibold text-espresso/70 underline-offset-4 transition-colors hover:text-clay"
-            >
-              Explore the ritual
-              <span aria-hidden className="transition-transform group-hover:translate-x-0.5">→</span>
-            </Link>
           </motion.div>
 
           {/* Credential chips — rounded, glassy over white */}

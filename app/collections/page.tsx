@@ -7,11 +7,10 @@
  */
 
 import type { Metadata } from "next";
-import Link from "next/link";
 
 import { store } from "@/lib/shopify";
 import { CategoryCard } from "@/components/plp/CategoryCard";
-import { AccentCorners } from "@/components/motion/AccentCorners";
+import { PageHeader } from "@/components/chrome/PageHeader";
 import type { AccentDecor } from "@/components/motion/AccentCorners";
 
 export const metadata: Metadata = {
@@ -44,28 +43,17 @@ export default async function CollectionsPage() {
   return (
     <div className="min-h-screen bg-white pt-[calc(3.5rem+2rem)]">
       {/* Page header */}
-      <header className="relative w-full overflow-hidden border-b border-espresso/08 bg-cream px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
-        <AccentCorners corners={{ tl: "argan", br: "castor" }} size={150} opacity={0.1} />
-        <div className="relative z-10 mx-auto flex max-w-screen-xl flex-col gap-3">
-          <nav aria-label="Breadcrumb">
-            <ol className="flex items-center gap-1.5 text-xs text-espresso/50">
-              <li><Link href="/" className="transition-colors hover:text-espresso">Home</Link></li>
-              <li aria-hidden="true">/</li>
-              <li aria-current="page" className="font-medium text-espresso/80">Collections</li>
-            </ol>
-          </nav>
-          <p className="text-[11px] font-semibold uppercase tracking-widest text-marigold">
-            {retail.length} collection{retail.length !== 1 ? "s" : ""}
-          </p>
-          <h1 className="font-display text-3xl font-semibold leading-tight tracking-tight text-espresso sm:text-4xl lg:text-5xl">
-            Shop by collection.
-          </h1>
-          <p className="max-w-2xl font-body text-base leading-relaxed text-espresso/65 sm:text-lg">
-            From shea butter and argan oil to hair care, body care and more —
-            find your ritual.
-          </p>
-        </div>
-      </header>
+      <PageHeader
+        crumbs={[{ label: "Home", href: "/" }, { label: "Collections" }]}
+        eyebrow={`${retail.length} collection${retail.length !== 1 ? "s" : ""}`}
+        title="Shop by collection."
+        subtitle="From shea butter and argan oil to hair care, body care and more — find your ritual."
+        products={[
+          { src: "/hero/shea-butter.webp", alt: "Shea Allnaturals shea butter", style: { position: "absolute", right: "12%", bottom: "-6%", width: "20%", maxWidth: "220px", zIndex: 2 } },
+          { src: "/hero/argan.webp", alt: "Shea Allnaturals argan oil", style: { position: "absolute", right: "27%", bottom: "0%", width: "9%", maxWidth: "104px", zIndex: 1 } },
+          { src: "/decor/shea-nuts.webp", alt: "", style: { position: "absolute", right: "31%", bottom: "-3%", width: "11%", maxWidth: "120px", zIndex: 0 } },
+        ]}
+      />
 
       {/* Collections grid */}
       <main className="mx-auto max-w-screen-xl px-4 py-12 sm:px-6 lg:px-8">

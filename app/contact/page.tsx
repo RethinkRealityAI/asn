@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 
 import { ContactForm } from "@/components/contact/ContactForm";
 import { AccentCorners } from "@/components/motion/AccentCorners";
+import { PageHeader } from "@/components/chrome/PageHeader";
 
 export const metadata: Metadata = {
   title: "Contact — Shea Allnaturals",
@@ -27,29 +27,16 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen bg-white pt-[calc(3.5rem+2.5rem)]">
       {/* Header */}
-      <header className="relative overflow-hidden border-b border-espresso/08 bg-cream px-5 py-14 sm:px-8 lg:px-12 lg:py-20">
-        <AccentCorners corners={{ tl: "argan", br: "shea" }} size={150} opacity={0.1} />
-        <div className="relative z-10 mx-auto max-w-7xl">
-          <nav aria-label="Breadcrumb" className="mb-4">
-            <ol className="flex items-center gap-1.5 text-xs text-espresso/50">
-              <li><Link href="/" className="transition-colors hover:text-espresso">Home</Link></li>
-              <li aria-hidden="true">/</li>
-              <li aria-current="page" className="font-medium text-espresso/80">Contact</li>
-            </ol>
-          </nav>
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-clay">
-            We&rsquo;d love to hear from you
-          </p>
-          <h1 className="font-display text-4xl font-semibold leading-tight tracking-tight text-espresso sm:text-5xl lg:text-6xl">
-            Get in touch.
-          </h1>
-          <p className="mt-4 max-w-xl text-base leading-relaxed text-espresso/65 sm:text-lg">
-            Questions about a product, a wholesale enquiry, or just want to say
-            hello? Reach out — we&rsquo;re a small, family-run team and we read
-            every message.
-          </p>
-        </div>
-      </header>
+      <PageHeader
+        crumbs={[{ label: "Home", href: "/" }, { label: "Contact" }]}
+        eyebrow="We'd love to hear from you"
+        title="Get in touch."
+        subtitle="Questions about a product, a wholesale enquiry, or just want to say hello? Reach out — we're a small, family-run team and we read every message."
+        products={[
+          { src: "/hero/argan.webp", alt: "Shea Allnaturals argan oil", style: { position: "absolute", right: "16%", bottom: "-4%", width: "12%", maxWidth: "132px", zIndex: 1 } },
+          { src: "/decor/leaves.webp", alt: "", style: { position: "absolute", right: "30%", bottom: "0%", width: "13%", maxWidth: "140px", zIndex: 0 } },
+        ]}
+      />
 
       {/* Details + form */}
       <section className="mx-auto max-w-7xl px-5 py-16 sm:px-8 lg:px-12">

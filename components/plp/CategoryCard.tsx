@@ -57,8 +57,8 @@ export function CategoryCard({ href, title, count, cover, accent = "argan", prio
       {/* Frosted-glass label strip — glass over imagery */}
       <div className="absolute inset-x-3 bottom-3 flex items-center justify-between gap-2 rounded-2xl border border-[#F5ECDA]/60 bg-[#F5ECDA]/55 px-4 py-3 backdrop-blur-md backdrop-saturate-150 shadow-[0_2px_16px_rgba(42,30,20,0.12)]">
         <div className="min-w-0">
-          <p className="truncate font-display text-sm font-semibold leading-snug text-espresso">{title}</p>
-          <p className="text-[0.7rem] text-espresso/55">{count} product{count !== 1 ? "s" : ""}</p>
+          <p className="line-clamp-2 font-display text-sm font-semibold leading-snug text-espresso">{title}</p>
+          <p className="mt-0.5 text-[0.72rem] font-bold uppercase tracking-wide text-orange">{count} product{count !== 1 ? "s" : ""}</p>
         </div>
         <span
           aria-hidden
