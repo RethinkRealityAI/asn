@@ -221,9 +221,9 @@ export function ImageHero() {
             "radial-gradient(60% 55% at 72% 42%, rgba(235,165,44,0.16) 0%, rgba(226,116,43,0.07) 40%, rgba(255,255,255,0) 72%)",
         }}
       />
-      <div className="relative z-10 mx-auto grid min-h-[92vh] max-w-7xl grid-cols-1 items-center gap-6 px-5 pb-12 pt-[calc(3.5rem+4.5rem)] sm:px-8 lg:grid-cols-12 lg:gap-4 lg:px-12 lg:pt-[calc(3.5rem+2rem)]">
+      <div className="relative z-10 mx-auto grid min-h-[100svh] max-w-7xl grid-cols-1 items-center gap-6 px-5 pb-12 pt-[calc(3.5rem+4.5rem)] sm:px-8 lg:grid-cols-12 lg:gap-8 lg:px-12 lg:pt-[calc(3.5rem+2rem)]">
         {/* ── Text column ─────────────────────────────────────────────────── */}
-        <div className="lg:col-span-5">
+        <div className="lg:col-span-6">
           <motion.p
             className="mb-5 text-[0.72rem] font-semibold uppercase tracking-[0.26em] text-clay"
             initial={reduced ? false : { opacity: 0, y: 12 }}
@@ -236,7 +236,7 @@ export function ImageHero() {
           <RevealText
             text={"Pure botanicals,\nbeautifully made."}
             as="h1"
-            className="font-display text-[2.6rem] font-semibold leading-[1.03] tracking-tight text-espresso sm:text-6xl lg:text-[4.1rem]"
+            className="font-display text-[2.6rem] font-semibold leading-[1.04] tracking-tight text-espresso sm:text-5xl lg:text-[3.6rem]"
           />
 
           <motion.p
@@ -285,7 +285,7 @@ export function ImageHero() {
             {["Cruelty-free", "Cold-pressed", "Fairly sourced"].map((c) => (
               <li
                 key={c}
-                className="rounded-full border border-espresso/10 bg-cream/60 px-4 py-1.5 text-xs font-semibold tracking-wide text-espresso/70 backdrop-blur-sm"
+                className="rounded-full bg-orange px-4 py-1.5 text-xs font-semibold tracking-wide text-cream shadow-[0_6px_16px_-6px_rgba(226,116,43,0.55)]"
               >
                 {c}
               </li>
@@ -295,7 +295,7 @@ export function ImageHero() {
 
         {/* ── Composition column ──────────────────────────────────────────── */}
         <motion.div
-          className="relative lg:col-span-7"
+          className="relative lg:col-span-6"
           style={reduced ? undefined : { y: clusterY, opacity: clusterOpacity }}
         >
           <div className="relative mx-auto aspect-[5/5] w-full max-w-3xl sm:aspect-[6/5]">
