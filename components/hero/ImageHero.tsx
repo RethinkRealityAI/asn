@@ -59,7 +59,7 @@ interface HeroLayer {
 const LAYERS: HeroLayer[] = [
   // Mudcloth drape — wide center backdrop so all products nestle into it
   {
-    src: "/decor/cloth.webp",
+    src: "/decor/cloth2.webp",
     alt: "",
     pos: { top: "4%", left: "-4%", width: "108%" },
     depth: 0.12,

@@ -106,7 +106,7 @@ export function PageHeader({
               animate={{ opacity: 1, x: 0 }}
               transition={{ ease: WARM, duration: DUR.slow }}
             >
-              <Image src="/decor/cloth.webp" alt="" width={1045} height={777} className="h-auto w-full" priority />
+              <Image src="/decor/cloth2.webp" alt="" width={1200} height={896} className="h-auto w-full" priority />
             </motion.div>
           )}
           {/* real product cutouts (first shows on mobile, rest desktop-only) */}
