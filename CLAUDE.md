@@ -27,8 +27,16 @@ Premium **headless e-commerce** rebuild for **Shea Allnaturals** (formerly "All 
 - **Glass (glasscn) is for OVERLAY CHROME only** (nav, cart drawer, hero/quick-add overlays) — never on product cards (on white it reads grey). Product cards = white, rounded (`--radius-card` 28px), layered drop shadow, hover-lift, uniform height.
 - **Imagery (current direction — 2026-06-26):** use the **REAL product photos** (authentic bilingual labels) imported from the asset bundle via `npm run images`. The old **AI "seal" re-staging is RETIRED** — the client rejected the fabricated seal icon + generic wordmark; product labels must be authentic (old-blue-logo originals are fine). Enhance real photos only via **AI background-removal** (clean cutouts → `public/hero/`) + nestle **botanical decor** (`public/decor/` leaves/shea-nuts) to accentuate and cover cutout notches. The new **maple-leaf logo** (`public/brand/wordmark-{horizontal,stacked}.png`) is for **site chrome only** (and any *newly generated* product renders) — never AI-baked onto real product labels. Seal asset IDs remain in the memory note `reference-shea-higgsfield-assets` for reference only.
 
-## Status (2026-06-26 — premium redesign pass)
-Build green: **149 static pages**, `tsc` clean, **65/65 tests**. Live URL still https://asn-shea.netlify.app (redeploy pending owner preview).
+## Testing (TDD standard — enforced from 2026-06-30)
+Every new feature, bug fix, or behavior change **requires a failing test first**. Red → Green → Refactor. No exceptions.
+- Test runner: **Vitest** (`npm test`). Config: `vitest.config.ts` — node environment, no jsdom. Tests live in `test/` or colocated as `*.test.ts`.
+- Current baseline: **92/92 tests passing** across 9 files (cart, adapter, seed, collections, filters, jsonld, images, assets, wholesale).
+- `test/assets.test.ts` — brand/decor/pail asset existence + size guards. **Run after any image asset change.**
+- `test/wholesale.test.ts` — bulk-wholesale collection isolation, pail path consistency.
+- Future tests go in `test/` for data/logic, or colocated `*.test.ts` for lib modules.
+
+## Status (2026-06-30)
+Build green: **150 static pages**, `tsc` clean, **92/92 tests**. Live: https://asn-shea.netlify.app
 
 This pass (all shipped to the working tree):
 - **Real logo** (`public/brand/wordmark-{horizontal,stacked}.png`, proper red maple leaf + ™) replaces the old text wordmark in `Wordmark.tsx` (image-based, `variant` + `tone` props). Horizontal in chrome bars/headers; stacked on ComingSoon.

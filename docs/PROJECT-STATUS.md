@@ -1,12 +1,18 @@
 # Shea Allnaturals Storefront — Project Status
 
-_Last updated: 2026-06-25 · Live: https://asn-shea.netlify.app_
+_Last updated: 2026-06-30 · Live: https://asn-shea.netlify.app_
 
 This is the living "what's done / what's next" record. For architecture, conventions, and run/deploy commands see `CLAUDE.md` (+ `AGENTS.md` for Next-16 technical notes). The original design spec and phased plans live in `../docs/superpowers/`.
 
 ---
 
 ## ✅ Done (shipped & live)
+
+### 2026-06-30 redesign polish (this session)
+- **Hero cloth** (`public/decor/cloth2.webp`): new warm African mudcloth generated via Higgsfield; repositioned to full-width backdrop (120% wide, CSS mask-gradient fade on left edge) so it wraps behind all three hero products.
+- **PageHeader cloth**: updated to `cloth2.webp`, position tightened (`-bottom-[4%]`, `w-[52%]`) to close the gap that appeared at bottom of section headers.
+- **Wholesale pail logos fixed**: all three `public/hero/pail-*.webp` now carry the real "Shea ★ Allnaturals™" wordmark. Originals re-downloaded from Higgsfield CDN at 1024×1024; `fix-pail-logos.js` (sharp composite) patched each with a per-pail y-position. Committed and live.
+- **TDD baseline expanded**: 9 test files, **92 passing tests** (up from 65). Added `test/assets.test.ts` (brand/decor/pail asset existence + size guards) and `test/wholesale.test.ts` (bulk-wholesale collection isolation + pail path consistency).
 
 ### Foundation & design system (Plan A)
 - Next.js 16 + React 19 + Tailwind v4 + shadcn (Base UI) + glasscn, on Netlify. Self-hosted fonts (Quicksand / Clash Display / General Sans). Sun & Soil tokens, grain texture.
