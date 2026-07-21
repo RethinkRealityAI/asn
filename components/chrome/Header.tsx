@@ -29,12 +29,15 @@ import Link from "next/link";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { Wordmark } from "./Wordmark";
 import { MobileMenu } from "./MobileMenu";
+import { AboutMenu } from "@/components/about/AboutMenu";
 import { usePrefersReducedMotion } from "@/lib/motion/use-reduced-motion";
 import { WARM, DUR } from "@/lib/motion/easings";
 import { useCart } from "@/components/cart/useCart";
 
-const NAV_LINKS = [
-  { label: "Shop", href: "/shop" },
+/** Nav links rendered before the About dropdown. */
+const NAV_LEFT = [{ label: "Shop", href: "/shop" }];
+/** Nav links rendered after the About dropdown. */
+const NAV_RIGHT = [
   { label: "Wholesale", href: "/wholesale" },
   { label: "Media", href: "/media" },
   { label: "Contact", href: "/contact" },
@@ -122,7 +125,26 @@ export function Header() {
                 aria-label="Main navigation"
                 className="hidden md:flex items-center gap-1"
               >
-                {NAV_LINKS.map(({ label, href }) => (
+                {NAV_LEFT.map(({ label, href }) => (
+                  <Link
+                    key={label}
+                    href={href}
+                    className={[
+                      "px-3 py-1.5 rounded-full",
+                      "text-sm font-medium text-espresso/80",
+                      "hover:text-espresso hover:bg-espresso/8",
+                      "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-marigold",
+                      "transition-colors",
+                    ].join(" ")}
+                  >
+                    {label}
+                  </Link>
+                ))}
+
+                {/* About — dropdown with the six sub-sections + private label */}
+                <AboutMenu />
+
+                {NAV_RIGHT.map(({ label, href }) => (
                   <Link
                     key={label}
                     href={href}
