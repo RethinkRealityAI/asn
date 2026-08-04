@@ -25,6 +25,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence, type Variants } from "framer-motion";
 import { useCart } from "./CartProvider";
+import { PICKUP } from "@/lib/content/pickup";
 import { usePrefersReducedMotion } from "@/lib/motion/use-reduced-motion";
 import { WARM, DUR } from "@/lib/motion/easings";
 import { Button } from "@/components/ui/button";
@@ -238,6 +239,23 @@ export function CartDrawer() {
                     <span className="ml-1 font-body text-xs font-normal text-espresso/40">
                       CAD
                     </span>
+                  </span>
+                </div>
+
+                {/* Local pickup (in place of shipping) */}
+                <div className="flex items-start gap-2 rounded-xl border border-green/20 bg-green/5 p-3 text-xs leading-relaxed text-espresso/70">
+                  <span aria-hidden className="mt-0.5 text-sm">📍</span>
+                  <span>
+                    <span className="font-semibold text-green">{PICKUP.label}</span> · {PICKUP.day} at{" "}
+                    {PICKUP.address}. Call ahead to confirm:{" "}
+                    <a href={PICKUP.phoneHref} className="font-semibold text-clay hover:underline">
+                      {PICKUP.phone}
+                    </a>{" "}
+                    or{" "}
+                    <a href={PICKUP.emailHref} className="font-semibold text-clay hover:underline">
+                      {PICKUP.email}
+                    </a>
+                    .
                   </span>
                 </div>
 
