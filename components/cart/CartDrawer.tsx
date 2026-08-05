@@ -26,6 +26,7 @@ import Link from "next/link";
 import { motion, AnimatePresence, type Variants } from "framer-motion";
 import { useCart } from "./CartProvider";
 import { CheckoutButton } from "./CheckoutButton";
+import { PICKUP } from "@/lib/content/pickup";
 import { usePrefersReducedMotion } from "@/lib/motion/use-reduced-motion";
 import { WARM, DUR } from "@/lib/motion/easings";
 import { Button } from "@/components/ui/button";
@@ -242,7 +243,27 @@ export function CartDrawer() {
                   </span>
                 </div>
 
-                {/* Checkout — Shopify hosted checkout */}
+                {/* Shipping is the default; local pickup offered as an alternative */}
+                <p className="text-xs text-espresso/50">
+                  Shipping calculated at checkout · free Canada-wide over $75.
+                </p>
+                <div className="flex items-start gap-2 rounded-xl border border-green/20 bg-green/5 p-3 text-xs leading-relaxed text-espresso/70">
+                  <span aria-hidden className="mt-0.5 text-sm">📍</span>
+                  <span>
+                    <span className="font-semibold text-green">Or {PICKUP.label.toLowerCase()} — free.</span>{" "}
+                    {PICKUP.day} at {PICKUP.address}. Call ahead to confirm:{" "}
+                    <a href={PICKUP.phoneHref} className="font-semibold text-clay hover:underline">
+                      {PICKUP.phone}
+                    </a>{" "}
+                    or{" "}
+                    <a href={PICKUP.emailHref} className="font-semibold text-clay hover:underline">
+                      {PICKUP.email}
+                    </a>
+                    .
+                  </span>
+                </div>
+
+                {/* Checkout — real Shopify hosted checkout */}
                 <CheckoutButton variant="drawer" />
 
                 {/* Secondary actions */}

@@ -14,6 +14,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useCart } from "@/components/cart/CartProvider";
 import { CheckoutButton } from "@/components/cart/CheckoutButton";
+import { PICKUP } from "@/lib/content/pickup";
 import { cn } from "@/lib/utils";
 
 // ── Money formatter ───────────────────────────────────────────────────────────
@@ -141,7 +142,7 @@ export function CartPageClient() {
                 </span>
               </div>
 
-              {/* Shipping */}
+              {/* Shipping — the default fulfilment method */}
               <div className="flex items-center justify-between">
                 <span className="text-espresso/70 font-body">Shipping</span>
                 <span
@@ -164,6 +165,22 @@ export function CartPageClient() {
                   more to unlock free Canada-wide shipping.
                 </p>
               )}
+
+              {/* Local pickup — an alternative to shipping */}
+              <div className="rounded-xl border border-green/20 bg-green/5 p-3 text-xs leading-relaxed text-espresso/70 font-body">
+                <span className="font-semibold text-green">Or pick up locally — free.</span> Collect at{" "}
+                <span className="font-medium text-espresso/80">{PICKUP.address}</span> on{" "}
+                <span className="font-medium text-espresso/80">{PICKUP.day}</span>. Please call ahead to
+                confirm:{" "}
+                <a href={PICKUP.phoneHref} className="font-semibold text-clay hover:underline">
+                  {PICKUP.phone}
+                </a>
+                , or email{" "}
+                <a href={PICKUP.emailHref} className="font-semibold text-clay underline-offset-2 hover:underline">
+                  {PICKUP.email}
+                </a>
+                .
+              </div>
 
               {/* Tax (estimated) */}
               <div className="flex items-center justify-between">

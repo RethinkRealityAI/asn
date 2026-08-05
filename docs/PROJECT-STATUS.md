@@ -8,6 +8,14 @@ This is the living "what's done / what's next" record. For architecture, convent
 
 ## ✅ Done (shipped & live)
 
+### 2026-07-21 About Us section + Private Label (this session)
+- **New About Us section** with a header dropdown (`components/about/AboutMenu.tsx`) and a mobile accordion (`MobileMenu.tsx`), plus a shared sticky sub-nav (`AboutSubNav.tsx`) so visitors hop between subpages. Footer "Company" column updated.
+- **Hub `/about`** (story + mission + beliefs summary, values, `SectionCarousel.tsx` scroll-snap browser, private-label CTA) and six subpages: `/about/our-story`, `/about/our-mission`, `/about/our-beliefs`, `/about/awards`, `/about/our-ingredients`, `/about/making-a-difference`. Old `/our-story` and `/ingredients` now 307-redirect into the section.
+- **Interactive INCI index** (`IngredientsTable.tsx`): the brand's authoritative 360-ingredient common-name ↔ INCI list (`scripts/data/inci.csv` → `lib/content/ingredients-inci.ts` via `scripts/build-inci.mjs`), searchable + category-filterable, desktop table / mobile cards.
+- **Private Label page** `/private-label` — ANCI contract-manufacturing pitch (capabilities, product-category examples, mailto inquiry form mirroring the legacy Services fields). Content in `lib/content/private-label.ts`.
+- Content sourced from the legacy allnaturalscosmetics.com pages (about/beliefs/mission/awards/making-a-difference) + client-supplied copy, all typed in `lib/content/about.ts`.
+- **Tests:** +20 in `test/about.test.ts` (data-model integrity) → **112 passing**. Build green: **158 static pages**, `tsc` clean.
+
 ### 2026-06-30 redesign polish (this session)
 - **Hero cloth** (`public/decor/cloth2.webp`): new warm African mudcloth generated via Higgsfield; repositioned to full-width backdrop (120% wide, CSS mask-gradient fade on left edge) so it wraps behind all three hero products.
 - **PageHeader cloth**: updated to `cloth2.webp`, position tightened (`-bottom-[4%]`, `w-[52%]`) to close the gap that appeared at bottom of section headers.

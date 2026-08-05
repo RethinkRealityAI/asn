@@ -24,7 +24,9 @@ const SHOP_LINKS = [
 ];
 
 const COMPANY_LINKS = [
-  { label: "Ingredients", href: "/ingredients" },
+  { label: "About us", href: "/about" },
+  { label: "Our ingredients", href: "/about/our-ingredients" },
+  { label: "Private label", href: "/private-label" },
   { label: "Media & Press", href: "/media" },
   { label: "Where to Buy", href: "/where-to-buy" },
   { label: "Contact", href: "/contact" },
