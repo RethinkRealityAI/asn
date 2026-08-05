@@ -7,7 +7,7 @@ import { AboutSubNav } from "@/components/about/AboutSubNav";
 import { MAKING_A_DIFFERENCE } from "@/lib/content/about";
 
 export const metadata: Metadata = {
-  title: "Making a difference — Shea Allnaturals",
+  title: "Making a difference",
   description:
     "How Shea Allnaturals gives back — ethical, women-run sourcing in West Africa and a shea-butter machine donated to the Fufu community. Corporations should support the communities they draw from.",
 };

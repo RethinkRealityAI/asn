@@ -8,7 +8,7 @@ import { SectionCarousel } from "@/components/about/SectionCarousel";
 import { STORY, MISSION, BELIEFS } from "@/lib/content/about";
 
 export const metadata: Metadata = {
-  title: "About us — Shea Allnaturals",
+  title: "About us",
   description:
     "The story, mission and beliefs behind Shea Allnaturals — clean, natural, vegan, Halal and Kosher skincare, sourced fairly from West Africa and made by hand in Barrie, Ontario since 2002.",
 };

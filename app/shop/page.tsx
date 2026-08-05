@@ -21,7 +21,7 @@ import { PLPClient } from "@/components/plp/PLPClient";
 import { PageHeader } from "@/components/chrome/PageHeader";
 
 export const metadata: Metadata = {
-  title: "Shop — Shea Allnaturals",
+  title: "Shop",
   description:
     "Browse the full Shea Allnaturals retail range — pure botanical skincare, cold-pressed oils, shea butters, black soap, and more. Handcrafted in Barrie, Ontario.",
 };

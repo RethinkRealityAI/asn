@@ -55,7 +55,7 @@ export async function generateMetadata(props: PageProps): Promise<Metadata> {
     : undefined;
 
   return {
-    title: `${product.title} — Shea Allnaturals`,
+    title: `${product.title}`,
     description,
     openGraph: {
       title: `${product.title} — Shea Allnaturals`,

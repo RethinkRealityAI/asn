@@ -5,7 +5,7 @@ import { AccentCorners } from "@/components/motion/AccentCorners";
 import { PageHeader } from "@/components/chrome/PageHeader";
 
 export const metadata: Metadata = {
-  title: "Contact — Shea Allnaturals",
+  title: "Contact",
   description:
     "Get in touch with Shea Allnaturals. Visit our studio at 220 Bayview Dr. Unit #18, Barrie, ON, call 705-719-2750, or send us a message.",
 };

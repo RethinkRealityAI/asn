@@ -7,7 +7,7 @@ import { PageHeader } from "@/components/chrome/PageHeader";
 import { WholesaleForm } from "@/components/wholesale/WholesaleForm";
 
 export const metadata: Metadata = {
-  title: "Wholesale & Bulk — Shea Allnaturals",
+  title: "Wholesale & Bulk",
   description:
     "Stock Shea Allnaturals in your store, spa or salon. Bulk sizes, private-label and distributor options — handcrafted natural skincare from Barrie, Ontario.",
 };

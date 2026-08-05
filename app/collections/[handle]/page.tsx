@@ -44,12 +44,12 @@ export async function generateMetadata(props: {
 
   if (!col) {
     return {
-      title: "Collection not found — Shea Allnaturals",
+      title: "Collection not found",
     };
   }
 
   return {
-    title: `${col.title} — Shea Allnaturals`,
+    title: col.title,
     description: `Shop ${col.title} from Shea Allnaturals. Pure botanical skincare handcrafted in Barrie, Ontario.`,
   };
 }

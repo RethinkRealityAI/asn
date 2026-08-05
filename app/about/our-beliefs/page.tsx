@@ -7,7 +7,7 @@ import { AboutSubNav } from "@/components/about/AboutSubNav";
 import { BELIEFS } from "@/lib/content/about";
 
 export const metadata: Metadata = {
-  title: "Our beliefs — Shea Allnaturals",
+  title: "Our beliefs",
   description:
     "The trees of the nation are for the healing of the nation. Six things All Naturals Cosmetics has stood by since 2002 — for our planet, our customers and generations to come.",
 };

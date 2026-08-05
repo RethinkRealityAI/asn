@@ -8,7 +8,7 @@ import { IngredientsTable } from "@/components/about/IngredientsTable";
 import { INGREDIENTS_INTRO } from "@/lib/content/ingredients-inci";
 
 export const metadata: Metadata = {
-  title: "Our ingredients — Shea Allnaturals",
+  title: "Our ingredients",
   description:
     "Common names and corresponding INCI names for the ingredients used in All Naturals Cosmetics products — clean, natural, vegan, Halal and Kosher. Search and filter the full list.",
 };

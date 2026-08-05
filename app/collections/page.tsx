@@ -14,7 +14,7 @@ import { PageHeader } from "@/components/chrome/PageHeader";
 import type { AccentDecor } from "@/components/motion/AccentCorners";
 
 export const metadata: Metadata = {
-  title: "Collections — Shea Allnaturals",
+  title: "Collections",
   description:
     "Browse Shea Allnaturals collections — shea butter, argan oil, black soap, hair care, body care, and more. Handcrafted botanical skincare from Barrie, Ontario.",
 };

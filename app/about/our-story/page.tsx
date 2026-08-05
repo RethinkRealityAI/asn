@@ -7,7 +7,7 @@ import { AboutSubNav } from "@/components/about/AboutSubNav";
 import { STORY } from "@/lib/content/about";
 
 export const metadata: Metadata = {
-  title: "Our story — Shea Allnaturals",
+  title: "Our story",
   description:
     "The story behind Shea Allnaturals — from a Barrie salon in 2002 to the first Black Canadian-owned skincare line sold nationally, rooted in West-African tradition and made by hand.",
 };

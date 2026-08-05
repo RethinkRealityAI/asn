@@ -7,7 +7,7 @@ import { PageHeader } from "@/components/chrome/PageHeader";
 import { MEDIA_VIDEOS, PRESS, YT_CHANNEL, WEBCAST, ARTICLE } from "@/lib/content/media";
 
 export const metadata: Metadata = {
-  title: "Media & Press — Shea Allnaturals",
+  title: "Media & Press",
   description:
     "Heritage films and press from Shea Allnaturals — the traditional shea-butter-making process in Fufu, Nigeria, our community work, and featured coverage.",
 };

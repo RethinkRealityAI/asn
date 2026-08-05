@@ -7,7 +7,7 @@ import { AboutSubNav } from "@/components/about/AboutSubNav";
 import { AWARDS } from "@/lib/content/about";
 
 export const metadata: Metadata = {
-  title: "Awards & recognition — Shea Allnaturals",
+  title: "Awards & recognition",
   description:
     "National honours for our founder and CEO Lanre Tunji-Ajayi — the Meritorious Service Medal, the Senate of Canada 150 Award and more — and for the first Black Canadian-owned skincare line sold nationally.",
 };

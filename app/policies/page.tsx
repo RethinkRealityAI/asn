@@ -4,7 +4,7 @@ import Link from "next/link";
 import { AccentCorners } from "@/components/motion/AccentCorners";
 
 export const metadata: Metadata = {
-  title: "Policies — Shea Allnaturals",
+  title: "Policies",
   description:
     "Shipping, returns, privacy and terms for Shea Allnaturals — free Canada-wide shipping over $75, handcrafted in Barrie, Ontario.",
 };

@@ -7,7 +7,7 @@ import { AboutSubNav } from "@/components/about/AboutSubNav";
 import { MISSION } from "@/lib/content/about";
 
 export const metadata: Metadata = {
-  title: "Our mission — Shea Allnaturals",
+  title: "Our mission",
   description:
     "Our mission is to keep providing green, plant-based ingredients that perform — sustainable, natural and organic skincare, plus raw materials to make your own.",
 };

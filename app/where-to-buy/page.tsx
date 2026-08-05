@@ -5,7 +5,7 @@ import { AccentCorners } from "@/components/motion/AccentCorners";
 import { STORES } from "@/lib/content/stores";
 
 export const metadata: Metadata = {
-  title: "Where to Buy — Shea Allnaturals",
+  title: "Where to Buy",
   description:
     "Find Shea Allnaturals online and on shelves at major Canadian retailers — Walmart, Shoppers Drug Mart, Jean Coutu and Rexall — or visit our Barrie studio.",
 };
