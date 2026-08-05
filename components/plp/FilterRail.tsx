@@ -18,10 +18,10 @@
  */
 
 import { useState } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 
 import type { Facets, FilterState } from "@/lib/catalog/filters";
-import { glassVariantStyles } from "@/lib/glass-variants";
 import { usePrefersReducedMotion } from "@/lib/motion/use-reduced-motion";
 import { WARM, DUR } from "@/lib/motion/easings";
 import { cn } from "@/lib/utils";
@@ -32,6 +32,14 @@ export interface FilterRailProps {
   facets: Facets;
   value: FilterState;
   onChange: (f: FilterState) => void;
+  /**
+   * When set, the Category section becomes NAVIGATION between collections
+   * (chips are links to /collections/<handle>, the active one highlighted)
+   * instead of an intersect-filter. Use on /collections/[handle] pages where
+   * intersecting the current collection with another almost always yields
+   * an empty result.
+   */
+  categoryNav?: { activeHandle: string };
 }
 
 // ── Chip component ────────────────────────────────────────────────────────────
@@ -40,38 +48,85 @@ interface ChipProps {
   label: string;
   count: number;
   selected: boolean;
-  onClick: () => void;
+  onClick?: () => void;
+  /** Render as a navigation link instead of a toggle button. */
+  href?: string;
 }
 
-function Chip({ label, count, selected, onClick }: ChipProps) {
-  return (
-    <button
-      role="button"
-      aria-pressed={selected}
-      onClick={onClick}
-      className={cn(
-        "flex items-center gap-1.5 px-3 py-1.5 rounded-full",
-        "text-sm font-body transition-colors duration-150 ease-[--ease-warm]",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-marigold focus-visible:ring-offset-1",
-        selected
-          ? // Selected: clay surface — warm + AA contrast
-            "bg-clay/15 border border-clay/40 text-clay font-semibold"
-          : // Unselected: cream ghost chip
-            "bg-cream/60 border border-espresso/15 text-espresso/80 hover:border-marigold/40 hover:bg-marigold/08"
-      )}
-    >
-      <span className="truncate max-w-[140px]">{label}</span>
+function Chip({ label, count, selected, onClick, href }: ChipProps) {
+  const className = cn(
+    // max-w-full + min-w-0 keep long labels inside the rail — never overflow
+    "flex items-center gap-1.5 px-3 py-1.5 rounded-full max-w-full",
+    "text-sm font-body transition-colors duration-150 ease-[--ease-warm]",
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-marigold focus-visible:ring-offset-1",
+    selected
+      ? // Selected: green — natural-credentials colour, AA on white
+        "bg-green/10 border border-green/50 text-green font-semibold"
+      : // Unselected: clean white chip
+        "bg-white border border-espresso/15 text-espresso/80 hover:border-green/40 hover:bg-green/05"
+  );
+
+  const inner = (
+    <>
+      <span className="truncate min-w-0">{label}</span>
       <span
         className={cn(
-          "text-[11px] rounded-full px-1.5 py-0.5 min-w-[20px] text-center",
-          selected
-            ? "bg-clay/20 text-clay"
-            : "bg-espresso/08 text-espresso/50"
+          "shrink-0 text-[11px] rounded-full px-1.5 py-0.5 min-w-[20px] text-center",
+          selected ? "bg-green/15 text-green" : "bg-espresso/08 text-espresso/50"
         )}
       >
         {count}
       </span>
+    </>
+  );
+
+  if (href) {
+    return (
+      <Link href={href} aria-current={selected ? "page" : undefined} className={className}>
+        {inner}
+      </Link>
+    );
+  }
+  return (
+    <button type="button" aria-pressed={selected} onClick={onClick} className={className}>
+      {inner}
     </button>
+  );
+}
+
+// ── Search box ────────────────────────────────────────────────────────────────
+
+function SearchBox({ value, onChange }: { value: string; onChange: (q: string) => void }) {
+  return (
+    <div className="relative">
+      <svg
+        aria-hidden="true"
+        width="14"
+        height="14"
+        viewBox="0 0 16 16"
+        fill="none"
+        className="absolute left-3 top-1/2 -translate-y-1/2 text-espresso/40 pointer-events-none"
+      >
+        <circle cx="7" cy="7" r="5" stroke="currentColor" strokeWidth="1.5" />
+        <path d="M11 11l3.5 3.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+      </svg>
+      <input
+        type="search"
+        role="searchbox"
+        aria-label="Search products"
+        placeholder="Search products…"
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className={cn(
+          "w-full pl-9 pr-3 py-2 rounded-xl",
+          "bg-white border border-espresso/15",
+          "font-body text-sm text-espresso placeholder:text-espresso/40",
+          "hover:border-green/40 focus:border-green/60",
+          "focus:outline-none focus-visible:ring-2 focus-visible:ring-marigold focus-visible:ring-offset-1",
+          "transition-colors duration-150"
+        )}
+      />
+    </div>
   );
 }
 
@@ -92,13 +147,17 @@ interface FilterPanelProps {
   value: FilterState;
   onChange: (f: FilterState) => void;
   onClearAll: () => void;
+  categoryNav?: { activeHandle: string };
 }
 
-function FilterPanel({ facets, value, onChange, onClearAll }: FilterPanelProps) {
-  const hasActive = !!(value.category || value.price || value.concern);
+function FilterPanel({ facets, value, onChange, onClearAll, categoryNav }: FilterPanelProps) {
+  const hasActive = !!(value.category || value.price || value.concern || value.q?.trim());
 
   return (
     <div className="flex flex-col gap-6">
+      {/* ── Search ────────────────────────────────────────────────────── */}
+      <SearchBox value={value.q ?? ""} onChange={(q) => onChange({ ...value, q })} />
+
       {/* Clear all */}
       {hasActive && (
         <button
@@ -115,24 +174,37 @@ function FilterPanel({ facets, value, onChange, onClearAll }: FilterPanelProps) 
 
       {/* ── Category ──────────────────────────────────────────────────── */}
       {facets.categories.length > 0 && (
-        <section aria-label="Filter by category">
-          <SectionHeading>Category</SectionHeading>
+        <section aria-label={categoryNav ? "Browse collections" : "Filter by category"}>
+          <SectionHeading>{categoryNav ? "Collections" : "Category"}</SectionHeading>
           <div className="flex flex-wrap gap-2">
-            {facets.categories.map((cat) => (
-              <Chip
-                key={cat.handle}
-                label={cat.title}
-                count={cat.count}
-                selected={value.category === cat.handle}
-                onClick={() =>
-                  onChange({
-                    ...value,
-                    category:
-                      value.category === cat.handle ? undefined : cat.handle,
-                  })
-                }
-              />
-            ))}
+            {facets.categories.map((cat) =>
+              categoryNav ? (
+                // Navigation mode (collection pages): chips link between
+                // collections — intersect-filtering another collection against
+                // this page's products would almost always be empty.
+                <Chip
+                  key={cat.handle}
+                  label={cat.title}
+                  count={cat.count}
+                  selected={categoryNav.activeHandle === cat.handle}
+                  href={`/collections/${cat.handle}`}
+                />
+              ) : (
+                <Chip
+                  key={cat.handle}
+                  label={cat.title}
+                  count={cat.count}
+                  selected={value.category === cat.handle}
+                  onClick={() =>
+                    onChange({
+                      ...value,
+                      category:
+                        value.category === cat.handle ? undefined : cat.handle,
+                    })
+                  }
+                />
+              )
+            )}
           </div>
         </section>
       )}
@@ -190,16 +262,16 @@ function FilterPanel({ facets, value, onChange, onClearAll }: FilterPanelProps) 
 
 // ── Main component ────────────────────────────────────────────────────────────
 
-export function FilterRail({ facets, value, onChange }: FilterRailProps) {
+export function FilterRail({ facets, value, onChange, categoryNav }: FilterRailProps) {
   const reducedMotion = usePrefersReducedMotion();
   const [sheetOpen, setSheetOpen] = useState(false);
 
-  const activeCount = [value.category, value.price, value.concern].filter(
+  const activeCount = [value.category, value.price, value.concern, value.q?.trim()].filter(
     Boolean
   ).length;
 
   function handleClearAll() {
-    onChange({ sort: value.sort }); // preserve sort, clear everything else
+    onChange({ sort: value.sort }); // preserve sort, clear everything else (incl. q)
   }
 
   // ── Mobile drawer (< lg) ─────────────────────────────────────────────────
@@ -213,9 +285,9 @@ export function FilterRail({ facets, value, onChange }: FilterRailProps) {
           aria-controls="filter-sheet"
           className={cn(
             "flex items-center gap-2 px-4 py-2 rounded-xl",
-            "border border-espresso/20 bg-cream",
+            "border border-espresso/20 bg-white shadow-sm",
             "font-body text-sm font-medium text-espresso",
-            "hover:bg-marigold/10 hover:border-marigold/30",
+            "hover:bg-green/05 hover:border-green/40",
             "transition-colors duration-200 ease-[--ease-warm]",
             "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-marigold focus-visible:ring-offset-2"
           )}
@@ -262,8 +334,9 @@ export function FilterRail({ facets, value, onChange }: FilterRailProps) {
               className={cn(
                 "fixed inset-y-0 left-0 z-50 w-80 max-w-[85vw]",
                 "flex flex-col lg:hidden",
-                glassVariantStyles.frosted,
-                "rounded-r-[--radius-card]"
+                // Clean white sheet — cream glass read as bland tan on white pages
+                "bg-white shadow-2xl border-r border-espresso/10",
+                "rounded-r-[var(--radius-card)]"
               )}
             >
               {/* Sheet header */}
@@ -305,6 +378,7 @@ export function FilterRail({ facets, value, onChange }: FilterRailProps) {
                   value={value}
                   onChange={onChange}
                   onClearAll={handleClearAll}
+                  categoryNav={categoryNav}
                 />
               </div>
 
@@ -342,8 +416,10 @@ export function FilterRail({ facets, value, onChange }: FilterRailProps) {
     >
       <div
         className={cn(
+          // Clean white card — matches product cards; cream glass read as tan
           "rounded-[var(--radius-card)] p-4",
-          glassVariantStyles.subtle
+          "bg-white border border-espresso/10",
+          "shadow-[0_2px_12px_rgba(42,30,20,0.06)]"
         )}
       >
         <FilterPanel
@@ -351,6 +427,7 @@ export function FilterRail({ facets, value, onChange }: FilterRailProps) {
           value={value}
           onChange={onChange}
           onClearAll={handleClearAll}
+          categoryNav={categoryNav}
         />
       </div>
     </aside>

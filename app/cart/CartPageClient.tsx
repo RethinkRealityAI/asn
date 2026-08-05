@@ -13,6 +13,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useCart } from "@/components/cart/CartProvider";
+import { CheckoutButton } from "@/components/cart/CheckoutButton";
 import { cn } from "@/lib/utils";
 
 // ── Money formatter ───────────────────────────────────────────────────────────
@@ -190,8 +191,8 @@ export function CartPageClient() {
               </div>
             </div>
 
-            {/* Checkout — STUBBED, no payment */}
-            <CheckoutStub />
+            {/* Checkout — Shopify hosted checkout */}
+            <CheckoutButton variant="page" />
 
             {/* Microcopy */}
             <p className="text-center text-[11px] text-espresso/40 font-body">
@@ -367,35 +368,6 @@ function QuantityStepper({ qty, onDecrement, onIncrement }: QtyStepperProps) {
       >
         +
       </button>
-    </div>
-  );
-}
-
-// ── CheckoutStub ──────────────────────────────────────────────────────────────
-
-function CheckoutStub() {
-  return (
-    <div className="space-y-2">
-      <button
-        type="button"
-        onClick={() => {
-          alert(
-            "Secure checkout arrives when Shopify is connected.\nThis is a design preview — no payment is processed.",
-          );
-        }}
-        aria-label="Proceed to checkout (not yet available)"
-        className={cn(
-          "w-full py-3 px-6 rounded-full",
-          "bg-clay text-cream font-semibold text-sm",
-          "hover:bg-orange transition-colors",
-          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-marigold focus-visible:ring-offset-2",
-        )}
-      >
-        Checkout
-      </button>
-      <p className="text-center text-[11px] text-espresso/50 font-body">
-        Secure checkout arrives with Shopify — coming soon.
-      </p>
     </div>
   );
 }

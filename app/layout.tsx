@@ -9,9 +9,27 @@ import { CartDrawer } from "@/components/cart/CartDrawer";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://asn-shea.netlify.app"),
   title: "Shea Allnaturals — Pure botanicals, beautifully made.",
   description:
     "Hand-crafted botanical skincare rooted in West-African tradition. Shea butter, argan oil, black soap, and cold-pressed oils — made in Barrie, Ontario.",
+  openGraph: {
+    title: "Shea Allnaturals — Pure botanicals, beautifully made.",
+    description:
+      "Hand-crafted botanical skincare rooted in West-African tradition. Shea butter, argan oil, black soap, and cold-pressed oils — made in Barrie, Ontario.",
+    url: "/",
+    siteName: "Shea Allnaturals",
+    type: "website",
+    locale: "en_CA",
+    images: [{ url: "/og.jpg", width: 1200, height: 628, alt: "Shea Allnaturals — pure botanical skincare products" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Shea Allnaturals — Pure botanicals, beautifully made.",
+    description:
+      "Hand-crafted botanical skincare — shea butter, argan oil and cold-pressed oils, made in Barrie, Ontario.",
+    images: ["/og.jpg"],
+  },
 };
 
 export default function RootLayout({

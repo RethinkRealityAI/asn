@@ -1,35 +1,19 @@
-import fs from "fs";
-import path from "path";
-import type { Product, ProductImage } from "@/lib/shopify/types";
+import type { Product } from "@/lib/shopify/types";
 import type { StoreClient } from "@/lib/shopify/index";
 import { deriveCollections } from "@/lib/catalog/collections";
+import { loadLocalImageIndex, withLocalImages as overlay } from "@/lib/shopify/local-images";
 import catalogData from "./catalog.json";
 
 const catalog = catalogData as Product[];
 // Derived once at module load — cheap and consistent.
 const collections = deriveCollections(catalog);
 
-// Load local image index once at module load.
-// In tests, __dirname is the src file's directory; in Next.js server, process.cwd() = project root.
-let localImageIndex: Record<string, string[]> = {};
-try {
-  const indexPath = path.resolve(process.cwd(), "public/media/index.json");
-  if (fs.existsSync(indexPath)) {
-    localImageIndex = JSON.parse(fs.readFileSync(indexPath, "utf-8"));
-  }
-} catch {
-  // If index doesn't exist yet (e.g. pre-build), fall back to catalog images silently.
-}
+// Load local image index once at module load (shared with the live adapter).
+const localImageIndex = loadLocalImageIndex();
 
 /** Replace product.images with local /media WebP URLs when available. */
 function withLocalImages(product: Product): Product {
-  const urls = localImageIndex[product.handle];
-  if (!urls || urls.length === 0) return product;
-  const images: ProductImage[] = urls.map((url) => ({
-    url,
-    altText: product.title,
-  }));
-  return { ...product, images };
+  return overlay(product, localImageIndex);
 }
 
 export const mockClient: StoreClient = {

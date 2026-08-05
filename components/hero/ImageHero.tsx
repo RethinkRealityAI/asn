@@ -237,7 +237,7 @@ export function ImageHero() {
             "radial-gradient(60% 55% at 72% 42%, rgba(235,165,44,0.16) 0%, rgba(226,116,43,0.07) 40%, rgba(255,255,255,0) 72%)",
         }}
       />
-      <div className="relative z-10 mx-auto grid min-h-[100svh] max-w-7xl grid-cols-1 items-center gap-6 px-5 pb-12 pt-[calc(3.5rem+4.5rem)] sm:px-8 lg:grid-cols-12 lg:gap-8 lg:px-12 lg:pt-[calc(3.5rem+2rem)]">
+      <div className="relative z-10 mx-auto grid min-h-[100svh] max-w-7xl grid-cols-1 items-center gap-6 px-5 pb-12 pt-[calc(3.5rem+4.5rem)] sm:px-8 lg:min-h-0 lg:max-w-[1440px] lg:grid-cols-12 lg:gap-10 lg:px-12 lg:pb-20 lg:pt-[calc(3.5rem+3.5rem)] xl:max-w-[1640px] xl:gap-14 xl:px-20 xl:pb-24 xl:pt-[calc(3.5rem+4.5rem)] 2xl:max-w-[1840px]">
         {/* ── Text column ─────────────────────────────────────────────────── */}
         <div className="lg:col-span-6">
           <motion.p
@@ -252,11 +252,11 @@ export function ImageHero() {
           <RevealText
             text={"Pure botanicals,\nbeautifully made."}
             as="h1"
-            className="font-display text-[2.6rem] font-semibold leading-[1.04] tracking-tight text-espresso sm:text-5xl lg:text-[3.6rem]"
+            className="font-display text-[2.6rem] font-semibold leading-[1.04] tracking-tight text-espresso sm:text-5xl lg:text-[4rem] xl:text-[4.6rem] 2xl:text-[5.2rem]"
           />
 
           <motion.p
-            className="mt-6 max-w-md text-base leading-relaxed text-espresso/65 sm:text-lg"
+            className="mt-6 max-w-md text-base leading-relaxed text-espresso/65 sm:text-lg xl:max-w-lg xl:text-xl"
             initial={reduced ? false : { opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ ease: WARM, duration: DUR.base, delay: 0.25 }}
@@ -307,7 +307,7 @@ export function ImageHero() {
           className="relative lg:col-span-6"
           style={reduced ? undefined : { y: clusterY, opacity: clusterOpacity }}
         >
-          <div className="relative mx-auto aspect-[5/5] w-full max-w-3xl sm:aspect-[6/5]">
+          <div className="relative mx-auto aspect-[5/5] w-full max-w-3xl sm:aspect-[6/5] xl:max-w-none">
             {LAYERS.map((layer) => (
               <ParallaxLayer
                 key={`${layer.src}-${layer.zIndex}`}

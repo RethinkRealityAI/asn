@@ -37,7 +37,10 @@ import {
 
 // ── Storage key ───────────────────────────────────────────────────────────────
 
-const STORAGE_KEY = "shea-cart-v1";
+// v2: carts now hold real Shopify variant GIDs (gid://shopify/ProductVariant/…).
+// The key bump silently discards v1 mock-era carts whose variant ids
+// ("<handle>-v0") would fail Shopify checkout.
+const STORAGE_KEY = "shea-cart-v2";
 
 function readStorage(): CartState {
   try {

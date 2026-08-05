@@ -15,7 +15,7 @@ describe("mockClient", () => {
   });
   it("returns all products when no limit", async () => {
     const list = await mockClient.getProducts();
-    expect(list).toHaveLength(113);
+    expect(list).toHaveLength(110);
   });
   it("filters products by collection handle", async () => {
     const cols = await mockClient.getCollections();

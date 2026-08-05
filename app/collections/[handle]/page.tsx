@@ -114,6 +114,7 @@ export default async function CollectionPage(props: {
         subtitle={`Explore our ${col.title} range — pure botanicals made the old way.`}
         breadcrumb={breadcrumb}
         hideFilters={/bulk|wholesale/i.test(handle)}
+        categoryNav={{ activeHandle: handle }}
       />
     </div>
   );

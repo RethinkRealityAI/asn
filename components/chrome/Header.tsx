@@ -29,6 +29,7 @@ import Link from "next/link";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { Wordmark } from "./Wordmark";
 import { MobileMenu } from "./MobileMenu";
+import { HeaderSearch } from "./HeaderSearch";
 import { usePrefersReducedMotion } from "@/lib/motion/use-reduced-motion";
 import { WARM, DUR } from "@/lib/motion/easings";
 import { useCart } from "@/components/cart/useCart";
@@ -143,30 +144,7 @@ export function Header() {
               <div className="flex items-center gap-1">
 
                 {/* Search — hidden on mobile to save space (hamburger is there) */}
-                <button
-                  aria-label="Search products"
-                  className={[
-                    "hidden sm:flex p-2 rounded-full",
-                    "text-espresso/70 hover:text-espresso hover:bg-espresso/8",
-                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-marigold",
-                    "transition-colors",
-                  ].join(" ")}
-                >
-                  <svg
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="size-5"
-                  >
-                    <circle cx="11" cy="11" r="8" />
-                    <path d="m21 21-4.35-4.35" />
-                  </svg>
-                </button>
+                <HeaderSearch />
 
                 {/* Account */}
                 <button

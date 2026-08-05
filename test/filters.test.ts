@@ -191,3 +191,59 @@ describe("applyFilters — sort", () => {
     expect(result.length).toBe(products.length);
   });
 });
+
+// ── applyFilters: q (search) ─────────────────────────────────────────────────
+
+describe("applyFilters — search query (q)", () => {
+  it("matches product titles case-insensitively", () => {
+    const result = applyFilters(products, { q: "peppermint" }, collections);
+    expect(result.length).toBeGreaterThan(0);
+    expect(result.some((p) => p.handle === "peppermint-essential-oil")).toBe(true);
+  });
+
+  it("matches partial words in titles", () => {
+    const result = applyFilters(products, { q: "argan" }, collections);
+    expect(result.length).toBeGreaterThan(3);
+    expect(result.every((p) =>
+      (p.title + " " + p.productType + " " + p.tags.join(" ")).toLowerCase().includes("argan")
+    )).toBe(true);
+  });
+
+  it("matches productType and tags too", () => {
+    const byType = applyFilters(products, { q: "raw materials" }, collections);
+    expect(byType.length).toBeGreaterThan(0);
+  });
+
+  it("returns [] when nothing matches", () => {
+    expect(applyFilters(products, { q: "zzz-no-such-product" }, collections)).toEqual([]);
+  });
+
+  it("empty / whitespace query is a no-op", () => {
+    expect(applyFilters(products, { q: "" }, collections).length).toBe(products.length);
+    expect(applyFilters(products, { q: "   " }, collections).length).toBe(products.length);
+  });
+
+  it("composes with category filter", () => {
+    const col = collections.find((c) => c.handle === "essential-oils-fragrances")!;
+    const result = applyFilters(products, { q: "peppermint", category: col.handle }, collections);
+    expect(result.every((p) => col.productHandles.includes(p.handle))).toBe(true);
+    expect(result.some((p) => p.handle === "peppermint-essential-oil")).toBe(true);
+  });
+});
+
+// ── deriveFacets: concerns must not duplicate category names ────────────────
+
+describe("deriveFacets — concerns exclude category-name tags", () => {
+  it("never includes a concern tag that exactly matches a collection title", () => {
+    const collectionTitles = new Set(collections.map((c) => c.title));
+    const facets = deriveFacets(products, collections);
+    const leaking = facets.concerns.filter((c) => collectionTitles.has(c.tag));
+    expect(leaking).toEqual([]);
+  });
+
+  it("still surfaces genuine descriptive tags that are not category names", () => {
+    const facets = deriveFacets(products, collections);
+    // Sanity: the concerns list isn't emptied out entirely by the exclusion.
+    expect(facets.concerns.length).toBeGreaterThan(0);
+  });
+});

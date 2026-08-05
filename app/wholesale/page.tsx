@@ -4,6 +4,7 @@ import Image from "next/image";
 
 import { AccentCorners } from "@/components/motion/AccentCorners";
 import { PageHeader } from "@/components/chrome/PageHeader";
+import { WholesaleForm } from "@/components/wholesale/WholesaleForm";
 
 export const metadata: Metadata = {
   title: "Wholesale & Bulk — Shea Allnaturals",
@@ -43,9 +44,9 @@ export default function WholesalePage() {
       {/* Primary CTAs — kept out of the header so its height matches the other pages */}
       <div className="mx-auto max-w-7xl px-5 pt-8 sm:px-8 lg:px-12">
         <div className="flex flex-wrap items-center gap-4">
-          <Link href="/contact" className="inline-flex items-center gap-2 rounded-full bg-clay px-7 py-3 text-sm font-semibold text-cream transition-colors hover:bg-orange">
-            Request wholesale pricing →
-          </Link>
+          <a href="#apply" className="inline-flex items-center gap-2 rounded-full bg-clay px-7 py-3 text-sm font-semibold text-cream transition-colors hover:bg-orange">
+            Apply to stock us →
+          </a>
           <Link href="/collections/bulk-wholesale" className="inline-flex items-center text-sm font-semibold text-espresso/70 transition-colors hover:text-clay">
             Browse bulk products
           </Link>
@@ -97,9 +98,26 @@ export default function WholesalePage() {
             ))}
           </ol>
           <div className="mt-12">
-            <Link href="/contact" className="inline-flex items-center gap-2 rounded-full bg-marigold px-7 py-3 text-sm font-semibold text-espresso transition-colors hover:bg-orange hover:text-cream">
+            <a href="#apply" className="inline-flex items-center gap-2 rounded-full bg-marigold px-7 py-3 text-sm font-semibold text-espresso transition-colors hover:bg-orange hover:text-cream">
               Become a stockist →
-            </Link>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Application form */}
+      <section id="apply" aria-label="Wholesale application" className="relative scroll-mt-28 overflow-hidden px-5 py-16 sm:px-8 lg:px-12 lg:py-24">
+        <AccentCorners corners={{ tl: "argan", br: "shea" }} size={130} opacity={0.07} />
+        <div className="relative z-10 mx-auto max-w-5xl">
+          <div className="mx-auto mb-10 max-w-2xl text-center">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-marigold">Wholesale application</p>
+            <h2 className="mt-3 font-display text-3xl font-semibold text-espresso sm:text-4xl">Let&apos;s stock your shelves.</h2>
+            <p className="mt-3 text-base leading-relaxed text-espresso/65">
+              Tell us a little about your business and what you&apos;d like to carry. We&apos;ll reply within 1–2 business days with pricing, minimums and lead times.
+            </p>
+          </div>
+          <div className="rounded-[2rem] border border-espresso/10 bg-white p-6 shadow-[var(--shadow-card)] sm:p-8 lg:p-10">
+            <WholesaleForm />
           </div>
         </div>
       </section>

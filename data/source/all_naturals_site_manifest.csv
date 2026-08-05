@@ -1,0 +1,199 @@
+section,name,old_url,proposed_route
+Page,about_anc,https://allnaturalscosmetics.com/about_anc/,/about
+Page,allnaturalscosmetics.com,https://allnaturalscosmetics.com/,/allnaturalscosmetics.com
+Page,application-to-distribute-products,https://allnaturalscosmetics.com/application-to-distribute-products/,/wholesale/distributor-application
+Page,blog,https://allnaturalscosmetics.com/blog/,/blog
+Page,cart,https://allnaturalscosmetics.com/cart/,/cart
+Page,checkout,https://allnaturalscosmetics.com/checkout/,/checkout  (Shopify-hosted checkout)
+Page,contact_anc,https://allnaturalscosmetics.com/contact_anc/,/contact
+Page,home,https://allnaturalscosmetics.com/home/,"/  (301 → /, duplicate of home)"
+Page,ingredients-inci,https://allnaturalscosmetics.com/ingredients-inci/,/ingredients
+Page,media,https://allnaturalscosmetics.com/media/,/media
+Page,my-account,https://allnaturalscosmetics.com/my-account/,/account
+Page,policies,https://allnaturalscosmetics.com/policies/,/policies
+Page,private-label-contact-form,https://allnaturalscosmetics.com/private-label-contact-form/,/wholesale/private-label
+Page,product-shoot,https://allnaturalscosmetics.com/product-shoot/,/services/product-shoot
+Page,services,https://allnaturalscosmetics.com/services/,/services
+Page,shea-butter-making-process,https://allnaturalscosmetics.com/shea-butter-making-process/,/about/shea-butter-process
+Page,shop-2022,https://allnaturalscosmetics.com/shop-2022/,/shop  (301 → /shop)
+Page,testimonials,https://allnaturalscosmetics.com/testimonials/,/testimonials
+Page,where-to-buy,https://allnaturalscosmetics.com/where-to-buy/,/where-to-buy
+Product Category,babies-toddlers,https://allnaturalscosmetics.com/product-category/babies-toddlers/,/collections/babies-toddlers
+Product Category,bath-body-bases,https://allnaturalscosmetics.com/product-category/bath-body-bases/,/collections/bath-body-bases
+Product Category,body-care,https://allnaturalscosmetics.com/product-category/body-care/,/collections/body-care
+Product Category,bottles-jars,https://allnaturalscosmetics.com/product-category/bottles-jars/,/collections/bottles-jars
+Product Category,butters-moisturizers,https://allnaturalscosmetics.com/product-category/butters-moisturizers/,/collections/butters-moisturizers
+Product Category,cleansers,https://allnaturalscosmetics.com/product-category/cleansers/,/collections/cleansers
+Product Category,combo-packages,https://allnaturalscosmetics.com/product-category/combo-packages/,/collections/combo-packages
+Product Category,essential-oils-fragrances,https://allnaturalscosmetics.com/product-category/essential-oils-fragrances/,/collections/essential-oils-fragrances
+Product Category,eye-facial-moisturizerscreams,https://allnaturalscosmetics.com/product-category/eye-facial-moisturizerscreams/,/collections/eye-facial-moisturizerscreams
+Product Category,face-care,https://allnaturalscosmetics.com/product-category/face-care/,/collections/face-care
+Product Category,face-care-bases,https://allnaturalscosmetics.com/product-category/face-care-bases/,/collections/face-care-bases
+Product Category,foot,https://allnaturalscosmetics.com/product-category/foot/,/collections/foot
+Product Category,hair-care,https://allnaturalscosmetics.com/product-category/hair-care/,/collections/hair-care
+Product Category,hair-oils-lotions-sprays,https://allnaturalscosmetics.com/product-category/hair-oils-lotions-sprays/,/collections/hair-oils-lotions-sprays
+Product Category,hair-twist-butters-and-scalp-foods-bases,https://allnaturalscosmetics.com/product-category/hair-twist-butters-and-scalp-foods-bases/,/collections/hair-twist-butters-and-scalp-foods-bases
+Product Category,lip-care,https://allnaturalscosmetics.com/product-category/lip-care/,/collections/lip-care
+Product Category,melt-pour-soap,https://allnaturalscosmetics.com/product-category/melt-pour-soap/,/collections/melt-pour-soap
+Product Category,men,https://allnaturalscosmetics.com/product-category/men/,/collections/men
+Product Category,raw-materials,https://allnaturalscosmetics.com/product-category/raw-materials/,/collections/raw-materials
+Product Category,scrubs,https://allnaturalscosmetics.com/product-category/scrubs/,/collections/scrubs
+Product Category,shampoos-cleansers,https://allnaturalscosmetics.com/product-category/shampoos-cleansers/,/collections/shampoos-cleansers
+Product Category,shampoos-conditioners-bases,https://allnaturalscosmetics.com/product-category/shampoos-conditioners-bases/,/collections/shampoos-conditioners-bases
+Product Category,spas-salons,https://allnaturalscosmetics.com/product-category/spas-salons/,/collections/spas-salons
+Product Category,tester,https://allnaturalscosmetics.com/product-category/tester/,/collections/tester
+Product Category,treatments-conditioners,https://allnaturalscosmetics.com/product-category/treatments-conditioners/,/collections/treatments-conditioners
+Product Category,washes-and-soaps,https://allnaturalscosmetics.com/product-category/washes-and-soaps/,/collections/washes-and-soaps
+Product,100-black-jamaican-castor-oil,https://allnaturalscosmetics.com/product/100-black-jamaican-castor-oil/,/products/100-black-jamaican-castor-oil
+Product,100-organic-argan-oil,https://allnaturalscosmetics.com/product/100-organic-argan-oil/,/products/100-organic-argan-oil
+Product,100-organic-argan-oil-2,https://allnaturalscosmetics.com/product/100-organic-argan-oil-2/,/products/100-organic-argan-oil-2
+Product,100-pure-shea-butter,https://allnaturalscosmetics.com/product/100-pure-shea-butter/,/products/100-pure-shea-butter
+Product,100-pure-shea-butter-2,https://allnaturalscosmetics.com/product/100-pure-shea-butter-2/,/products/100-pure-shea-butter-2
+Product,100-pure-virgin-olive-oil,https://allnaturalscosmetics.com/product/100-pure-virgin-olive-oil/,/products/100-pure-virgin-olive-oil
+Product,100-sweet-almond-oil,https://allnaturalscosmetics.com/product/100-sweet-almond-oil/,/products/100-sweet-almond-oil
+Product,4oz-tube-style-bottle-with-cap,https://allnaturalscosmetics.com/product/4oz-tube-style-bottle-with-cap/,/products/4oz-tube-style-bottle-with-cap
+Product,6oz-jar-with-lid,https://allnaturalscosmetics.com/product/6oz-jar-with-lid/,/products/6oz-jar-with-lid
+Product,all-over-oil,https://allnaturalscosmetics.com/product/all-over-oil/,/products/all-over-oil
+Product,aloe-vera-gel-juice,https://allnaturalscosmetics.com/product/aloe-vera-gel-juice/,/products/aloe-vera-gel-juice
+Product,apricot-facial-scrub,https://allnaturalscosmetics.com/product/apricot-facial-scrub/,/products/apricot-facial-scrub
+Product,argan-oil-body-butter,https://allnaturalscosmetics.com/product/argan-oil-body-butter/,/products/argan-oil-body-butter
+Product,argan-oil-body-butter-2,https://allnaturalscosmetics.com/product/argan-oil-body-butter-2/,/products/argan-oil-body-butter-2
+Product,argan-oil-conditioner,https://allnaturalscosmetics.com/product/argan-oil-conditioner/,/products/argan-oil-conditioner
+Product,argan-oil-conditioner-gallon,https://allnaturalscosmetics.com/product/argan-oil-conditioner-gallon/,/products/argan-oil-conditioner-gallon
+Product,argan-oil-hair-locks-butter,https://allnaturalscosmetics.com/product/argan-oil-hair-locks-butter/,/products/argan-oil-hair-locks-butter
+Product,argan-oil-hair-locks-butter-2,https://allnaturalscosmetics.com/product/argan-oil-hair-locks-butter-2/,/products/argan-oil-hair-locks-butter-2
+Product,argan-oil-shampoo,https://allnaturalscosmetics.com/product/argan-oil-shampoo/,/products/argan-oil-shampoo
+Product,argan-oil-shampoo-25lb-size-25lb,https://allnaturalscosmetics.com/product/argan-oil-shampoo-25lb-size-25lb/,/products/argan-oil-shampoo-25lb-size-25lb
+Product,babassu-natural-butter,https://allnaturalscosmetics.com/product/babassu-natural-butter/,/products/babassu-natural-butter
+Product,babassu-natural-butter-2,https://allnaturalscosmetics.com/product/babassu-natural-butter-2/,/products/babassu-natural-butter-2
+Product,black-soap-aloe-wash,https://allnaturalscosmetics.com/product/black-soap-aloe-wash/,/products/black-soap-aloe-wash
+Product,black-soap-facial-wash,https://allnaturalscosmetics.com/product/black-soap-facial-wash/,/products/black-soap-facial-wash
+Product,black-soap-shampoo-2,https://allnaturalscosmetics.com/product/black-soap-shampoo-2/,/products/black-soap-shampoo-2
+Product,blemish-free-facial-toner,https://allnaturalscosmetics.com/product/blemish-free-facial-toner/,/products/blemish-free-facial-toner
+Product,body-and-bum-butter,https://allnaturalscosmetics.com/product/body-and-bum-butter/,/products/body-and-bum-butter
+Product,capric-caprillic-triglycerides-oil,https://allnaturalscosmetics.com/product/capric-caprillic-triglycerides-oil/,/products/capric-caprillic-triglycerides-oil
+Product,classic-4oz-jar-with-gold-lids,https://allnaturalscosmetics.com/product/classic-4oz-jar-with-gold-lids/,/products/classic-4oz-jar-with-gold-lids
+Product,cocoa-butter,https://allnaturalscosmetics.com/product/cocoa-butter/,/products/cocoa-butter
+Product,cocoa-shea-butter,https://allnaturalscosmetics.com/product/cocoa-shea-butter/,/products/cocoa-shea-butter
+Product,cocoa-shea-butter-2,https://allnaturalscosmetics.com/product/cocoa-shea-butter-2/,/products/cocoa-shea-butter-2
+Product,combo-1-simply-loving-oils,https://allnaturalscosmetics.com/product/combo-1-simply-loving-oils/,/products/combo-1-simply-loving-oils
+Product,combo-10-healthy-nails-cuticles,https://allnaturalscosmetics.com/product/combo-10-healthy-nails-cuticles/,/products/combo-10-healthy-nails-cuticles
+Product,combo-11-face-body-love,https://allnaturalscosmetics.com/product/combo-11-face-body-love/,/products/combo-11-face-body-love
+Product,combo-12-body-oils,https://allnaturalscosmetics.com/product/combo-12-body-oils/,/products/combo-12-body-oils
+Product,combo-12-tresses-so-soft,https://allnaturalscosmetics.com/product/combo-12-tresses-so-soft/,/products/combo-12-tresses-so-soft
+Product,combo-2-baby-care,https://allnaturalscosmetics.com/product/combo-2-baby-care/,/products/combo-2-baby-care
+Product,combo-3-argan-hair-body,https://allnaturalscosmetics.com/product/combo-3-argan-hair-body/,/products/combo-3-argan-hair-body
+Product,combo-4-body-so-soft,https://allnaturalscosmetics.com/product/combo-4-body-so-soft/,/products/combo-4-body-so-soft
+Product,combo-5-ageless-carecombo-5-ageless-carecombo-pak-5-shea-love,https://allnaturalscosmetics.com/product/combo-5-ageless-carecombo-5-ageless-carecombo-pak-5-shea-love/,/products/combo-5-ageless-carecombo-5-ageless-carecombo-pak-5-shea-love
+Product,combo-6-youthful-face-neck,https://allnaturalscosmetics.com/product/combo-6-youthful-face-neck/,/products/combo-6-youthful-face-neck
+Product,combo-7-healing-oils-soaps,https://allnaturalscosmetics.com/product/combo-7-healing-oils-soaps/,/products/combo-7-healing-oils-soaps
+Product,combo-8-acne-be-gone,https://allnaturalscosmetics.com/product/combo-8-acne-be-gone/,/products/combo-8-acne-be-gone
+Product,combo-9-feet-body-luxury,https://allnaturalscosmetics.com/product/combo-9-feet-body-luxury/,/products/combo-9-feet-body-luxury
+Product,dead-sea-mineral-mud,https://allnaturalscosmetics.com/product/dead-sea-mineral-mud/,/products/dead-sea-mineral-mud
+Product,dead-sea-salt-coarse-fine,https://allnaturalscosmetics.com/product/dead-sea-salt-coarse-fine/,/products/dead-sea-salt-coarse-fine
+Product,enriched-day-cream,https://allnaturalscosmetics.com/product/enriched-day-cream/,/products/enriched-day-cream
+Product,exotic-coconut-body-butter,https://allnaturalscosmetics.com/product/exotic-coconut-body-butter/,/products/exotic-coconut-body-butter
+Product,grape-seed-carrier-oil,https://allnaturalscosmetics.com/product/grape-seed-carrier-oil/,/products/grape-seed-carrier-oil
+Product,grapefruit-essential-oil-pink,https://allnaturalscosmetics.com/product/grapefruit-essential-oil-pink/,/products/grapefruit-essential-oil-pink
+Product,hair-body-cleanser,https://allnaturalscosmetics.com/product/hair-body-cleanser/,/products/hair-body-cleanser
+Product,hair-moisturizing-lotion,https://allnaturalscosmetics.com/product/hair-moisturizing-lotion/,/products/hair-moisturizing-lotion
+Product,hair-style-finishing-spray,https://allnaturalscosmetics.com/product/hair-style-finishing-spray/,/products/hair-style-finishing-spray
+Product,hemp-oil-body-wash,https://allnaturalscosmetics.com/product/hemp-oil-body-wash/,/products/hemp-oil-body-wash
+Product,hemp-oil-lotion,https://allnaturalscosmetics.com/product/hemp-oil-lotion/,/products/hemp-oil-lotion
+Product,hemp-oil-shampoo,https://allnaturalscosmetics.com/product/hemp-oil-shampoo/,/products/hemp-oil-shampoo
+Product,hi-oleic-safflower-oil,https://allnaturalscosmetics.com/product/hi-oleic-safflower-oil/,/products/hi-oleic-safflower-oil
+Product,high-end-luxurious-lotion,https://allnaturalscosmetics.com/product/high-end-luxurious-lotion/,/products/high-end-luxurious-lotion
+Product,kukui-body-butter,https://allnaturalscosmetics.com/product/kukui-body-butter/,/products/kukui-body-butter
+Product,lavender-essential-oill,https://allnaturalscosmetics.com/product/lavender-essential-oill/,/products/lavender-essential-oill
+Product,lemongrass-essential-oil,https://allnaturalscosmetics.com/product/lemongrass-essential-oil/,/products/lemongrass-essential-oil
+Product,melt-pour-soap,https://allnaturalscosmetics.com/product/melt-pour-soap/,/products/melt-pour-soap
+Product,neem-aloe-vera-shampoo,https://allnaturalscosmetics.com/product/neem-aloe-vera-shampoo/,/products/neem-aloe-vera-shampoo
+Product,neem-oil,https://allnaturalscosmetics.com/product/neem-oil/,/products/neem-oil
+Product,neem-oil-acne-face-cream,https://allnaturalscosmetics.com/product/neem-oil-acne-face-cream/,/products/neem-oil-acne-face-cream
+Product,neem-oil-shower-gel,https://allnaturalscosmetics.com/product/neem-oil-shower-gel/,/products/neem-oil-shower-gel
+Product,nigerian-scrub-kain-kain,https://allnaturalscosmetics.com/product/nigerian-scrub-kain-kain/,/products/nigerian-scrub-kain-kain
+Product,orange-essential-oil,https://allnaturalscosmetics.com/product/orange-essential-oil/,/products/orange-essential-oil
+Product,organic-argan-almond-olive-oils,https://allnaturalscosmetics.com/product/organic-argan-almond-olive-oils/,/products/organic-argan-almond-olive-oils
+Product,organic-glycerin-non-gmo,https://allnaturalscosmetics.com/product/organic-glycerin-non-gmo/,/products/organic-glycerin-non-gmo
+Product,passion-fruit-face-neck-cream-8-8lb-size-8-8lbpassion-fruit-face-neck-cream-8-8lbpassion-fruit-face-neck-cream-3,https://allnaturalscosmetics.com/product/passion-fruit-face-neck-cream-8-8lb-size-8-8lbpassion-fruit-face-neck-cream-8-8lbpassion-fruit-face-neck-cream-3/,/products/passion-fruit-face-neck-cream-8-8lb-size-8-8lbpassion-fruit-face-neck-cream-8-8lbpassion-fruit-face-neck-cream-3
+Product,peppermint-essential-oil,https://allnaturalscosmetics.com/product/peppermint-essential-oil/,/products/peppermint-essential-oil
+Product,pet-clear-bottle-with-black-cap,https://allnaturalscosmetics.com/product/pet-clear-bottle-with-black-cap/,/products/pet-clear-bottle-with-black-cap
+Product,rosemary-essential-oil,https://allnaturalscosmetics.com/product/rosemary-essential-oil/,/products/rosemary-essential-oil
+Product,sandalwood-scrub,https://allnaturalscosmetics.com/product/sandalwood-scrub/,/products/sandalwood-scrub
+Product,shea-butter-body-wash,https://allnaturalscosmetics.com/product/shea-butter-body-wash/,/products/shea-butter-body-wash
+Product,shea-butter-body-wash-2,https://allnaturalscosmetics.com/product/shea-butter-body-wash-2/,/products/shea-butter-body-wash-2
+Product,shea-butter-cleansing-bar,https://allnaturalscosmetics.com/product/shea-butter-cleansing-bar/,/products/shea-butter-cleansing-bar
+Product,shea-butter-facial-wash,https://allnaturalscosmetics.com/product/shea-butter-facial-wash/,/products/shea-butter-facial-wash
+Product,shea-butter-hair-scalp-oil,https://allnaturalscosmetics.com/product/shea-butter-hair-scalp-oil/,/products/shea-butter-hair-scalp-oil
+Product,shea-butter-hair-scalp-oil-2,https://allnaturalscosmetics.com/product/shea-butter-hair-scalp-oil-2/,/products/shea-butter-hair-scalp-oil-2
+Product,shea-butter-leave-in-conditioner,https://allnaturalscosmetics.com/product/shea-butter-leave-in-conditioner/,/products/shea-butter-leave-in-conditioner
+Product,shea-butter-leave-in-conditioner-2,https://allnaturalscosmetics.com/product/shea-butter-leave-in-conditioner-2/,/products/shea-butter-leave-in-conditioner-2
+Product,shea-butter-lip-balm,https://allnaturalscosmetics.com/product/shea-butter-lip-balm/,/products/shea-butter-lip-balm
+Product,shea-butter-massage-body-oil,https://allnaturalscosmetics.com/product/shea-butter-massage-body-oil/,/products/shea-butter-massage-body-oil
+Product,shea-butter-massage-oil,https://allnaturalscosmetics.com/product/shea-butter-massage-oil/,/products/shea-butter-massage-oil
+Product,shea-butter-moisturizer,https://allnaturalscosmetics.com/product/shea-butter-moisturizer/,/products/shea-butter-moisturizer
+Product,shea-butter-moisturizer-2,https://allnaturalscosmetics.com/product/shea-butter-moisturizer-2/,/products/shea-butter-moisturizer-2
+Product,shea-butter-nail-cuticle-remedy,https://allnaturalscosmetics.com/product/shea-butter-nail-cuticle-remedy/,/products/shea-butter-nail-cuticle-remedy
+Product,shea-butter-shampoo,https://allnaturalscosmetics.com/product/shea-butter-shampoo/,/products/shea-butter-shampoo
+Product,shea-butter-treatment-conditioner,https://allnaturalscosmetics.com/product/shea-butter-treatment-conditioner/,/products/shea-butter-treatment-conditioner
+Product,shea-butter-treatment-conditioner-2,https://allnaturalscosmetics.com/product/shea-butter-treatment-conditioner-2/,/products/shea-butter-treatment-conditioner-2
+Product,shea-butter-with-olive-oil,https://allnaturalscosmetics.com/product/shea-butter-with-olive-oil/,/products/shea-butter-with-olive-oil
+Product,shea-butter-with-olive-oil-2,https://allnaturalscosmetics.com/product/shea-butter-with-olive-oil-2/,/products/shea-butter-with-olive-oil-2
+Product,shea-cocoa-butter-base-lotion,https://allnaturalscosmetics.com/product/shea-cocoa-butter-base-lotion/,/products/shea-cocoa-butter-base-lotion
+Product,shea-feet-butter,https://allnaturalscosmetics.com/product/shea-feet-butter/,/products/shea-feet-butter
+Product,shea-feet-butter-2,https://allnaturalscosmetics.com/product/shea-feet-butter-2/,/products/shea-feet-butter-2
+Product,sheaargan-oilsheaargan-oilsheaargan-oil,https://allnaturalscosmetics.com/product/sheaargan-oilsheaargan-oilsheaargan-oil/,/products/sheaargan-oilsheaargan-oilsheaargan-oil
+Product,skin-rejuvenating-night-cream-8-8lb-size-8-8lbskin-rejuvenating-night-cream-8-8lbnight-cream-3,https://allnaturalscosmetics.com/product/skin-rejuvenating-night-cream-8-8lb-size-8-8lbskin-rejuvenating-night-cream-8-8lbnight-cream-3/,/products/skin-rejuvenating-night-cream-8-8lb-size-8-8lbskin-rejuvenating-night-cream-8-8lbnight-cream-3
+Product,skin-renewal-facial-cream,https://allnaturalscosmetics.com/product/skin-renewal-facial-cream/,/products/skin-renewal-facial-cream
+Product,skin-renewal-facial-cream-2,https://allnaturalscosmetics.com/product/skin-renewal-facial-cream-2/,/products/skin-renewal-facial-cream-2
+Product,tea-tree-cream-shave,https://allnaturalscosmetics.com/product/tea-tree-cream-shave/,/products/tea-tree-cream-shave
+Product,tea-tree-essential-oil,https://allnaturalscosmetics.com/product/tea-tree-essential-oil/,/products/tea-tree-essential-oil
+Product,tea-tree-oil,https://allnaturalscosmetics.com/product/tea-tree-oil/,/products/tea-tree-oil
+Product,testers,https://allnaturalscosmetics.com/product/testers/,/products/testers
+Product,tropical-body-oil-with-argan,https://allnaturalscosmetics.com/product/tropical-body-oil-with-argan/,/products/tropical-body-oil-with-argan
+Product,vanilla-fragrant-oil,https://allnaturalscosmetics.com/product/vanilla-fragrant-oil/,/products/vanilla-fragrant-oil
+Product,white-bottle-with-black-cap,https://allnaturalscosmetics.com/product/white-bottle-with-black-cap/,/products/white-bottle-with-black-cap
+Product,white-jars-with-lids,https://allnaturalscosmetics.com/product/white-jars-with-lids/,/products/white-jars-with-lids
+Product,whole-shea-butter,https://allnaturalscosmetics.com/product/whole-shea-butter/,/products/whole-shea-butter
+Product,willow-bark-acne-face-cream,https://allnaturalscosmetics.com/product/willow-bark-acne-face-cream/,/products/willow-bark-acne-face-cream
+Product,ylang-ylang-essential-oil,https://allnaturalscosmetics.com/product/ylang-ylang-essential-oil/,/products/ylang-ylang-essential-oil
+Blog Post,awards,https://allnaturalscosmetics.com/2021/08/03/awards/,/blog/awards
+Blog Post,babassu-oil-the-wonder-ingredient-of-south-america,https://allnaturalscosmetics.com/2021/08/11/babassu-oil-the-wonder-ingredient-of-south-america/,/blog/babassu-oil-the-wonder-ingredient-of-south-america
+Blog Post,ingredients-inci,https://allnaturalscosmetics.com/2021/10/27/ingredients-inci/,/blog/ingredients-inci
+Blog Post,its-all-about-the-butter-shea-butter,https://allnaturalscosmetics.com/2022/03/23/its-all-about-the-butter-shea-butter/,/blog/its-all-about-the-butter-shea-butter
+Blog Post,making-a-difference,https://allnaturalscosmetics.com/2021/08/03/making-a-difference/,/blog/making-a-difference
+Blog Post,meet-lanre-the-president-and-ceo-of-all-naturals-cosmetics-inc,https://allnaturalscosmetics.com/2021/07/14/meet-lanre-the-president-and-ceo-of-all-naturals-cosmetics-inc/,/blog/meet-lanre-the-president-and-ceo-of-all-naturals-cosmetics-inc
+Blog Post,our-beliefs,https://allnaturalscosmetics.com/2021/08/03/our-beliefs/,/blog/our-beliefs
+Blog Post,policies,https://allnaturalscosmetics.com/2021/10/27/policies/,/blog/policies
+Blog Post,quality-control,https://allnaturalscosmetics.com/2021/08/03/quality-control/,/blog/quality-control
+Blog Post,services,https://allnaturalscosmetics.com/2021/10/27/services/,/blog/services
+Blog Post,shea-butter,https://allnaturalscosmetics.com/2021/08/03/shea-butter/,/blog/shea-butter
+Blog Post,shea-in-the-summer,https://allnaturalscosmetics.com/2021/07/14/shea-in-the-summer/,/blog/shea-in-the-summer
+Blog Post,the-benefits-of-shea-butter,https://allnaturalscosmetics.com/2021/06/16/the-benefits-of-shea-butter/,/blog/the-benefits-of-shea-butter
+Blog Post,the-wonder-of-cocoa-butter-for-skin,https://allnaturalscosmetics.com/2022/03/23/the-wonder-of-cocoa-butter-for-skin/,/blog/the-wonder-of-cocoa-butter-for-skin
+Blog Post,what-is-shea-butter,https://allnaturalscosmetics.com/2021/06/10/what-is-shea-butter/,/blog/what-is-shea-butter
+Blog Category,about,https://allnaturalscosmetics.com/category/about/,/blog/category/about
+Blog Category,an-blog,https://allnaturalscosmetics.com/category/an-blog/,/blog/category/an-blog
+Product Tag,front_spec_may2022,https://allnaturalscosmetics.com/product-tag/front_spec_may2022/,(internal / not migrated)
+Shipping Class,?taxonomy=product_shipping_class&amp;term=all-naturals-canada,https://allnaturalscosmetics.com/?taxonomy=product_shipping_class&amp;term=all-naturals-canada,(internal / not migrated)
+Shipping Class,?taxonomy=product_shipping_class&amp;term=bulk-shipping,https://allnaturalscosmetics.com/?taxonomy=product_shipping_class&amp;term=bulk-shipping,(internal / not migrated)
+Theme Layout (internal),?porto_builder=about-us-banner,https://allnaturalscosmetics.com/?porto_builder=about-us-banner,(internal / not migrated)
+Theme Layout (internal),?porto_builder=category-image-slider,https://allnaturalscosmetics.com/?porto_builder=category-image-slider,(internal / not migrated)
+Theme Layout (internal),?porto_builder=contacthead,https://allnaturalscosmetics.com/?porto_builder=contacthead,(internal / not migrated)
+Theme Layout (internal),?porto_builder=error-404,https://allnaturalscosmetics.com/?porto_builder=error-404,(internal / not migrated)
+Theme Layout (internal),?porto_builder=extended-layout-notice,https://allnaturalscosmetics.com/?porto_builder=extended-layout-notice,(internal / not migrated)
+Theme Layout (internal),?porto_builder=extended-layout-video,https://allnaturalscosmetics.com/?porto_builder=extended-layout-video,(internal / not migrated)
+Theme Layout (internal),?porto_builder=featured-products,https://allnaturalscosmetics.com/?porto_builder=featured-products,(internal / not migrated)
+Theme Layout (internal),?porto_builder=footer,https://allnaturalscosmetics.com/?porto_builder=footer,(internal / not migrated)
+Theme Layout (internal),?porto_builder=fullwidth-layout-notice,https://allnaturalscosmetics.com/?porto_builder=fullwidth-layout-notice,(internal / not migrated)
+Theme Layout (internal),?porto_builder=fullwidth-layout-video,https://allnaturalscosmetics.com/?porto_builder=fullwidth-layout-video,(internal / not migrated)
+Theme Layout (internal),?porto_builder=menu-ads,https://allnaturalscosmetics.com/?porto_builder=menu-ads,(internal / not migrated)
+Theme Layout (internal),?porto_builder=parallax-banner,https://allnaturalscosmetics.com/?porto_builder=parallax-banner,(internal / not migrated)
+Theme Layout (internal),?porto_builder=portfolio-sidebar,https://allnaturalscosmetics.com/?porto_builder=portfolio-sidebar,(internal / not migrated)
+Theme Layout (internal),?porto_builder=product-categories,https://allnaturalscosmetics.com/?porto_builder=product-categories,(internal / not migrated)
+Theme Layout (internal),?porto_builder=product-size-guide,https://allnaturalscosmetics.com/?porto_builder=product-size-guide,(internal / not migrated)
+Theme Layout (internal),?porto_builder=shop1,https://allnaturalscosmetics.com/?porto_builder=shop1,(internal / not migrated)
+Theme Layout (internal),?porto_builder=sticky-both-info-bottom,https://allnaturalscosmetics.com/?porto_builder=sticky-both-info-bottom,(internal / not migrated)
+Theme Layout (internal),?porto_builder=sticky-info-layout-notice,https://allnaturalscosmetics.com/?porto_builder=sticky-info-layout-notice,(internal / not migrated)
+Theme Layout (internal),?porto_builder=wide-grid-layout-notice,https://allnaturalscosmetics.com/?porto_builder=wide-grid-layout-notice,(internal / not migrated)
+Theme Layout (internal),?porto_builder=woo-sidebar-banner,https://allnaturalscosmetics.com/?porto_builder=woo-sidebar-banner,(internal / not migrated)

@@ -7,17 +7,13 @@
  * sufficient for v1). Passes `collections` as required 3rd arg to applyFilters
  * so category filtering works correctly.
  *
- * Layout:
- *   Desktop (lg+): flex row — FilterRail sticky sidebar (224px) | ProductGrid (flex-1)
- *   Mobile: FilterRail renders its own slide-over trigger button; ProductGrid stacks below
- *
- * Note: FilterRail internally renders:
- *   - A trigger button (< lg) for the mobile slide-over sheet
- *   - A sticky sidebar (>= lg) for desktop
- *
- * We mount ONE FilterRail instance. The mobile trigger sits above the grid;
- * the desktop sidebar flows in the flex row. Both are controlled by the
- * same FilterRail component via its internal `lg:hidden` / `hidden lg:flex` classes.
+ * Layout: a single flex container, column on mobile / row on desktop.
+ *   FilterRail is mounted EXACTLY ONCE — it already renders both its mobile
+ *   trigger+sheet AND its desktop sticky sidebar internally (via its own
+ *   `lg:hidden` / `hidden lg:flex` classes), so wrapping it in additional
+ *   responsive divs here would double-mount it (two live `filters` controls,
+ *   duplicate `aria-pressed` chips, duplicate `id="filter-sheet"` — a real
+ *   bug fixed 2026-07-10). ProductGrid is likewise mounted once.
  *
  * Never blue. Honors prefers-reduced-motion.
  */
@@ -48,6 +44,8 @@ export interface PLPClientProps {
   hideFilters?: boolean;
   /** Hide the built-in PLP header (when the page supplies its own PageHeader). */
   hideHeader?: boolean;
+  /** Collection pages: category chips navigate between collections instead of filtering. */
+  categoryNav?: { activeHandle: string };
 }
 
 export function PLPClient({
@@ -60,6 +58,7 @@ export function PLPClient({
   breadcrumb,
   hideFilters = false,
   hideHeader = false,
+  categoryNav,
 }: PLPClientProps) {
   const [filters, setFilters] = useState<FilterState>(initial ?? {});
 
@@ -87,23 +86,12 @@ export function PLPClient({
           /* No filters (e.g. wholesale) — grid spans the full width */
           <ProductGrid products={filtered} className="w-full" />
         ) : (
-          <>
-            {/* Mobile: filter trigger above the grid */}
-            <div className="mb-5 lg:hidden">
-              <FilterRail facets={facets} value={filters} onChange={setFilters} />
-            </div>
-
-            {/* Desktop: flex row — sidebar | grid */}
-            <div className="hidden lg:flex gap-8 items-start">
-              <FilterRail facets={facets} value={filters} onChange={setFilters} />
-              <ProductGrid products={filtered} className="flex-1 min-w-0" />
-            </div>
-
-            {/* Mobile: just the grid (filter trigger is above) */}
-            <div className="lg:hidden">
-              <ProductGrid products={filtered} className="w-full" />
-            </div>
-          </>
+          // Single mount: column on mobile (trigger above grid), row on desktop
+          // (sticky sidebar beside grid) — FilterRail handles the breakpoint itself.
+          <div className="flex flex-col gap-5 lg:flex-row lg:gap-8 lg:items-start">
+            <FilterRail facets={facets} value={filters} onChange={setFilters} categoryNav={categoryNav} />
+            <ProductGrid products={filtered} className="w-full lg:flex-1 lg:min-w-0" />
+          </div>
         )}
       </div>
     </>

@@ -1170,59 +1170,6 @@
     }
   },
   {
-    "handle": "combo-7-healing-oils-soaps",
-    "title": "Combo 7- Healing oils & Soaps",
-    "descriptionHtml": "",
-    "vendor": "All Naturals Cosmetics",
-    "productType": "Combo Packages",
-    "tags": [
-      "Combo Packages"
-    ],
-    "options": [
-      {
-        "name": "Title",
-        "values": [
-          "Default Title"
-        ]
-      }
-    ],
-    "variants": [
-      {
-        "id": "combo-7-healing-oils-soaps-v0",
-        "title": "Default Title",
-        "sku": null,
-        "price": {
-          "amount": 85,
-          "currencyCode": "CAD"
-        },
-        "compareAtPrice": null,
-        "available": true,
-        "selectedOptions": [
-          {
-            "name": "Title",
-            "value": "Default Title"
-          }
-        ]
-      }
-    ],
-    "images": [
-      {
-        "url": "https://allnaturalscosmetics.com/wp-content/uploads/combo-packages/combo_7-1.jpg",
-        "altText": "Combo 7- Healing oils & Soaps"
-      }
-    ],
-    "priceRange": {
-      "min": {
-        "amount": 85,
-        "currencyCode": "CAD"
-      },
-      "max": {
-        "amount": 85,
-        "currencyCode": "CAD"
-      }
-    }
-  },
-  {
     "handle": "combo-6-youthful-face-neck",
     "title": "Combo 6-Youthful Face & Neck",
     "descriptionHtml": "",
@@ -1593,76 +1540,6 @@
       },
       "max": {
         "amount": 75,
-        "currencyCode": "CAD"
-      }
-    }
-  },
-  {
-    "handle": "shea-butter-massage-oil",
-    "title": "Shea Butter Massage Oil",
-    "descriptionHtml": "<p>Shea &#8220;All Naturals&#8221; <strong>Shea Butter Massage Oil</strong> has an incredibly smooth glide, is not greasy, and readily absorbs into the skin. Getting your partner or therapist to massage you with our minted massage oil will provide you with comfort from aching and sore muscles. It washes out easily and will not stain your clothing.</p>\n<p><strong>Purpose:</strong></p>\n<ol>\n<li>For body moisturizing and massaging;</li>\n<li>Provides relief against aching, sore muscles and feet;</li>\n<li>Reduces discomfort from symptoms of eczema and psoriasis.</li>\n</ol>\n<p><strong>The Direction of Use</strong>: Apply and rub into the body as often as desired or needed.</p>\n<p><strong>Note:</strong> Avoid contact with eyes.</p>\n<p><strong>Ingredients</strong>: Carthamus Tinctorius, Capric/Caprylic Triglycerides Oil, Simmondsia Chinensis Seed Oil, Olea Europaea Oil, Butyrospermum Parkii, Citrus Grandis (Grapefruit) Seed Oil, Tocopherol Acetate,(Vitamin E), Mentha Piperita oil</p>\n<p><strong>Size</strong>: 8oz/255ml</p>\n<p>For bulk purchase, <a href=\"https://allnaturalscosmetics.com/product/shea-butter-massage-body-oil/\">click here</a></p>",
-    "vendor": "All Naturals Cosmetics",
-    "productType": "Butters & Moisturizers",
-    "tags": [
-      "Butters & Moisturizers",
-      "Family Body Care"
-    ],
-    "options": [
-      {
-        "name": "Title",
-        "values": [
-          "Default Title"
-        ]
-      }
-    ],
-    "variants": [
-      {
-        "id": "shea-butter-massage-oil-v0",
-        "title": "Default Title",
-        "sku": null,
-        "price": {
-          "amount": 15,
-          "currencyCode": "CAD"
-        },
-        "compareAtPrice": null,
-        "available": true,
-        "selectedOptions": [
-          {
-            "name": "Title",
-            "value": "Default Title"
-          }
-        ]
-      }
-    ],
-    "images": [
-      {
-        "url": "https://allnaturalscosmetics.com/wp-content/uploads/sbmo1.jpg",
-        "altText": "Shea Butter Massage Oil"
-      },
-      {
-        "url": "https://allnaturalscosmetics.com/wp-content/uploads/sbmo2.jpg",
-        "altText": "Shea Butter Massage Oil"
-      },
-      {
-        "url": "https://allnaturalscosmetics.com/wp-content/uploads/sbmo5.jpg",
-        "altText": "Shea Butter Massage Oil"
-      },
-      {
-        "url": "https://allnaturalscosmetics.com/wp-content/uploads/sbmo4.jpg",
-        "altText": "Shea Butter Massage Oil"
-      },
-      {
-        "url": "https://allnaturalscosmetics.com/wp-content/uploads/sbmo3.jpg",
-        "altText": "Shea Butter Massage Oil"
-      }
-    ],
-    "priceRange": {
-      "min": {
-        "amount": 15,
-        "currencyCode": "CAD"
-      },
-      "max": {
-        "amount": 15,
         "currencyCode": "CAD"
       }
     }
@@ -4510,63 +4387,6 @@
       },
       "max": {
         "amount": 5,
-        "currencyCode": "CAD"
-      }
-    }
-  },
-  {
-    "handle": "black-soap-facial-wash",
-    "title": "Black Soap Facial Wash",
-    "descriptionHtml": "<p>Black Soap &amp; Aloe Wash is a gentle cleanser formulated entirely with ingredients from the tropical rain forest to:</p>\n<ol>\n<li>Remove excess oil, dirt, makeup without stripping your skin of natural moisture;</li>\n<li>Support restoration of skin from bleaching creams and chemicals;</li>\n<li>Improve skin tone and complexion.</li>\n</ol>\n<p><strong>The Direction for Use</strong>: This is a low viscous wash. Shake well and apply to a wet sponge. Wash face and body with sponge and rinse well. Follow with facial cream and body cream/lotion/butter.</p>\n<p><strong>Ingredients:</strong> Water, Milled native black soap, Citrus juices, Osun, natural honey, Aloe Vera and Shea butter</p>\n<p><strong>Size: </strong>12oz/355ml</p>\n<p>For bulk purchase, <a href=\"http://www.allnaturalskincare.ca/shop/bath-body-bases/black-soap-aloe-wash/\">click here</a></p>",
-    "vendor": "All Naturals Cosmetics",
-    "productType": "Cleansers and Shaving Bars",
-    "tags": [
-      "Cleansers and Shaving Bars",
-      "Family Body Care",
-      "Family Face Care",
-      "Men",
-      "Washes and Soaps"
-    ],
-    "options": [
-      {
-        "name": "Title",
-        "values": [
-          "Default Title"
-        ]
-      }
-    ],
-    "variants": [
-      {
-        "id": "black-soap-facial-wash-v0",
-        "title": "Default Title",
-        "sku": null,
-        "price": {
-          "amount": 15,
-          "currencyCode": "CAD"
-        },
-        "compareAtPrice": null,
-        "available": true,
-        "selectedOptions": [
-          {
-            "name": "Title",
-            "value": "Default Title"
-          }
-        ]
-      }
-    ],
-    "images": [
-      {
-        "url": "https://allnaturalscosmetics.com/wp-content/uploads/black_facial.png",
-        "altText": "Black Soap Facial Wash"
-      }
-    ],
-    "priceRange": {
-      "min": {
-        "amount": 15,
-        "currencyCode": "CAD"
-      },
-      "max": {
-        "amount": 15,
         "currencyCode": "CAD"
       }
     }
