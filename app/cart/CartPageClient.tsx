@@ -31,6 +31,9 @@ function fmt(amount: number) {
 
 // ── Constants ─────────────────────────────────────────────────────────────────
 
+/** Subtotal threshold for free shipping (CAD) */
+const FREE_SHIPPING_THRESHOLD = 75;
+
 /** Ontario HST rate */
 const HST_RATE = 0.13;
 
@@ -40,6 +43,7 @@ export function CartPageClient() {
   const { items, subtotal, update, remove } = useCart();
 
   const subtotalAmount = subtotal.amount;
+  const shippingFree = subtotalAmount >= FREE_SHIPPING_THRESHOLD;
   const taxEst = subtotalAmount * HST_RATE;
   const totalEst = subtotalAmount + taxEst;
 
@@ -137,15 +141,34 @@ export function CartPageClient() {
                 </span>
               </div>
 
-              {/* Pickup (in place of shipping while checkout is pre-Shopify) */}
+              {/* Shipping — the default fulfilment method */}
               <div className="flex items-center justify-between">
-                <span className="text-espresso/70 font-body">{PICKUP.label}</span>
-                <span className="font-semibold tabular-nums text-green">{PICKUP.price}</span>
+                <span className="text-espresso/70 font-body">Shipping</span>
+                <span
+                  className={cn(
+                    "font-semibold tabular-nums",
+                    shippingFree ? "text-green" : "text-espresso",
+                  )}
+                >
+                  {shippingFree ? "Free" : "Calculated at checkout"}
+                </span>
               </div>
 
-              {/* Pickup details */}
+              {/* Free shipping nudge */}
+              {!shippingFree && (
+                <p className="text-xs text-espresso/50 font-body">
+                  Add{" "}
+                  <span className="font-medium text-espresso/70">
+                    {fmt(FREE_SHIPPING_THRESHOLD - subtotalAmount)}
+                  </span>{" "}
+                  more to unlock free Canada-wide shipping.
+                </p>
+              )}
+
+              {/* Local pickup — an alternative to shipping */}
               <div className="rounded-xl border border-green/20 bg-green/5 p-3 text-xs leading-relaxed text-espresso/70 font-body">
-                Pick up at <span className="font-medium text-espresso/80">{PICKUP.address}</span> on{" "}
+                <span className="font-semibold text-green">Or pick up locally — free.</span> Collect at{" "}
+                <span className="font-medium text-espresso/80">{PICKUP.address}</span> on{" "}
                 <span className="font-medium text-espresso/80">{PICKUP.day}</span>. Please call ahead to
                 confirm:{" "}
                 <a href={PICKUP.phoneHref} className="font-semibold text-clay hover:underline">

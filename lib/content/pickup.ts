@@ -1,7 +1,8 @@
 /**
- * Local pickup — the fulfilment option shown in the cart / checkout summary
- * (in place of a shipping line while checkout is pre-Shopify). One source of
- * truth so the cart page and the cart drawer stay in sync.
+ * Local pickup — an ALTERNATIVE fulfilment option shown in the cart / checkout
+ * summary alongside shipping. Shipping remains the default method; pickup is
+ * offered as a free local option. One source of truth so the cart page and the
+ * cart drawer stay in sync.
  */
 
 export const PICKUP = {
