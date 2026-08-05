@@ -55,9 +55,12 @@ describe("sitemap", () => {
     // Catalogue is 113 products + 22 collections + static/about pages.
     expect(urls.length).toBeGreaterThan(140);
 
-    for (const p of ["/", "/shop", "/collections", "/about", "/private-label", "/about/our-ingredients"]) {
+    for (const p of ["/", "/shop", "/collections", "/about/our-story", "/private-label", "/about/our-ingredients"]) {
       expect(urls).toContain(`${SITE_URL}${p}`);
     }
+    // /about was merged into /about/our-story and now permanently redirects,
+    // so it must NOT be advertised in the sitemap.
+    expect(urls).not.toContain(`${SITE_URL}/about`);
     expect(urls.some((u) => u.startsWith(`${SITE_URL}/products/`))).toBe(true);
     expect(urls.some((u) => u.startsWith(`${SITE_URL}/collections/`))).toBe(true);
   });

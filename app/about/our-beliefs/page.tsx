@@ -16,7 +16,7 @@ export default function OurBeliefsPage() {
   return (
     <div className="min-h-screen bg-white pt-[calc(3.5rem+2.5rem)]">
       <PageHeader
-        crumbs={[{ label: "Home", href: "/" }, { label: "About us", href: "/about" }, { label: "Our beliefs" }]}
+        crumbs={[{ label: "Home", href: "/" }, { label: "About us", href: "/about/our-story" }, { label: "Our beliefs" }]}
         eyebrow={BELIEFS.eyebrow}
         title={BELIEFS.title}
         products={[

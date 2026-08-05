@@ -206,7 +206,7 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                         >
                           <li>
                             <Link
-                              href="/about"
+                              href="/about/our-story"
                               onClick={onClose}
                               className="flex items-center rounded-lg px-3 py-2.5 text-base font-medium text-espresso/70 hover:bg-espresso/8 hover:text-espresso"
                             >

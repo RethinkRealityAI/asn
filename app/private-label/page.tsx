@@ -21,7 +21,7 @@ export default function PrivateLabelPage() {
   return (
     <div className="min-h-screen bg-white pt-[calc(3.5rem+2.5rem)]">
       <PageHeader
-        crumbs={[{ label: "Home", href: "/" }, { label: "About us", href: "/about" }, { label: "Private label" }]}
+        crumbs={[{ label: "Home", href: "/" }, { label: "About us", href: "/about/our-story" }, { label: "Private label" }]}
         eyebrow={PRIVATE_LABEL.eyebrow}
         title={PRIVATE_LABEL.title}
         subtitle={PRIVATE_LABEL.lede}

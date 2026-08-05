@@ -43,6 +43,26 @@ function getVariantForSize(product: Product, sizeValue: string): Variant | null 
   );
 }
 
+/**
+ * Which size to preselect. Catalog order often lists the LARGEST bulk size
+ * first (50lbs, 25lbs, 8.8lbs), so defaulting to `values[0]` opened the PDP at
+ * the priciest option while the card advertised "From $85". Preselect the
+ * cheapest size so the card price and the PDP price agree.
+ */
+function getDefaultSize(product: Product, sizeValues: string[]): string {
+  if (sizeValues.length === 0) return "";
+  let best = sizeValues[0];
+  let bestPrice = Number.POSITIVE_INFINITY;
+  for (const value of sizeValues) {
+    const price = getVariantForSize(product, value)?.price.amount;
+    if (price != null && price < bestPrice) {
+      bestPrice = price;
+      best = value;
+    }
+  }
+  return best;
+}
+
 // ── Trust badges — SVG icons, green botanical + leaf/red maple signals ───────
 
 const TRUST_ITEMS: { icon: React.ReactNode; label: string }[] = [
@@ -101,7 +121,9 @@ export function ProductInfo({ product }: ProductInfoProps) {
   const hasSizes = sizeValues.length > 0;
 
   // Default to first size value
-  const [selectedSize, setSelectedSize] = useState<string>(sizeValues[0] ?? "");
+  const [selectedSize, setSelectedSize] = useState<string>(() =>
+    getDefaultSize(product, sizeValues)
+  );
   const [qty, setQty] = useState(1);
   const qtyId = useId();
 

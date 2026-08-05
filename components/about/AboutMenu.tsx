@@ -60,7 +60,7 @@ export function AboutMenu() {
       onMouseLeave={scheduleClose}
     >
       <Link
-        href="/about"
+        href="/about/our-story"
         aria-haspopup="true"
         aria-expanded={open}
         onFocus={() => setOpen(true)}

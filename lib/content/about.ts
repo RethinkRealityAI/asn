@@ -143,6 +143,8 @@ export interface Award {
   detail: string;
   /** Recipient — the brand, or founder Lanre Tunji-Ajayi */
   who: string;
+  /** Abstract warm background texture behind the card (public/awards/*.webp). */
+  image: string;
 }
 
 export const AWARDS = {
@@ -155,31 +157,37 @@ export const AWARDS = {
       title: "Meritorious Service Medal (MSM)",
       detail: "Awarded by the Governor General of Canada for a remarkable contribution to the country.",
       who: "Lanre Tunji-Ajayi",
+      image: "/awards/msm.webp",
     },
     {
       title: "Senate of Canada 150 Award",
       detail: "Recognising outstanding service and contribution to the community.",
       who: "Lanre Tunji-Ajayi",
+      image: "/awards/senate-150.webp",
     },
     {
       title: "100 Accomplished Black Canadian Women",
       detail: "Named among Canada's 100 Accomplished Black Canadian (ABC) Women, 2018.",
       who: "Lanre Tunji-Ajayi",
+      image: "/awards/abc-women.webp",
     },
     {
       title: "African Canadian Achievement Award",
       detail: "For excellence in business.",
       who: "Lanre Tunji-Ajayi",
+      image: "/awards/african-canadian.webp",
     },
     {
       title: "Planet Africa Visionary Award of Excellence",
       detail: "Honouring visionary leadership and impact.",
       who: "Lanre Tunji-Ajayi",
+      image: "/awards/planet-africa.webp",
     },
     {
       title: "Community Development & Philanthropy Award",
       detail: "For sustained investment in community and giving back.",
       who: "Lanre Tunji-Ajayi",
+      image: "/awards/community.webp",
     },
   ] satisfies Award[],
   brandMilestone:

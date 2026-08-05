@@ -24,6 +24,7 @@ import { usePrefersReducedMotion } from "@/lib/motion/use-reduced-motion";
 import { WARM, DUR } from "@/lib/motion/easings";
 import { cn } from "@/lib/utils";
 import { useCart } from "@/components/cart/useCart";
+import { resolveCardCta } from "@/lib/catalog/card-cta";
 
 // ── CAD money formatter ─────────────────────────────────────────────────────
 const cadFmt = new Intl.NumberFormat("en-CA", {
@@ -81,8 +82,14 @@ export function ProductCard({ product, priority = false, badgeOverride }: Produc
 
   const img = images[0];
 
+  // Multi-variant products (e.g. bulk sizes: 8.8lbs / 25lbs / 50lbs) must not be
+  // quick-added — the card advertises the cheapest size but variants[0] is often
+  // the largest. Those route to the PDP to choose. See lib/catalog/card-cta.ts.
+  const cta = resolveCardCta(product);
+
   function handleAdd() {
-    const variant = product.variants[0];
+    if (cta?.kind !== "add") return;
+    const variant = product.variants.find((v) => v.id === cta.variantId);
     if (variant) {
       add(product, variant, 1);
       openCart();
@@ -177,19 +184,37 @@ export function ProductCard({ product, priority = false, badgeOverride }: Produc
         </p>
       </div>
 
-      {/* ── One clean Add button ─────────────────────────────────────────── */}
+      {/* ── CTA — quick-add only when there's a single variant ───────────── */}
       <div className="mt-auto px-4 pb-4">
-        <button
-          onClick={handleAdd}
-          aria-label={`Add ${title} to cart`}
-          className={cn(
-            "w-full rounded-full bg-clay py-2.5 text-sm font-semibold text-cream",
-            "transition-colors duration-200 hover:bg-orange",
-            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-marigold focus-visible:ring-offset-2"
-          )}
-        >
-          Add to cart
-        </button>
+        {cta?.kind === "choose" ? (
+          <Link
+            href={`/products/${handle}`}
+            aria-label={`Choose ${cta.optionLabel} for ${title}`}
+            className={cn(
+              "flex w-full items-center justify-center gap-1.5 rounded-full py-2.5 text-sm font-semibold",
+              "border border-clay text-clay bg-transparent",
+              "transition-colors duration-200 hover:bg-clay hover:text-cream",
+              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-marigold focus-visible:ring-offset-2"
+            )}
+          >
+            Choose {cta.optionLabel}
+            <span aria-hidden="true">→</span>
+          </Link>
+        ) : (
+          <button
+            onClick={handleAdd}
+            disabled={!cta}
+            aria-label={`Add ${title} to cart`}
+            className={cn(
+              "w-full rounded-full bg-clay py-2.5 text-sm font-semibold text-cream",
+              "transition-colors duration-200 hover:bg-orange",
+              "disabled:cursor-not-allowed disabled:opacity-50",
+              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-marigold focus-visible:ring-offset-2"
+            )}
+          >
+            Add to cart
+          </button>
+        )}
       </div>
     </article>
   );

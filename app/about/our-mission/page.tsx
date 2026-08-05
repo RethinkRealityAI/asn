@@ -16,7 +16,7 @@ export default function OurMissionPage() {
   return (
     <div className="min-h-screen bg-white pt-[calc(3.5rem+2.5rem)]">
       <PageHeader
-        crumbs={[{ label: "Home", href: "/" }, { label: "About us", href: "/about" }, { label: "Our mission" }]}
+        crumbs={[{ label: "Home", href: "/" }, { label: "About us", href: "/about/our-story" }, { label: "Our mission" }]}
         eyebrow={MISSION.eyebrow}
         title={MISSION.title}
         subtitle={MISSION.statement}

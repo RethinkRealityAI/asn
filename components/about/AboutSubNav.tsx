@@ -19,7 +19,7 @@ export function AboutSubNav() {
   const pathname = usePathname();
 
   const items = [
-    { href: "/about", label: "Overview" },
+    // No "Overview" — it was merged into Our story (which leads this list).
     ...ABOUT_SECTIONS.map((s) => ({ href: `/about/${s.slug}`, label: s.label })),
   ];
 

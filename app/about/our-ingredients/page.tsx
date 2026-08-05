@@ -17,7 +17,7 @@ export default function OurIngredientsPage() {
   return (
     <div className="min-h-screen bg-white pt-[calc(3.5rem+2.5rem)]">
       <PageHeader
-        crumbs={[{ label: "Home", href: "/" }, { label: "About us", href: "/about" }, { label: "Our ingredients" }]}
+        crumbs={[{ label: "Home", href: "/" }, { label: "About us", href: "/about/our-story" }, { label: "Our ingredients" }]}
         eyebrow={INGREDIENTS_INTRO.eyebrow}
         title={INGREDIENTS_INTRO.title}
         products={[

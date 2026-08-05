@@ -16,8 +16,10 @@ import Image from "next/image";
 import { ABOUT_SECTIONS } from "@/lib/content/about";
 import { usePrefersReducedMotion } from "@/lib/motion/use-reduced-motion";
 
-export function SectionCarousel() {
+export function SectionCarousel({ excludeSlug }: { excludeSlug?: string } = {}) {
   const trackRef = useRef<HTMLUListElement>(null);
+  // Don't offer a card that links back to the page you're already reading.
+  const sections = ABOUT_SECTIONS.filter((s) => s.slug !== excludeSlug);
   const reduced = usePrefersReducedMotion();
 
   const scrollByCards = (dir: 1 | -1) => {
@@ -65,7 +67,7 @@ export function SectionCarousel() {
         ref={trackRef}
         className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
       >
-        {ABOUT_SECTIONS.map((s) => (
+        {sections.map((s) => (
           <li key={s.slug} className="w-[16rem] shrink-0 snap-start sm:w-[18rem]">
             <Link
               href={`/about/${s.slug}`}

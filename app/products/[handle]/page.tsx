@@ -160,7 +160,9 @@ export default async function ProductPage(props: PageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
       />
 
-      <div className="min-h-screen bg-white">
+      {/* pt clears the fixed header (promo bar + nav row) — without it the
+          breadcrumb renders underneath the wordmark. */}
+      <div className="min-h-screen bg-white pt-[calc(3.5rem+2rem)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
 
           {/* ── Breadcrumb ─────────────────────────────────────────────── */}

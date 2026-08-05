@@ -16,7 +16,7 @@ export default function MakingADifferencePage() {
   return (
     <div className="min-h-screen bg-white pt-[calc(3.5rem+2.5rem)]">
       <PageHeader
-        crumbs={[{ label: "Home", href: "/" }, { label: "About us", href: "/about" }, { label: "Making a difference" }]}
+        crumbs={[{ label: "Home", href: "/" }, { label: "About us", href: "/about/our-story" }, { label: "Making a difference" }]}
         eyebrow={MAKING_A_DIFFERENCE.eyebrow}
         title={MAKING_A_DIFFERENCE.title}
         subtitle={MAKING_A_DIFFERENCE.lede}
