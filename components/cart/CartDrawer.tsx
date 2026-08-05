@@ -15,7 +15,7 @@
  *   - Full motion → framer-motion AnimatePresence + spring slide from right
  *
  * Checkout:
- *   - Stubbed button — shows an inline note; does NOT simulate payment.
+ *   - Real Shopify hosted checkout via CheckoutButton → /api/checkout.
  *
  * Never blue. Warm palette only.
  */
@@ -25,6 +25,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence, type Variants } from "framer-motion";
 import { useCart } from "./CartProvider";
+import { CheckoutButton } from "./CheckoutButton";
 import { PICKUP } from "@/lib/content/pickup";
 import { usePrefersReducedMotion } from "@/lib/motion/use-reduced-motion";
 import { WARM, DUR } from "@/lib/motion/easings";
@@ -262,8 +263,8 @@ export function CartDrawer() {
                   </span>
                 </div>
 
-                {/* Checkout — STUBBED, no payment */}
-                <CheckoutStub />
+                {/* Checkout — real Shopify hosted checkout */}
+                <CheckoutButton />
 
                 {/* Secondary actions */}
                 <div className="flex items-center justify-between text-sm">
@@ -287,33 +288,6 @@ export function CartDrawer() {
         </>
       )}
     </AnimatePresence>
-  );
-}
-
-// ── CheckoutStub ──────────────────────────────────────────────────────────────
-// Clearly labeled stub — does NOT simulate payment.
-
-function CheckoutStub() {
-  return (
-    <div className="space-y-2">
-      <Button
-        size="lg"
-        variant="default"
-        className="w-full"
-        onClick={() => {
-          // Stubbed — Shopify hosted checkout will replace this
-          alert(
-            "Secure checkout arrives when Shopify is connected.\nThis is a design preview."
-          );
-        }}
-        aria-label="Proceed to checkout (not yet available)"
-      >
-        Checkout
-      </Button>
-      <p className="text-center text-[11px] text-espresso/50 font-body">
-        Secure checkout arrives with Shopify — coming soon.
-      </p>
-    </div>
   );
 }
 
