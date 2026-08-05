@@ -21,7 +21,7 @@ import { MotionAccordion } from "@/components/pdp/MotionAccordion";
 import type { AccordionItem } from "@/components/pdp/MotionAccordion";
 import { RelatedProducts } from "@/components/pdp/RelatedProducts";
 
-const SITE_ORIGIN = "https://asn-shea.netlify.app";
+import { SITE_URL as SITE_ORIGIN } from "@/lib/seo/site";
 
 // ── Static generation ────────────────────────────────────────────────────────
 
