@@ -37,11 +37,17 @@ free-shipping-over-a-threshold copy reappears.
 
 ## Live rates (verified 2026-08-14)
 
-**Domestic — Canada**
-| Method | Rate | Conditions |
+**Domestic — Canada** — Canada Post **carrier-calculated (live rates)**, with
+Regular Parcel, Expedited Parcel, Xpresspost and Priority all active. The old
+flat $12 Standard / $20 Express rates were **removed** — leaving them alongside
+live rates would have let every shopper pick the $12 option and undercut the
+real cost. Because rates are live, **there is no fixed domestic price the site
+may quote**; `test/shipping.test.ts` fails if any copy tries.
+
+| Method | Rate | Weight band |
 |---|---|---|
-| Standard | $12.00 CAD | none (flat, all weights) |
-| Express | $20.00 CAD | none (flat, all weights) |
+| Canada Post (4 services) | live | up to 30 kg (Canada Post's limit) |
+| Freight (over 30 kg) | $140.00 CAD | 30.0001 – 500 kg |
 
 **Local pickup** — free, configured on the Barrie location. Fridays at
 220 Bayview Dr. Unit #18; 24-hour ready time; call ahead.
@@ -53,9 +59,16 @@ free-shipping-over-a-threshold copy reappears.
 | Standard International | $19.90 | 0.5001 – 1.5 kg |
 | Standard International | $29.90 | 1.5001 – 30 kg |
 | Express International | $34.90 | 0 – 1.5 kg |
+| Freight (over 30 kg) | $199.00 CAD | 30.0001 – 500 kg |
 
 **International** — Canada Post carrier-calculated (live rates), select
 countries.
+
+The two **Freight (over 30 kg)** rates exist so heavy wholesale orders can
+always complete checkout — previously anything above 30 kg (e.g. two 50 lb
+pails = 45.4 kg) returned no rate at all and dead-ended the shopper. **The $140
+and $199 prices are estimates and should be confirmed against a real freight
+quote.**
 
 ---
 
@@ -119,11 +132,14 @@ tax-exclusive, so the only remaining variable is the registration itself.
 
 ## Known gaps not yet addressed
 
-- **Domestic rates are flat, not weight-banded.** A 22.68 kg pail ships anywhere
-  in Canada for $12 Standard. Weight tiers are approved in principle but the
-  exact tier prices are still awaiting sign-off.
-- **No domestic or US rate above 30 kg.** Two 50 lb pails (45 kg) to the US
-  returns no rate and dead-ends checkout. Wholesale freight is quoted per order
-  today, but a catch-all top tier would stop the dead-end.
+- **The two freight prices ($140 domestic / $199 US) are estimates.** Confirm
+  them against a real freight quote and update both Shopify and this file.
+- **Live rates depend on the Canada Post connection.** If Shopify can't reach
+  Canada Post at checkout, domestic shoppers under 30 kg see no rate, because
+  the flat fallback was deliberately removed. If that turns out to be flaky in
+  practice, add a flat backstop priced *above* typical live rates so it only
+  wins when nothing else is returned.
 - **Express International only covers 0–1.5 kg**, so heavier US orders see
   Standard only. Intentional or not, it's worth a decision.
+- **US cross-border rates are still fixed weight bands**, not live Canada Post
+  rates like Canada and International. Worth aligning at some point.

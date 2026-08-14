@@ -62,18 +62,31 @@ describe("the $75 free-shipping promo is gone", () => {
 });
 
 describe("shipping copy matches the live Shopify rates", () => {
-  it("the PDP shipping panel quotes the real domestic rates", () => {
+  // Domestic is Canada Post carrier-calculated, so there is NO fixed domestic
+  // price to quote. Copy must describe live rates, never a number the store
+  // can't guarantee.
+  const QUOTES_A_DOMESTIC_PRICE = /\$\s*\d+(\.\d+)?\s*(CAD)?\s*(standard|shipping|flat)/i;
+
+  it("the PDP shipping panel describes live rates, not a fixed price", () => {
     const pdp = read("app/products/[handle]/page.tsx");
-    expect(pdp).toContain("$12");
-    expect(pdp).toContain("$20");
-    // The old, invented rate must not come back.
+    expect(pdp).toMatch(/Canada Post/i);
+    expect(pdp).toMatch(/calculated at checkout/i);
+    expect(pdp).not.toMatch(QUOTES_A_DOMESTIC_PRICE);
+    // Previously-invented / now-stale rates must not come back.
     expect(pdp).not.toContain("8.99");
+    expect(pdp).not.toContain("$12");
+    expect(pdp).not.toContain("$20");
   });
 
-  it("the policies page states rates without a free-shipping threshold", () => {
+  it("the policies page describes live rates without a free-shipping threshold", () => {
     const policies = read("app/policies/page.tsx");
-    expect(policies).toMatch(/\$12/);
+    expect(policies).toMatch(/Canada Post/i);
     expect(policies).not.toMatch(/free shipping/i);
+    expect(policies).not.toMatch(QUOTES_A_DOMESTIC_PRICE);
+  });
+
+  it("still promises free local pickup, which is a real configured rate", () => {
+    expect(read("app/policies/page.tsx")).toMatch(/pickup/i);
   });
 });
 

@@ -35,7 +35,7 @@ Shea Allnaturals · 220 Bayview Dr. Unit #18, Barrie, ON L4N 4Y8, Canada
 
 ## Shipping policy
 
-**Canada** — Standard shipping starts at **$12 CAD** and express at **$20 CAD**; heavier orders are quoted by weight, and your exact rate is shown at checkout before you pay. Orders ship from our studio in Barrie, Ontario and are typically dispatched within **1–3 business days**; you'll receive tracking by email. Standard delivery usually takes 2–7 business days depending on your region.
+**Canada** — We ship Canada-wide with **Canada Post**, and you choose the service at checkout: Regular Parcel, Expedited Parcel, Xpresspost or Priority. Rates are calculated live from the parcel's weight and your address, so you always see the real cost before you pay. Orders ship from our studio in Barrie, Ontario and are typically dispatched within **1–3 business days**; you'll receive tracking by email. Standard delivery usually takes 2–7 business days depending on your region.
 
 **Local pickup** — Free. Choose **Pickup** at checkout and collect at 220 Bayview Dr. Unit #18, Barrie, ON on Fridays; please call 705-719-2750 ahead to confirm your order is ready.
 
@@ -43,7 +43,7 @@ Shea Allnaturals · 220 Bayview Dr. Unit #18, Barrie, ON L4N 4Y8, Canada
 
 **International** — We ship to select countries via Canada Post; rates and timelines are shown at checkout. Duties and import taxes are the recipient's responsibility.
 
-**Bulk & wholesale** — Freight arrangements for pails and drums are made per order; contact allnaturals@allnaturalscosmetics.ca.
+**Bulk & wholesale** — Orders over **30 kg** ship by freight; the freight rate appears at checkout and we'll confirm the details with you after your order. For pallet quantities or a custom arrangement, contact allnaturals@allnaturalscosmetics.ca.
 
 Questions? allnaturals@allnaturalscosmetics.ca · 705-719-2750 · Tue–Fri, 10am–4pm ET.
 
