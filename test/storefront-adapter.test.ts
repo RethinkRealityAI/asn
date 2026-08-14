@@ -25,6 +25,8 @@ const SF_PRODUCT = {
           price: { amount: "12.50", currencyCode: "CAD" },
           compareAtPrice: { amount: "15.00", currencyCode: "CAD" },
           selectedOptions: [{ name: "Size", value: "10ml" }],
+          weight: 250,
+          weightUnit: "GRAMS",
         },
       },
       {
@@ -36,6 +38,8 @@ const SF_PRODUCT = {
           price: { amount: "24.00", currencyCode: "CAD" },
           compareAtPrice: null,
           selectedOptions: [{ name: "Size", value: "30ml" }],
+          weight: 25,
+          weightUnit: "POUNDS",
         },
       },
     ],
@@ -125,6 +129,15 @@ describe("StorefrontClient.getProduct — response mapping", () => {
     expect(p!.variants[1].sku).toBeNull();
     expect(p!.variants[1].compareAtPrice).toBeNull();
     expect(p!.variants[0].selectedOptions).toEqual([{ name: "Size", value: "10ml" }]);
+  });
+
+  it("normalises variant weight to grams whatever unit Shopify reports", async () => {
+    const fetchImpl = stubFetch({ data: { product: SF_PRODUCT } });
+    const client = createStorefrontClient({ ...CONFIG, fetch: fetchImpl });
+
+    const p = await client.getProduct("peppermint-essential-oil");
+    expect(p!.variants[0].weightGrams).toBe(250); // already grams
+    expect(p!.variants[1].weightGrams).toBe(11340); // 25 lb → 11.34 kg
   });
 
   it("flattens image edges and falls back to the product title for missing altText", async () => {

@@ -78,7 +78,7 @@ export function Header() {
         {/* ── Promo bar ──────────────────────────────────────────────── */}
         <div className="relative z-10 bg-espresso text-cream">
           <p className="mx-auto max-w-7xl px-4 py-2 text-center text-[10px] font-semibold uppercase tracking-[0.18em] truncate sm:tracking-[0.22em]">
-            Free Canada-wide shipping over $75
+            Handcrafted in Barrie, Ontario
             <span className="hidden sm:inline"> &nbsp;·&nbsp; Cold-pressed &amp; cruelty-free &nbsp;·&nbsp; Made in Canada 🍁</span>
           </p>
         </div>

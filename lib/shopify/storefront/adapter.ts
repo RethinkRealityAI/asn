@@ -25,6 +25,8 @@ type SFVariant = {
   price: SFMoney;
   compareAtPrice: SFMoney | null;
   selectedOptions: { name: string; value: string }[];
+  weight: number | null;
+  weightUnit: "GRAMS" | "KILOGRAMS" | "OUNCES" | "POUNDS" | null;
 };
 type SFImage = { url: string; altText: string | null; width: number | null; height: number | null };
 type SFProduct = {
@@ -47,6 +49,21 @@ type SFCollection = {
 };
 
 // ── Mapping: Storefront → domain types ──────────────────────────────────────
+
+/** Storefront reports weight in the variant's own unit; we normalise to grams. */
+const GRAMS_PER_UNIT: Record<NonNullable<SFVariant["weightUnit"]>, number> = {
+  GRAMS: 1,
+  KILOGRAMS: 1000,
+  OUNCES: 28.349523125,
+  POUNDS: 453.59237,
+};
+
+function toGrams(v: SFVariant): number | null {
+  if (v.weight == null || v.weight <= 0) return null;
+  const factor = GRAMS_PER_UNIT[v.weightUnit ?? "GRAMS"] ?? 1;
+  return Math.round(v.weight * factor);
+}
+
 function mapVariant(v: SFVariant): Variant {
   return {
     id: v.id,
@@ -56,6 +73,7 @@ function mapVariant(v: SFVariant): Variant {
     compareAtPrice: v.compareAtPrice ? money(v.compareAtPrice) : null,
     available: v.availableForSale,
     selectedOptions: v.selectedOptions,
+    weightGrams: toGrams(v),
   };
 }
 
@@ -105,6 +123,8 @@ const PRODUCT_FRAGMENT = /* GraphQL */ `
         price { amount currencyCode }
         compareAtPrice { amount currencyCode }
         selectedOptions { name value }
+        weight
+        weightUnit
       } }
     }
     images(first: 20) { edges { node { url altText width height } } }

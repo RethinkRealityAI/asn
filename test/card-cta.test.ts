@@ -22,6 +22,7 @@ function make(variants: { id: string; title: string; amount: number }[], optionN
       compareAtPrice: null,
       available: true,
       selectedOptions: [{ name: optionName, value: v.title }],
+      weightGrams: 250,
     })),
     images: [],
     priceRange: {

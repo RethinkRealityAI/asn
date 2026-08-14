@@ -30,23 +30,12 @@ function fmt(amount: number) {
   return cadFmt.format(amount);
 }
 
-// ── Constants ─────────────────────────────────────────────────────────────────
-
-/** Subtotal threshold for free shipping (CAD) */
-const FREE_SHIPPING_THRESHOLD = 75;
-
-/** Ontario HST rate */
-const HST_RATE = 0.13;
-
 // ── CartPageClient ────────────────────────────────────────────────────────────
 
 export function CartPageClient() {
   const { items, subtotal, update, remove } = useCart();
 
   const subtotalAmount = subtotal.amount;
-  const shippingFree = subtotalAmount >= FREE_SHIPPING_THRESHOLD;
-  const taxEst = subtotalAmount * HST_RATE;
-  const totalEst = subtotalAmount + taxEst;
 
   if (items.length === 0) {
     return <EmptyCart />;
@@ -142,29 +131,15 @@ export function CartPageClient() {
                 </span>
               </div>
 
-              {/* Shipping — the default fulfilment method */}
+              {/* Shipping — the default fulfilment method. The real rate
+                  depends on destination and parcel weight, so Shopify quotes
+                  it at checkout rather than us guessing here. */}
               <div className="flex items-center justify-between">
                 <span className="text-espresso/70 font-body">Shipping</span>
-                <span
-                  className={cn(
-                    "font-semibold tabular-nums",
-                    shippingFree ? "text-green" : "text-espresso",
-                  )}
-                >
-                  {shippingFree ? "Free" : "Calculated at checkout"}
+                <span className="font-semibold tabular-nums text-espresso">
+                  Calculated at checkout
                 </span>
               </div>
-
-              {/* Free shipping nudge */}
-              {!shippingFree && (
-                <p className="text-xs text-espresso/50 font-body">
-                  Add{" "}
-                  <span className="font-medium text-espresso/70">
-                    {fmt(FREE_SHIPPING_THRESHOLD - subtotalAmount)}
-                  </span>{" "}
-                  more to unlock free Canada-wide shipping.
-                </p>
-              )}
 
               {/* Local pickup — an alternative to shipping */}
               <div className="rounded-xl border border-green/20 bg-green/5 p-3 text-xs leading-relaxed text-espresso/70 font-body">
@@ -182,13 +157,12 @@ export function CartPageClient() {
                 .
               </div>
 
-              {/* Tax (estimated) */}
+              {/* Tax — GST/HST/PST varies by province, so Shopify applies
+                  the shopper's actual rate at checkout. */}
               <div className="flex items-center justify-between">
-                <span className="text-espresso/70 font-body">
-                  Tax (HST, estimated)
-                </span>
+                <span className="text-espresso/70 font-body">Tax (GST/HST)</span>
                 <span className="font-semibold text-espresso tabular-nums">
-                  {fmt(taxEst)}
+                  Calculated at checkout
                 </span>
               </div>
 
@@ -198,11 +172,11 @@ export function CartPageClient() {
                   <span className="font-display font-semibold text-espresso">
                     Total
                     <span className="ml-1 text-xs font-body font-normal text-espresso/40">
-                      estimated
+                      before shipping &amp; tax
                     </span>
                   </span>
                   <span className="font-display text-xl font-bold text-espresso tabular-nums">
-                    {fmt(totalEst)}
+                    {fmt(subtotalAmount)}
                   </span>
                 </div>
               </div>

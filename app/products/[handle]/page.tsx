@@ -107,7 +107,7 @@ function buildAccordionItems(descriptionHtml: string): AccordionItem[] {
       id: "shipping",
       title: "Shipping & returns",
       content:
-        "Free Canada-wide shipping over $75. Ships from Barrie, Ontario within 2–4 business days. Standard shipping $8.99. 30-day returns on unopened, unused items in original packaging.",
+        "Ships from Barrie, Ontario within 2–4 business days. Canada: standard shipping from $12, express from $20 — the exact rate depends on parcel weight and destination and is calculated at checkout. Local pickup at our Barrie studio is free. 30-day returns on unopened, unused items in original packaging.",
     },
   ];
 }

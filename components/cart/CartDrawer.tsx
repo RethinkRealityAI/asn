@@ -245,7 +245,7 @@ export function CartDrawer() {
 
                 {/* Shipping is the default; local pickup offered as an alternative */}
                 <p className="text-xs text-espresso/50">
-                  Shipping calculated at checkout · free Canada-wide over $75.
+                  Shipping and taxes calculated at checkout.
                 </p>
                 <div className="flex items-start gap-2 rounded-xl border border-green/20 bg-green/5 p-3 text-xs leading-relaxed text-espresso/70">
                   <span aria-hidden className="mt-0.5 text-sm">📍</span>

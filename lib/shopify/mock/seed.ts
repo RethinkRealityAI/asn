@@ -77,6 +77,12 @@ export async function loadCatalog(csvPath: string): Promise<Product[]> {
       const rawCompare = row["Variant Compare At Price"]?.trim();
       const compareAtPrice = rawCompare ? cad(parseFloat(rawCompare)) : null;
 
+      // "Variant Grams" is always grams in a Shopify CSV, regardless of the
+      // display unit in "Variant Weight Unit".
+      const rawGrams = row["Variant Grams"]?.trim();
+      const grams = rawGrams ? Math.round(parseFloat(rawGrams)) : NaN;
+      const weightGrams = Number.isFinite(grams) && grams > 0 ? grams : null;
+
       // Build selectedOptions and track distinct values
       const selectedOptions: { name: string; value: string }[] = [];
       const valueParts: string[] = [];
@@ -102,6 +108,7 @@ export async function loadCatalog(csvPath: string): Promise<Product[]> {
         compareAtPrice,
         available: true,
         selectedOptions,
+        weightGrams,
       };
     });
 
