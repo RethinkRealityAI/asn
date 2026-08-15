@@ -13,6 +13,7 @@ const makeVariant = (id: string, amount: number): Variant => ({
   compareAtPrice: null,
   available: true,
   selectedOptions: [],
+  weightGrams: 250,
 });
 
 const makeProduct = (handle: string, variants: Variant[]): Product => ({

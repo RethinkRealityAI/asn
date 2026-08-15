@@ -6,7 +6,7 @@ import { AccentCorners } from "@/components/motion/AccentCorners";
 export const metadata: Metadata = {
   title: "Policies",
   description:
-    "Shipping, returns, privacy and terms for Shea Allnaturals — free Canada-wide shipping over $75, handcrafted in Barrie, Ontario.",
+    "Shipping, returns, privacy and terms for Shea Allnaturals — Canada Post rates calculated at checkout, free local pickup in Barrie, Ontario.",
 };
 
 const SECTIONS = [
@@ -14,7 +14,9 @@ const SECTIONS = [
     id: "shipping",
     title: "Shipping & Returns",
     body: [
-      "We offer free shipping Canada-wide on orders over $75 CAD. Orders ship from our studio in Barrie, Ontario, and are typically dispatched within 1–3 business days; you'll receive tracking by email.",
+      "Orders ship from our studio in Barrie, Ontario, and are typically dispatched within 1–3 business days; you'll receive tracking by email. We ship Canada-wide with Canada Post, and you choose the service at checkout — Regular, Expedited, Xpresspost or Priority. Rates are calculated live from the parcel's weight and your address, so you always see the real cost before you pay. Cross-border and international parcels are quoted the same way; heavy bulk orders over 30 kg ship by freight.",
+      "Prefer not to ship? Local pickup at our Barrie studio is free — choose it at checkout, then call ahead to confirm your order is ready.",
+      "All prices are in Canadian dollars and exclude tax. GST/HST (and PST where it applies) is added at checkout based on your province, and applies to the shipping charge as well.",
       "If something isn't right, contact us within 30 days of delivery. Unopened products in original condition are eligible for a refund or exchange. For hygiene reasons, opened products can't be returned unless they arrived damaged or faulty — in which case we'll make it right.",
     ],
   },

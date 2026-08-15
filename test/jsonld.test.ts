@@ -20,6 +20,7 @@ const makeProduct = (overrides: Partial<Product> = {}): Product => ({
       compareAtPrice: { amount: 18.99, currencyCode: "CAD" },
       available: true,
       selectedOptions: [{ name: "Size", value: "250ml" }],
+      weightGrams: 250,
     },
     {
       id: "v2",
@@ -29,6 +30,7 @@ const makeProduct = (overrides: Partial<Product> = {}): Product => ({
       compareAtPrice: null,
       available: true,
       selectedOptions: [{ name: "Size", value: "500ml" }],
+      weightGrams: 250,
     },
   ],
   images: [
@@ -104,6 +106,7 @@ describe("productJsonLd", () => {
           compareAtPrice: null,
           available: true,
           selectedOptions: [],
+          weightGrams: 250,
         },
       ],
       priceRange: {

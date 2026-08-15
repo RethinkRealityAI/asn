@@ -1,0 +1,66 @@
+name: CI
+
+# The repo had no CI: 228 tests existed but nothing ran them on a PR, which is
+# how the committed catalog seed drifted three products behind its source CSV
+# without anyone noticing. Run the same checks the project documents.
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      # npm only — pnpm is broken in this project's environment (see AGENTS.md).
+      - name: Install
+        run: npm ci
+
+      - name: Typecheck
+        run: npx tsc --noEmit
+
+      - name: Test
+        run: npm test
+
+      # next build no longer lints in Next 16, so ESLint runs on its own.
+      # Reported but non-blocking: the tree carries pre-existing
+      # react-hooks/set-state-in-effect violations that are style/perf debt.
+      - name: Lint (report only)
+        run: npx eslint app components lib scripts test
+        continue-on-error: true
+
+      # rules-of-hooks is different in kind — a conditionally-called hook
+      # corrupts React's hook order and crashes at runtime. Gate on it even
+      # while the rest of the lint debt is tolerated.
+      - name: Lint — no Rules of Hooks violations
+        run: |
+          npx eslint app components lib scripts test \
+            --format json --output-file eslint-report.json || true
+          node -e '
+            const report = require("./eslint-report.json");
+            const violations = report.flatMap((f) =>
+              f.messages
+                .filter((m) => m.ruleId === "react-hooks/rules-of-hooks")
+                .map((m) => `${f.filePath}:${m.line}:${m.column}  ${m.message}`)
+            );
+            if (violations.length) {
+              console.error("Rules of Hooks violations:\n" + violations.join("\n"));
+              process.exit(1);
+            }
+            console.log("No Rules of Hooks violations.");
+          '
+
+      - name: Build
+        run: npm run build

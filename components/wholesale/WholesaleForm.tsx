@@ -158,7 +158,7 @@ export function WholesaleForm() {
         </div>
         <div className="flex flex-col gap-1.5">
           <label htmlFor="wf-phone" className={labelCls}>Phone</label>
-          <input id="wf-phone" name="phone" type="tel" placeholder="(optional)" className={field} />
+          <input id="wf-phone" name="phone" type="tel" required placeholder="(705) 555-0123" className={field} />
         </div>
         <div className="flex flex-col gap-1.5">
           <label htmlFor="wf-location" className={labelCls}>City / Province</label>

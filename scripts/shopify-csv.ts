@@ -15,6 +15,7 @@ type Money = { amount: number; currencyCode: string };
 type Variant = {
   title: string; sku: string | null; price: Money; compareAtPrice: Money | null;
   selectedOptions: { name: string; value: string }[];
+  weightGrams: number | null;
 };
 type CatProduct = {
   handle: string; title: string; descriptionHtml: string; vendor: string;
@@ -25,7 +26,8 @@ type CatProduct = {
 const COLUMNS = [
   "Handle", "Title", "Body (HTML)", "Vendor", "Type", "Tags", "Published",
   "Option1 Name", "Option1 Value", "Option2 Name", "Option2 Value", "Option3 Name", "Option3 Value",
-  "Variant SKU", "Variant Inventory Tracker", "Variant Inventory Policy", "Variant Fulfillment Service",
+  "Variant SKU", "Variant Grams", "Variant Weight Unit",
+  "Variant Inventory Tracker", "Variant Inventory Policy", "Variant Fulfillment Service",
   "Variant Price", "Variant Compare At Price", "Variant Requires Shipping", "Variant Taxable",
   "Image Src", "Image Position", "Image Alt Text", "Status",
 ];
@@ -75,6 +77,10 @@ for (const p of catalog) {
       cell["Option2 Value"] = opts[1]?.value || "";
       cell["Option3 Value"] = opts[2]?.value || "";
       cell["Variant SKU"] = v.sku || "";
+      // Weight drives the banded delivery rates — without it Shopify quotes
+      // the lightest tier for a 22 kg pail.
+      cell["Variant Grams"] = v.weightGrams != null ? String(v.weightGrams) : "";
+      cell["Variant Weight Unit"] = v.weightGrams != null ? "g" : "";
       cell["Variant Inventory Tracker"] = ""; // untracked → always available
       cell["Variant Inventory Policy"] = "deny";
       cell["Variant Fulfillment Service"] = "manual";

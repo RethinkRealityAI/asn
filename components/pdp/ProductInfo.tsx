@@ -76,7 +76,7 @@ const TRUST_ITEMS: { icon: React.ReactNode; label: string }[] = [
         <circle cx="15" cy="17" r="1.5" />
       </svg>
     ),
-    label: "Free shipping over $75",
+    label: "Ships Canada-wide",
   },
   {
     // Leaf icon — green botanical/cruelty-free credential

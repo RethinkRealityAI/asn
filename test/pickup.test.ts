@@ -35,13 +35,8 @@ describe("cart summary offers BOTH shipping and pickup", () => {
   );
 
   it("keeps shipping as the default fulfilment row", () => {
-    expect(cartPage).toContain("FREE_SHIPPING_THRESHOLD");
     expect(cartPage).toMatch(/>Shipping</);
     expect(cartPage).toContain("Calculated at checkout");
-  });
-
-  it("still nudges toward free Canada-wide shipping", () => {
-    expect(cartPage).toMatch(/free Canada-wide shipping/i);
   });
 
   it("offers pickup as an additional option, not a replacement", () => {

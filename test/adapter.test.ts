@@ -15,7 +15,9 @@ describe("mockClient", () => {
   });
   it("returns all products when no limit", async () => {
     const list = await mockClient.getProducts();
-    expect(list).toHaveLength(110);
+    // Matches the 113 products the seed parses from the source CSV
+    // (test/seed.test.ts) — the mock catalog must not drift from it.
+    expect(list).toHaveLength(113);
   });
   it("filters products by collection handle", async () => {
     const cols = await mockClient.getCollections();
