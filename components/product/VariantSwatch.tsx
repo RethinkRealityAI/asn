@@ -25,13 +25,14 @@ export function VariantSwatch({
   onChange,
   className,
 }: VariantSwatchProps) {
-  if (!values || values.length === 0) return null;
+  // Hooks must run before any early return, or an instance that first renders
+  // with values and later without one would call fewer hooks on the second
+  // render and crash with "Rendered fewer hooks than expected".
+  const containerRef = useRef<HTMLDivElement>(null);
 
   // Filter out "Default Title" — single-variant products shouldn't show a swatch
-  const displayValues = values.filter((v) => v !== "Default Title");
+  const displayValues = (values ?? []).filter((v) => v !== "Default Title");
   if (displayValues.length === 0) return null;
-
-  const containerRef = useRef<HTMLDivElement>(null);
 
   function handleKeyDown(e: KeyboardEvent<HTMLButtonElement>, idx: number) {
     const pills = containerRef.current?.querySelectorAll<HTMLButtonElement>(
