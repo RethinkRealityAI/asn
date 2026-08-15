@@ -1,0 +1,45 @@
+name: CI
+
+# The repo had no CI: 228 tests existed but nothing ran them on a PR, which is
+# how the committed catalog seed drifted three products behind its source CSV
+# without anyone noticing. Run the same checks the project documents.
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      # npm only — pnpm is broken in this project's environment (see AGENTS.md).
+      - name: Install
+        run: npm ci
+
+      - name: Typecheck
+        run: npx tsc --noEmit
+
+      - name: Test
+        run: npm test
+
+      # next build no longer lints in Next 16, so ESLint runs on its own.
+      # Non-blocking for now: the tree carries pre-existing violations in
+      # motion/cursor hooks that are out of scope to fix here.
+      - name: Lint
+        run: npx eslint app components lib scripts test
+        continue-on-error: true
+
+      - name: Build
+        run: npm run build

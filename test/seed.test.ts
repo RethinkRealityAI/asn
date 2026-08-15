@@ -1,7 +1,10 @@
 import { describe, it, expect } from "vitest";
+import fs from "node:fs";
 import { loadCatalog } from "@/lib/shopify/mock/seed";
+import type { Product } from "@/lib/shopify/types";
 
 const CSV = "data/source/all_naturals_shopify_products.csv";
+const COMMITTED = "lib/shopify/mock/catalog.json";
 
 describe("loadCatalog", () => {
   it("loads 113 products", async () => {
@@ -28,5 +31,24 @@ describe("loadCatalog", () => {
       expect(typeof p.priceRange.min.amount).toBe("number");
       expect(p.priceRange.max.amount).toBeGreaterThanOrEqual(p.priceRange.min.amount);
     }
+  });
+});
+
+/**
+ * The committed catalog.json is a build artifact of the source CSV, but it's
+ * checked in and edited by hand often enough to drift — it had silently fallen
+ * three products behind the CSV (110 vs 113), which nothing caught because the
+ * count assertions were pinned to the stale file. Compare the whole thing so
+ * any drift fails loudly with `npm run seed` as the fix.
+ */
+describe("the committed catalog seed matches the source CSV", () => {
+  it("is byte-identical to a fresh parse", async () => {
+    const fresh = await loadCatalog(CSV);
+    const committed = JSON.parse(fs.readFileSync(COMMITTED, "utf8")) as Product[];
+
+    // Compare handles first — a mismatch here gives a readable diff rather than
+    // dumping two 113-product objects at the reader.
+    expect(committed.map((p) => p.handle)).toEqual(fresh.map((p) => p.handle));
+    expect(committed).toEqual(fresh);
   });
 });
