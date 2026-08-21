@@ -2,6 +2,7 @@ import { describe, it, expect } from "vitest";
 import fs from "fs";
 import path from "path";
 import { parseRedirects, resolveRedirect } from "@/lib/redirects/manifest";
+import { buildRedirectMap } from "@/lib/redirects/build";
 import { REDIRECTS } from "@/lib/redirects/redirects.generated";
 
 const csv = fs.readFileSync(
@@ -9,6 +10,8 @@ const csv = fs.readFileSync(
   "utf-8"
 );
 const map = parseRedirects(csv);
+// The full pipeline: manifest + site changes, chains flattened.
+const built = buildRedirectMap(csv);
 
 describe("parseRedirects — spot-check 5 known old URLs", () => {
   it("maps a product URL: /product/<slug>/ → /products/<slug>", () => {
@@ -84,8 +87,8 @@ describe("public/_redirects (Netlify CDN redirects)", () => {
   const lines = redirectsFile.split("\n").filter((l) => l.trim() && !l.startsWith("#"));
 
   it("contains every mapped redirect as a 301", () => {
-    expect(lines.length).toBe(Object.keys(map).length);
-    for (const [from, to] of Object.entries(map)) {
+    expect(lines.length).toBe(Object.keys(built).length);
+    for (const [from, to] of Object.entries(built)) {
       expect(redirectsFile).toContain(`${from} ${to} 301`);
     }
   });
@@ -98,13 +101,43 @@ describe("public/_redirects (Netlify CDN redirects)", () => {
 });
 
 describe("generated redirect map (build-time source)", () => {
-  it("is in sync with the parsed manifest — run `npm run redirects` if this fails", () => {
-    expect(REDIRECTS).toEqual(map);
+  it("is in sync with the build pipeline — run `npm run redirects` if this fails", () => {
+    expect(REDIRECTS).toEqual(built);
   });
 
   it("resolves the same targets the proxy will use", () => {
     expect(resolveRedirect("/product/peppermint-essential-oil/", REDIRECTS)).toBe(
       "/products/peppermint-essential-oil"
+    );
+  });
+});
+
+// ── Redirect chains + site-change redirects ─────────────────────────────────
+
+describe("redirect map has no chains", () => {
+  it("never redirects to a path that is itself a redirect key", () => {
+    const chained = Object.entries(REDIRECTS).filter(
+      ([, to]) => REDIRECTS[to] !== undefined
+    );
+    // A chained 301 costs an extra round-trip and is discounted by search
+    // engines. scripts/build-redirects.ts flattens these at generation time.
+    expect(chained).toEqual([]);
+  });
+
+  it("never redirects a path to itself", () => {
+    const selfRefs = Object.entries(REDIRECTS).filter(([from, to]) => from === to);
+    expect(selfRefs).toEqual([]);
+  });
+});
+
+describe("site-change redirects are present", () => {
+  it("routes the retired and renamed URLs to live destinations", () => {
+    expect(REDIRECTS["/collections/men-s-care"]).toBe("/shop");
+    expect(REDIRECTS["/collections/hair-oils-lotions-sprays"]).toBe(
+      "/collections/hair-oils-balm"
+    );
+    expect(REDIRECTS["/products/combo-12-body-oils"]).toBe(
+      "/products/combo-1-simply-loving-oils"
     );
   });
 });

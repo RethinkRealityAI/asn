@@ -19,6 +19,8 @@
 /application-to-distribute-products /wholesale/distributor-application 301
 /category/about /blog/category/about 301
 /category/an-blog /blog/category/an-blog 301
+/collections/hair-oils-lotions-sprays /collections/hair-oils-balm 301
+/collections/men-s-care /shop 301
 /contact_anc /contact 301
 /home / 301
 /ingredients-inci /ingredients 301
@@ -37,7 +39,7 @@
 /product-category/face-care-bases /collections/face-care-bases 301
 /product-category/foot /collections/foot 301
 /product-category/hair-care /collections/hair-care 301
-/product-category/hair-oils-lotions-sprays /collections/hair-oils-lotions-sprays 301
+/product-category/hair-oils-lotions-sprays /collections/hair-oils-balm 301
 /product-category/hair-twist-butters-and-scalp-foods-bases /collections/hair-twist-butters-and-scalp-foods-bases 301
 /product-category/lip-care /collections/lip-care 301
 /product-category/melt-pour-soap /collections/melt-pour-soap 301
@@ -86,7 +88,7 @@
 /product/combo-1-simply-loving-oils /products/combo-1-simply-loving-oils 301
 /product/combo-10-healthy-nails-cuticles /products/combo-10-healthy-nails-cuticles 301
 /product/combo-11-face-body-love /products/combo-11-face-body-love 301
-/product/combo-12-body-oils /products/combo-12-body-oils 301
+/product/combo-12-body-oils /products/combo-1-simply-loving-oils 301
 /product/combo-12-tresses-so-soft /products/combo-12-tresses-so-soft 301
 /product/combo-2-baby-care /products/combo-2-baby-care 301
 /product/combo-3-argan-hair-body /products/combo-3-argan-hair-body 301
@@ -164,5 +166,6 @@
 /product/whole-shea-butter /products/whole-shea-butter 301
 /product/willow-bark-acne-face-cream /products/willow-bark-acne-face-cream 301
 /product/ylang-ylang-essential-oil /products/ylang-ylang-essential-oil 301
+/products/combo-12-body-oils /products/combo-1-simply-loving-oils 301
 /shea-butter-making-process /about/shea-butter-process 301
 /shop-2022 /shop 301
