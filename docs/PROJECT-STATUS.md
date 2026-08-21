@@ -45,6 +45,56 @@ This is the living "what's done / what's next" record. For architecture, convent
 
 ---
 
+## ⚠️ Findings from the 2026-08 client review pass
+
+**Contact form — 2 unread submissions.** Both `/contact` and `/wholesale` post to
+**Netlify Forms** on the `asn-shea` project (not mailto — the
+`allnaturals@allnaturalscosmetics.ca` address in `ContactForm.tsx` is only the
+fallback link shown in the UI). The `contact` form has **2 submissions, most
+recently 2026-08-13**; `wholesale` has none. There is no sign a notification is
+configured, so those enquiries are sitting unread in the Netlify dashboard.
+**Action:** read them (Netlify → Forms → contact) and set up an email
+notification under Forms → Settings → Form notifications.
+
+**Is the old WordPress site still live on the apex?** Netlify reports the
+project's primary domain as `https://www.allnaturalscosmetics.com`, but web
+searches still surface `allnaturalscosmetics.com/media/`, `/about_anc/` and
+`/product/…` as live WordPress pages. Either those are stale index entries, or
+the **apex still serves the old site while www serves this one** — which would
+be duplicate content competing with the rebuild, and would also mean the
+"lost" media/About content is not lost at all. This could not be checked from
+the build environment (the domain is blocked by the egress proxy).
+**Action:** open `http://allnaturalscosmetics.com` (no www) in a browser. If
+WordPress answers, mirror it for the missing content, then point the apex at
+Netlify.
+
+**Legacy links inside product descriptions.** 29 absolute links across 21
+product descriptions still point at `allnaturalscosmetics.com/product/…`
+(26) and `allnaturalskincare.ca` (3, a different and probably dead domain).
+They resolve only because the redirect map catches `/product/…`. They should be
+rewritten as relative `/products/…` links; the `allnaturalskincare.ca` ones
+need a destination decided.
+
+**Awards.** Trimmed to the three business/community honours. The Meritorious
+Service Medal, Senate of Canada 150 Award and 100 Accomplished Black Canadian
+Women were removed: research confirmed via the Governor General's own recipient
+record that the MSM was awarded to Lanre Tunji-Ajayi for founding the **Sickle
+Cell Awareness Group of Ontario**, a separate organisation. No award to All
+Naturals Cosmetics Inc. as a company could be found anywhere. The three
+retained awards are sourced only from the client's own prior copy — ask for
+certificates and years before presenting them as independently verifiable.
+
+**Press.** No Financial Post article found; the company's own bio page cites
+**National Post** (the Financial Post is its business section) — likely the
+same item misremembered. No Globe and Mail article could be corroborated. The
+ALIVE Magazine piece is real: *"Tropical Topical"*, **bylined by Lanre
+herself** (alive.com), so frame it as a contributed article, not coverage.
+
+**Sourcing community spelling.** The community is **Apaola** (not "Apaolo" or
+"Akpala") — already correct in `lib/content/about.ts`. Fufu, which received the
+cracker/separator machine in January 2024, appears to be a **different**
+community; worth confirming with the client.
+
 ## 🔜 Next steps (priority order)
 
 1. **Homeland product floats → transparent.** The 2 product shots in the green homeland scene read as cream cards (they have baked backdrops, unlike the transparent botanical cutouts). Background-remove them so they float cleanly. _(small)_

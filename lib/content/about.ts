@@ -153,49 +153,36 @@ export interface Award {
 
 export const AWARDS = {
   eyebrow: "Awards & recognition",
-  title: "Honoured at home and nationally.",
+  title: "Recognised for building something first.",
   intro:
-    "Our founder and CEO, Lanre Tunji-Ajayi, has been recognised across Canada for business excellence, community development and philanthropy — and the brand itself broke new ground as the first Black Canadian-owned product line sold nationally in the mass market.",
+    "All Naturals Cosmetics broke new ground as the first Black Canadian-owned product line sold nationally in the mass market. The honours below were received by our founder, Lanre Tunji-Ajayi, for that work in business and community development.",
+  // The founder's national honours for sickle-cell advocacy — the Meritorious
+  // Service Medal, the Senate of Canada 150 Award and 100 Accomplished Black
+  // Canadian Women — were removed in 2026-08 at the client's request. They
+  // were awarded for founding the Sickle Cell Awareness Group of Ontario, a
+  // separate organisation, and presenting them here read as company honours.
   awards: [
-    {
-      title: "Meritorious Service Medal (MSM)",
-      detail: "Awarded by the Governor General of Canada for a remarkable contribution to the country.",
-      who: "Lanre Tunji-Ajayi",
-      image: "/awards/msm.webp",
-    },
-    {
-      title: "Senate of Canada 150 Award",
-      detail: "Recognising outstanding service and contribution to the community.",
-      who: "Lanre Tunji-Ajayi",
-      image: "/awards/senate-150.webp",
-    },
-    {
-      title: "100 Accomplished Black Canadian Women",
-      detail: "Named among Canada's 100 Accomplished Black Canadian (ABC) Women, 2018.",
-      who: "Lanre Tunji-Ajayi",
-      image: "/awards/abc-women.webp",
-    },
     {
       title: "African Canadian Achievement Award",
       detail: "For excellence in business.",
-      who: "Lanre Tunji-Ajayi",
+      who: "Lanre Tunji-Ajayi, founder",
       image: "/awards/african-canadian.webp",
     },
     {
       title: "Planet Africa Visionary Award of Excellence",
       detail: "Honouring visionary leadership and impact.",
-      who: "Lanre Tunji-Ajayi",
+      who: "Lanre Tunji-Ajayi, founder",
       image: "/awards/planet-africa.webp",
     },
     {
       title: "Community Development & Philanthropy Award",
       detail: "For sustained investment in community and giving back.",
-      who: "Lanre Tunji-Ajayi",
+      who: "Lanre Tunji-Ajayi, founder",
       image: "/awards/community.webp",
     },
   ] satisfies Award[],
   brandMilestone:
-    "First and only Black Canadian-owned product line to be sold nationally in Walmart, Shoppers Drug Mart and Canadian health-food stores.",
+    "First and only Black Canadian-owned product line to be sold nationally in Walmart, Shoppers Drug Mart, Jean Coutu, Pharmaplus and Canadian health-food stores.",
 } as const;
 
 // ── Making a difference ──────────────────────────────────────────────────────
