@@ -1,440 +1,469 @@
 {
-  "100-organic-argan-oil": [
-    "/media/100-organic-argan-oil/01.webp"
-  ],
-  "argan-oil-hair-locks-butter-2": [
-    "/media/argan-oil-hair-locks-butter-2/01.webp"
-  ],
-  "hair-style-finishing-spray": [
-    "/media/hair-style-finishing-spray/01.webp",
-    "/media/hair-style-finishing-spray/02.webp",
-    "/media/hair-style-finishing-spray/03.webp"
-  ],
-  "hair-moisturizing-lotion": [
-    "/media/hair-moisturizing-lotion/01.webp",
-    "/media/hair-moisturizing-lotion/02.webp"
-  ],
-  "argan-oil-hair-locks-butter": [
-    "/media/argan-oil-hair-locks-butter/01.webp",
-    "/media/argan-oil-hair-locks-butter/02.webp",
-    "/media/argan-oil-hair-locks-butter/03.webp",
-    "/media/argan-oil-hair-locks-butter/04.webp",
-    "/media/argan-oil-hair-locks-butter/05.webp",
-    "/media/argan-oil-hair-locks-butter/06.webp"
-  ],
-  "shea-feet-butter": [
-    "/media/shea-feet-butter/01.webp",
-    "/media/shea-feet-butter/02.webp",
-    "/media/shea-feet-butter/03.webp"
-  ],
-  "argan-oil-shampoo-25lb-size-25lb": [
-    "/media/argan-oil-shampoo-25lb-size-25lb/01.webp"
-  ],
-  "100-pure-shea-butter": [
-    "/media/100-pure-shea-butter/01.webp"
-  ],
-  "argan-oil-shampoo": [
-    "/media/argan-oil-shampoo/01.webp",
-    "/media/argan-oil-shampoo/02.webp",
-    "/media/argan-oil-shampoo/03.webp"
-  ],
-  "argan-oil-conditioner-gallon": [
-    "/media/argan-oil-conditioner-gallon/01.webp"
-  ],
-  "argan-oil-conditioner": [
-    "/media/argan-oil-conditioner/01.webp",
-    "/media/argan-oil-conditioner/02.webp",
-    "/media/argan-oil-conditioner/03.webp",
-    "/media/argan-oil-conditioner/04.webp"
-  ],
-  "cocoa-butter": [
-    "/media/cocoa-butter/01.webp"
-  ],
-  "shea-butter-shampoo": [
-    "/media/shea-butter-shampoo/01.webp",
-    "/media/shea-butter-shampoo/02.webp",
-    "/media/shea-butter-shampoo/03.webp"
-  ],
-  "hair-body-cleanser": [
-    "/media/hair-body-cleanser/01.webp",
-    "/media/hair-body-cleanser/02.webp"
-  ],
-  "combo-8-acne-be-gone": [
-    "/media/combo-8-acne-be-gone/01.webp"
-  ],
-  "combo-7-healing-oils-soaps": [
-    "/media/combo-7-healing-oils-soaps/01.webp"
-  ],
-  "combo-6-youthful-face-neck": [
-    "/media/combo-6-youthful-face-neck/01.webp"
-  ],
-  "combo-5-ageless-carecombo-5-ageless-carecombo-pak-5-shea-love": [
-    "/media/combo-5-ageless-carecombo-5-ageless-carecombo-pak-5-shea-love/01.webp"
-  ],
-  "combo-3-argan-hair-body": [
-    "/media/combo-3-argan-hair-body/01.webp",
-    "/media/combo-3-argan-hair-body/02.webp"
-  ],
-  "combo-2-baby-care": [
-    "/media/combo-2-baby-care/01.webp"
-  ],
-  "combo-1-simply-loving-oils": [
-    "/media/combo-1-simply-loving-oils/01.webp"
-  ],
-  "combo-10-healthy-nails-cuticles": [
-    "/media/combo-10-healthy-nails-cuticles/01.webp"
-  ],
-  "organic-argan-almond-olive-oils": [
-    "/media/organic-argan-almond-olive-oils/01.webp"
-  ],
-  "shea-butter-massage-oil": [
-    "/media/shea-butter-massage-oil/01.webp",
-    "/media/shea-butter-massage-oil/02.webp",
-    "/media/shea-butter-massage-oil/03.webp",
-    "/media/shea-butter-massage-oil/04.webp",
-    "/media/shea-butter-massage-oil/05.webp"
-  ],
-  "shea-butter-moisturizer-2": [
-    "/media/shea-butter-moisturizer-2/01.webp",
-    "/media/shea-butter-moisturizer-2/02.webp",
-    "/media/shea-butter-moisturizer-2/03.webp",
-    "/media/shea-butter-moisturizer-2/04.webp"
-  ],
-  "shea-butter-with-olive-oil-2": [
-    "/media/shea-butter-with-olive-oil-2/01.webp",
-    "/media/shea-butter-with-olive-oil-2/02.webp",
-    "/media/shea-butter-with-olive-oil-2/03.webp"
-  ],
-  "whole-shea-butter": [
-    "/media/whole-shea-butter/01.webp"
-  ],
-  "cocoa-shea-butter": [
-    "/media/cocoa-shea-butter/01.webp",
-    "/media/cocoa-shea-butter/02.webp",
-    "/media/cocoa-shea-butter/03.webp",
-    "/media/cocoa-shea-butter/04.webp",
-    "/media/cocoa-shea-butter/05.webp"
-  ],
-  "argan-oil-body-butter": [
-    "/media/argan-oil-body-butter/01.webp",
-    "/media/argan-oil-body-butter/02.webp"
-  ],
-  "100-pure-shea-butter-2": [
-    "/media/100-pure-shea-butter-2/01.webp",
-    "/media/100-pure-shea-butter-2/02.webp",
-    "/media/100-pure-shea-butter-2/03.webp",
-    "/media/100-pure-shea-butter-2/04.webp"
-  ],
-  "body-and-bum-butter": [
-    "/media/body-and-bum-butter/01.webp"
-  ],
-  "all-over-oil": [
-    "/media/all-over-oil/01.webp",
-    "/media/all-over-oil/02.webp",
-    "/media/all-over-oil/03.webp",
-    "/media/all-over-oil/04.webp"
-  ],
-  "100-pure-virgin-olive-oil": [
-    "/media/100-pure-virgin-olive-oil/01.webp",
-    "/media/100-pure-virgin-olive-oil/02.webp",
-    "/media/100-pure-virgin-olive-oil/03.webp",
-    "/media/100-pure-virgin-olive-oil/04.webp",
-    "/media/100-pure-virgin-olive-oil/05.webp"
-  ],
-  "100-organic-argan-oil-2": [
-    "/media/100-organic-argan-oil-2/01.webp",
-    "/media/100-organic-argan-oil-2/02.webp",
-    "/media/100-organic-argan-oil-2/03.webp",
-    "/media/100-organic-argan-oil-2/04.webp",
-    "/media/100-organic-argan-oil-2/05.webp",
-    "/media/100-organic-argan-oil-2/06.webp"
-  ],
-  "skin-renewal-facial-cream": [
-    "/media/skin-renewal-facial-cream/01.webp",
-    "/media/skin-renewal-facial-cream/02.webp",
-    "/media/skin-renewal-facial-cream/03.webp",
-    "/media/skin-renewal-facial-cream/04.webp"
-  ],
-  "black-soap-aloe-wash": [
-    "/media/black-soap-aloe-wash/01.webp"
-  ],
-  "babassu-natural-butter-2": [
-    "/media/babassu-natural-butter-2/01.webp"
-  ],
-  "babassu-natural-butter": [
-    "/media/babassu-natural-butter/01.webp",
-    "/media/babassu-natural-butter/02.webp",
-    "/media/babassu-natural-butter/03.webp",
-    "/media/babassu-natural-butter/04.webp"
-  ],
-  "neem-oil-acne-face-cream": [
-    "/media/neem-oil-acne-face-cream/01.webp"
-  ],
-  "100-sweet-almond-oil": [
-    "/media/100-sweet-almond-oil/01.webp",
-    "/media/100-sweet-almond-oil/02.webp",
-    "/media/100-sweet-almond-oil/03.webp"
-  ],
-  "dead-sea-mineral-mud": [
-    "/media/dead-sea-mineral-mud/01.webp"
-  ],
-  "dead-sea-salt-coarse-fine": [
-    "/media/dead-sea-salt-coarse-fine/01.webp"
-  ],
-  "apricot-facial-scrub": [
-    "/media/apricot-facial-scrub/01.webp"
-  ],
-  "nigerian-scrub-kain-kain": [
-    "/media/nigerian-scrub-kain-kain/01.webp"
-  ],
-  "ylang-ylang-essential-oil": [
-    "/media/ylang-ylang-essential-oil/01.webp"
-  ],
-  "vanilla-fragrant-oil": [
-    "/media/vanilla-fragrant-oil/01.webp"
-  ],
-  "orange-essential-oil": [
-    "/media/orange-essential-oil/01.webp"
-  ],
-  "rosemary-essential-oil": [
-    "/media/rosemary-essential-oil/01.webp"
-  ],
-  "peppermint-essential-oil": [
-    "/media/peppermint-essential-oil/01.webp"
-  ],
-  "lemongrass-essential-oil": [
-    "/media/lemongrass-essential-oil/01.webp"
-  ],
-  "lavender-essential-oill": [
-    "/media/lavender-essential-oill/01.webp"
-  ],
-  "grapefruit-essential-oil-pink": [
-    "/media/grapefruit-essential-oil-pink/01.webp"
-  ],
-  "tea-tree-essential-oil": [
-    "/media/tea-tree-essential-oil/01.webp",
-    "/media/tea-tree-essential-oil/02.webp"
-  ],
-  "combo-12-body-oils": [
-    "/media/combo-12-body-oils/01.webp"
-  ],
-  "combo-9-feet-body-luxury": [
-    "/media/combo-9-feet-body-luxury/01.webp"
-  ],
-  "shea-butter-treatment-conditioner": [
-    "/media/shea-butter-treatment-conditioner/01.webp",
-    "/media/shea-butter-treatment-conditioner/02.webp",
-    "/media/shea-butter-treatment-conditioner/03.webp",
-    "/media/shea-butter-treatment-conditioner/04.webp"
-  ],
-  "shea-butter-leave-in-conditioner": [
-    "/media/shea-butter-leave-in-conditioner/01.webp",
-    "/media/shea-butter-leave-in-conditioner/02.webp",
-    "/media/shea-butter-leave-in-conditioner/03.webp"
-  ],
-  "aloe-vera-gel-juice": [
-    "/media/aloe-vera-gel-juice/01.webp",
-    "/media/aloe-vera-gel-juice/02.webp"
-  ],
-  "testers": [
-    "/media/testers/01.webp"
-  ],
-  "melt-pour-soap": [
-    "/media/melt-pour-soap/01.webp"
-  ],
-  "shea-butter-lip-balm": [
-    "/media/shea-butter-lip-balm/01.webp"
-  ],
-  "white-jars-with-lids": [
-    "/media/white-jars-with-lids/01.webp"
-  ],
-  "white-bottle-with-black-cap": [
-    "/media/white-bottle-with-black-cap/01.webp"
-  ],
-  "pet-clear-bottle-with-black-cap": [
-    "/media/pet-clear-bottle-with-black-cap/01.webp"
-  ],
-  "6oz-jar-with-lid": [
-    "/media/6oz-jar-with-lid/01.webp"
-  ],
-  "shea-feet-butter-2": [
-    "/media/shea-feet-butter-2/01.webp",
-    "/media/shea-feet-butter-2/02.webp",
-    "/media/shea-feet-butter-2/03.webp",
-    "/media/shea-feet-butter-2/04.webp"
-  ],
-  "shea-butter-nail-cuticle-remedy": [
-    "/media/shea-butter-nail-cuticle-remedy/01.webp"
-  ],
-  "shea-butter-facial-wash": [
-    "/media/shea-butter-facial-wash/01.webp",
-    "/media/shea-butter-facial-wash/02.webp",
-    "/media/shea-butter-facial-wash/03.webp",
-    "/media/shea-butter-facial-wash/04.webp"
-  ],
-  "shea-butter-cleansing-bar": [
-    "/media/shea-butter-cleansing-bar/01.webp"
-  ],
-  "black-soap-facial-wash": [
-    "/media/black-soap-facial-wash/01.webp"
-  ],
-  "shea-butter-body-wash-2": [
-    "/media/shea-butter-body-wash-2/01.webp",
-    "/media/shea-butter-body-wash-2/02.webp",
-    "/media/shea-butter-body-wash-2/03.webp"
-  ],
-  "neem-aloe-vera-shampoo": [
-    "/media/neem-aloe-vera-shampoo/01.webp"
-  ],
-  "black-soap-shampoo-2": [
-    "/media/black-soap-shampoo-2/01.webp"
-  ],
-  "hemp-oil-shampoo": [
-    "/media/hemp-oil-shampoo/01.webp"
-  ],
-  "shea-butter-leave-in-conditioner-2": [
-    "/media/shea-butter-leave-in-conditioner-2/01.webp",
-    "/media/shea-butter-leave-in-conditioner-2/02.webp",
-    "/media/shea-butter-leave-in-conditioner-2/03.webp"
-  ],
-  "shea-butter-treatment-conditioner-2": [
-    "/media/shea-butter-treatment-conditioner-2/01.webp"
-  ],
-  "shea-butter-hair-scalp-oil": [
-    "/media/shea-butter-hair-scalp-oil/01.webp",
-    "/media/shea-butter-hair-scalp-oil/02.webp",
-    "/media/shea-butter-hair-scalp-oil/03.webp"
-  ],
-  "shea-butter-hair-scalp-oil-2": [
-    "/media/shea-butter-hair-scalp-oil-2/01.webp",
-    "/media/shea-butter-hair-scalp-oil-2/02.webp",
-    "/media/shea-butter-hair-scalp-oil-2/03.webp",
-    "/media/shea-butter-hair-scalp-oil-2/04.webp",
-    "/media/shea-butter-hair-scalp-oil-2/05.webp",
-    "/media/shea-butter-hair-scalp-oil-2/06.webp",
-    "/media/shea-butter-hair-scalp-oil-2/07.webp"
-  ],
-  "sandalwood-scrub": [
-    "/media/sandalwood-scrub/01.webp"
-  ],
-  "skin-renewal-facial-cream-2": [
-    "/media/skin-renewal-facial-cream-2/01.webp"
-  ],
-  "blemish-free-facial-toner": [
-    "/media/blemish-free-facial-toner/01.webp"
-  ],
-  "enriched-day-cream": [
-    "/media/enriched-day-cream/01.webp"
-  ],
-  "skin-rejuvenating-night-cream-8-8lb-size-8-8lbskin-rejuvenating-night-cream-8-8lbnight-cream-3": [
-    "/media/skin-rejuvenating-night-cream-8-8lb-size-8-8lbskin-rejuvenating-night-cream-8-8lbnight-cream-3/01.webp"
-  ],
-  "passion-fruit-face-neck-cream-8-8lb-size-8-8lbpassion-fruit-face-neck-cream-8-8lbpassion-fruit-face-neck-cream-3": [
-    "/media/passion-fruit-face-neck-cream-8-8lb-size-8-8lbpassion-fruit-face-neck-cream-8-8lbpassion-fruit-face-neck-cream-3/01.webp"
-  ],
-  "willow-bark-acne-face-cream": [
-    "/media/willow-bark-acne-face-cream/01.webp"
-  ],
-  "tropical-body-oil-with-argan": [
-    "/media/tropical-body-oil-with-argan/01.webp"
-  ],
-  "shea-butter-massage-body-oil": [
-    "/media/shea-butter-massage-body-oil/01.webp"
-  ],
-  "shea-cocoa-butter-base-lotion": [
-    "/media/shea-cocoa-butter-base-lotion/01.webp",
-    "/media/shea-cocoa-butter-base-lotion/02.webp"
-  ],
-  "shea-butter-moisturizer": [
-    "/media/shea-butter-moisturizer/01.webp"
-  ],
-  "shea-butter-body-wash": [
-    "/media/shea-butter-body-wash/01.webp"
-  ],
-  "shea-butter-with-olive-oil": [
-    "/media/shea-butter-with-olive-oil/01.webp"
-  ],
-  "neem-oil-shower-gel": [
-    "/media/neem-oil-shower-gel/01.webp"
-  ],
-  "hemp-oil-lotion": [
-    "/media/hemp-oil-lotion/01.webp"
-  ],
-  "hemp-oil-body-wash": [
-    "/media/hemp-oil-body-wash/01.webp"
-  ],
-  "kukui-body-butter": [
-    "/media/kukui-body-butter/01.webp"
-  ],
-  "high-end-luxurious-lotion": [
-    "/media/high-end-luxurious-lotion/01.webp"
-  ],
-  "tea-tree-cream-shave": [
-    "/media/tea-tree-cream-shave/01.webp"
-  ],
-  "exotic-coconut-body-butter": [
-    "/media/exotic-coconut-body-butter/01.webp"
-  ],
-  "classic-4oz-jar-with-gold-lids": [
-    "/media/classic-4oz-jar-with-gold-lids/01.webp"
-  ],
-  "4oz-tube-style-bottle-with-cap": [
-    "/media/4oz-tube-style-bottle-with-cap/01.webp"
-  ],
-  "combo-12-tresses-so-soft": [
-    "/media/combo-12-tresses-so-soft/01.webp"
-  ],
-  "combo-11-face-body-love": [
-    "/media/combo-11-face-body-love/01.webp"
-  ],
-  "combo-4-body-so-soft": [
-    "/media/combo-4-body-so-soft/01.webp"
-  ],
-  "cocoa-shea-butter-2": [
-    "/media/cocoa-shea-butter-2/01.webp"
-  ],
-  "argan-oil-body-butter-2": [
-    "/media/argan-oil-body-butter-2/01.webp"
-  ],
-  "tea-tree-oil": [
-    "/media/tea-tree-oil/01.webp",
-    "/media/tea-tree-oil/02.webp",
-    "/media/tea-tree-oil/03.webp"
-  ],
-  "sheaargan-oilsheaargan-oilsheaargan-oil": [
-    "/media/sheaargan-oilsheaargan-oilsheaargan-oil/01.webp",
-    "/media/sheaargan-oilsheaargan-oilsheaargan-oil/02.webp",
-    "/media/sheaargan-oilsheaargan-oilsheaargan-oil/03.webp"
-  ],
-  "100-black-jamaican-castor-oil": [
-    "/media/100-black-jamaican-castor-oil/01.webp",
-    "/media/100-black-jamaican-castor-oil/02.webp",
-    "/media/100-black-jamaican-castor-oil/03.webp",
-    "/media/100-black-jamaican-castor-oil/04.webp",
-    "/media/100-black-jamaican-castor-oil/05.webp"
-  ],
-  "capric-caprillic-triglycerides-oil": [
-    "/media/capric-caprillic-triglycerides-oil/01.webp"
-  ],
-  "grape-seed-carrier-oil": [
-    "/media/grape-seed-carrier-oil/01.webp",
-    "/media/grape-seed-carrier-oil/02.webp",
-    "/media/grape-seed-carrier-oil/03.webp",
-    "/media/grape-seed-carrier-oil/04.webp"
-  ],
-  "hi-oleic-safflower-oil": [
-    "/media/hi-oleic-safflower-oil/01.webp",
-    "/media/hi-oleic-safflower-oil/02.webp"
-  ],
-  "neem-oil": [
-    "/media/neem-oil/01.webp",
-    "/media/neem-oil/02.webp",
-    "/media/neem-oil/03.webp",
-    "/media/neem-oil/04.webp"
-  ],
-  "organic-glycerin-non-gmo": [
-    "/media/organic-glycerin-non-gmo/01.webp",
-    "/media/organic-glycerin-non-gmo/02.webp",
-    "/media/organic-glycerin-non-gmo/03.webp"
-  ]
+ "100-black-jamaican-castor-oil": [
+  "/media/100-black-jamaican-castor-oil/01.webp",
+  "/media/100-black-jamaican-castor-oil/02.webp",
+  "/media/100-black-jamaican-castor-oil/03.webp",
+  "/media/100-black-jamaican-castor-oil/04.webp",
+  "/media/100-black-jamaican-castor-oil/05.webp"
+ ],
+ "100-organic-argan-oil": [
+  "/media/100-organic-argan-oil/01.webp"
+ ],
+ "100-organic-argan-oil-2": [
+  "/media/100-organic-argan-oil-2/01.webp",
+  "/media/100-organic-argan-oil-2/02.webp",
+  "/media/100-organic-argan-oil-2/03.webp",
+  "/media/100-organic-argan-oil-2/04.webp",
+  "/media/100-organic-argan-oil-2/05.webp",
+  "/media/100-organic-argan-oil-2/06.webp"
+ ],
+ "100-pure-shea-butter": [
+  "/media/100-pure-shea-butter/01.webp"
+ ],
+ "100-pure-shea-butter-2": [
+  "/media/100-pure-shea-butter-2/01.webp",
+  "/media/100-pure-shea-butter-2/02.webp",
+  "/media/100-pure-shea-butter-2/03.webp",
+  "/media/100-pure-shea-butter-2/04.webp"
+ ],
+ "100-pure-virgin-olive-oil": [
+  "/media/100-pure-virgin-olive-oil/01.webp",
+  "/media/100-pure-virgin-olive-oil/02.webp",
+  "/media/100-pure-virgin-olive-oil/03.webp",
+  "/media/100-pure-virgin-olive-oil/04.webp",
+  "/media/100-pure-virgin-olive-oil/05.webp"
+ ],
+ "100-sweet-almond-oil": [
+  "/media/100-sweet-almond-oil/01.webp",
+  "/media/100-sweet-almond-oil/02.webp",
+  "/media/100-sweet-almond-oil/03.webp"
+ ],
+ "4oz-tube-style-bottle-with-cap": [
+  "/media/4oz-tube-style-bottle-with-cap/01.webp"
+ ],
+ "6oz-jar-with-lid": [
+  "/media/6oz-jar-with-lid/01.webp"
+ ],
+ "all-over-oil": [
+  "/media/all-over-oil/01.webp",
+  "/media/all-over-oil/02.webp",
+  "/media/all-over-oil/03.webp",
+  "/media/all-over-oil/04.webp"
+ ],
+ "aloe-vera-gel-juice": [
+  "/media/aloe-vera-gel-juice/01.webp",
+  "/media/aloe-vera-gel-juice/02.webp"
+ ],
+ "apricot-facial-scrub": [
+  "/media/apricot-facial-scrub/01.webp"
+ ],
+ "argan-oil-body-butter": [
+  "/media/argan-oil-body-butter/01.webp",
+  "/media/argan-oil-body-butter/02.webp"
+ ],
+ "argan-oil-body-butter-2": [
+  "/media/argan-oil-body-butter-2/01.webp"
+ ],
+ "argan-oil-conditioner": [
+  "/media/argan-oil-conditioner/01.webp",
+  "/media/argan-oil-conditioner/02.webp",
+  "/media/argan-oil-conditioner/03.webp",
+  "/media/argan-oil-conditioner/04.webp"
+ ],
+ "argan-oil-conditioner-gallon": [
+  "/media/argan-oil-conditioner-gallon/01.webp"
+ ],
+ "argan-oil-hair-locks-butter": [
+  "/media/argan-oil-hair-locks-butter/01.webp",
+  "/media/argan-oil-hair-locks-butter/02.webp",
+  "/media/argan-oil-hair-locks-butter/03.webp",
+  "/media/argan-oil-hair-locks-butter/04.webp",
+  "/media/argan-oil-hair-locks-butter/05.webp",
+  "/media/argan-oil-hair-locks-butter/06.webp"
+ ],
+ "argan-oil-hair-locks-butter-2": [
+  "/media/argan-oil-hair-locks-butter-2/01.webp"
+ ],
+ "argan-oil-shampoo": [
+  "/media/argan-oil-shampoo/01.webp",
+  "/media/argan-oil-shampoo/02.webp",
+  "/media/argan-oil-shampoo/03.webp"
+ ],
+ "argan-oil-shampoo-25lb-size-25lb": [
+  "/media/argan-oil-shampoo-25lb-size-25lb/01.webp"
+ ],
+ "argan-shea-oil": [
+  "/media/argan-shea-oil/01.webp",
+  "/media/argan-shea-oil/02.webp",
+  "/media/argan-shea-oil/03.webp"
+ ],
+ "babassu-natural-butter": [
+  "/media/babassu-natural-butter/01.webp",
+  "/media/babassu-natural-butter/02.webp",
+  "/media/babassu-natural-butter/03.webp",
+  "/media/babassu-natural-butter/04.webp"
+ ],
+ "babassu-natural-butter-2": [
+  "/media/babassu-natural-butter-2/01.webp"
+ ],
+ "black-soap-aloe-wash": [
+  "/media/black-soap-aloe-wash/01.webp"
+ ],
+ "black-soap-facial-wash": [
+  "/media/black-soap-facial-wash/01.webp"
+ ],
+ "black-soap-shampoo-2": [
+  "/media/black-soap-shampoo-2/01.webp"
+ ],
+ "blemish-free-facial-toner": [
+  "/media/blemish-free-facial-toner/01.webp"
+ ],
+ "body-and-bum-butter": [
+  "/media/body-and-bum-butter/01.webp"
+ ],
+ "capric-caprillic-triglycerides-oil": [
+  "/media/capric-caprillic-triglycerides-oil/01.webp"
+ ],
+ "classic-4oz-jar-with-gold-lids": [
+  "/media/classic-4oz-jar-with-gold-lids/01.webp"
+ ],
+ "cocoa-butter": [
+  "/media/cocoa-butter/01.webp"
+ ],
+ "cocoa-shea-butter": [
+  "/media/cocoa-shea-butter/01.webp",
+  "/media/cocoa-shea-butter/02.webp",
+  "/media/cocoa-shea-butter/03.webp",
+  "/media/cocoa-shea-butter/04.webp",
+  "/media/cocoa-shea-butter/05.webp"
+ ],
+ "cocoa-shea-butter-2": [
+  "/media/cocoa-shea-butter-2/01.webp"
+ ],
+ "combo-1-simply-loving-oils": [
+  "/media/combo-1-simply-loving-oils/01.webp"
+ ],
+ "combo-10-face-body-love": [
+  "/media/combo-10-face-body-love/01.webp"
+ ],
+ "combo-10-healthy-nails-cuticles": [
+  "/media/combo-9-healthy-nails-cuticles/01.webp"
+ ],
+ "combo-11-face-body-love": [
+  "/media/combo-10-face-body-love/01.webp"
+ ],
+ "combo-11-tresses-so-soft": [
+  "/media/combo-11-tresses-so-soft/01.webp"
+ ],
+ "combo-12-body-oils": [
+  "/media/combo-12-body-oils/01.webp"
+ ],
+ "combo-12-tresses-so-soft": [
+  "/media/combo-11-tresses-so-soft/01.webp"
+ ],
+ "combo-2-baby-care": [
+  "/media/combo-2-baby-care/01.webp"
+ ],
+ "combo-3-argan-hair-body": [
+  "/media/combo-3-argan-hair-body/01.webp",
+  "/media/combo-3-argan-hair-body/02.webp"
+ ],
+ "combo-4-body-so-soft": [
+  "/media/combo-4-body-so-soft/01.webp"
+ ],
+ "combo-5-ageless-care": [
+  "/media/combo-5-ageless-care/01.webp"
+ ],
+ "combo-5-ageless-carecombo-5-ageless-carecombo-pak-5-shea-love": [
+  "/media/combo-5-ageless-care/01.webp"
+ ],
+ "combo-6-youthful-face-neck": [
+  "/media/combo-6-youthful-face-neck/01.webp"
+ ],
+ "combo-7-acne-be-gone": [
+  "/media/combo-7-acne-be-gone/01.webp"
+ ],
+ "combo-7-healing-oils-soaps": [
+  "/media/combo-7-healing-oils-soaps/01.webp"
+ ],
+ "combo-8-acne-be-gone": [
+  "/media/combo-7-acne-be-gone/01.webp"
+ ],
+ "combo-8-feet-body-luxury": [
+  "/media/combo-8-feet-body-luxury/01.webp"
+ ],
+ "combo-9-feet-body-luxury": [
+  "/media/combo-8-feet-body-luxury/01.webp"
+ ],
+ "combo-9-healthy-nails-cuticles": [
+  "/media/combo-9-healthy-nails-cuticles/01.webp"
+ ],
+ "dead-sea-mineral-mud": [
+  "/media/dead-sea-mineral-mud/01.webp"
+ ],
+ "dead-sea-salt-coarse-fine": [
+  "/media/dead-sea-salt-coarse-fine/01.webp"
+ ],
+ "enriched-day-cream": [
+  "/media/enriched-day-cream/01.webp"
+ ],
+ "exotic-coconut-body-butter": [
+  "/media/exotic-coconut-body-butter/01.webp"
+ ],
+ "grape-seed-carrier-oil": [
+  "/media/grape-seed-carrier-oil/01.webp",
+  "/media/grape-seed-carrier-oil/02.webp",
+  "/media/grape-seed-carrier-oil/03.webp",
+  "/media/grape-seed-carrier-oil/04.webp"
+ ],
+ "grapefruit-essential-oil-pink": [
+  "/media/grapefruit-essential-oil-pink/01.webp"
+ ],
+ "hair-body-cleanser": [
+  "/media/hair-body-cleanser/01.webp",
+  "/media/hair-body-cleanser/02.webp"
+ ],
+ "hair-moisturizing-lotion": [
+  "/media/hair-moisturizing-lotion/01.webp",
+  "/media/hair-moisturizing-lotion/02.webp"
+ ],
+ "hair-style-finishing-spray": [
+  "/media/hair-style-finishing-spray/01.webp",
+  "/media/hair-style-finishing-spray/02.webp",
+  "/media/hair-style-finishing-spray/03.webp"
+ ],
+ "hemp-oil-body-wash": [
+  "/media/hemp-oil-body-wash/01.webp"
+ ],
+ "hemp-oil-lotion": [
+  "/media/hemp-oil-lotion/01.webp"
+ ],
+ "hemp-oil-shampoo": [
+  "/media/hemp-oil-shampoo/01.webp"
+ ],
+ "hi-oleic-safflower-oil": [
+  "/media/hi-oleic-safflower-oil/01.webp",
+  "/media/hi-oleic-safflower-oil/02.webp"
+ ],
+ "high-end-luxurious-lotion": [
+  "/media/high-end-luxurious-lotion/01.webp"
+ ],
+ "kukui-body-butter": [
+  "/media/kukui-body-butter/01.webp"
+ ],
+ "lavender-essential-oill": [
+  "/media/lavender-essential-oill/01.webp"
+ ],
+ "lemongrass-essential-oil": [
+  "/media/lemongrass-essential-oil/01.webp"
+ ],
+ "melt-pour-soap": [
+  "/media/melt-pour-soap/01.webp"
+ ],
+ "neem-aloe-vera-shampoo": [
+  "/media/neem-aloe-vera-shampoo/01.webp"
+ ],
+ "neem-oil": [
+  "/media/neem-oil/01.webp",
+  "/media/neem-oil/02.webp",
+  "/media/neem-oil/03.webp",
+  "/media/neem-oil/04.webp"
+ ],
+ "neem-oil-acne-face-cream": [
+  "/media/neem-oil-acne-face-cream/01.webp"
+ ],
+ "neem-oil-shower-gel": [
+  "/media/neem-oil-shower-gel/01.webp"
+ ],
+ "nigerian-scrub-kain-kain": [
+  "/media/nigerian-scrub-kain-kain/01.webp"
+ ],
+ "orange-essential-oil": [
+  "/media/orange-essential-oil/01.webp"
+ ],
+ "organic-argan-almond-olive-oils": [
+  "/media/organic-argan-almond-olive-oils/01.webp"
+ ],
+ "organic-glycerin-non-gmo": [
+  "/media/organic-glycerin-non-gmo/01.webp",
+  "/media/organic-glycerin-non-gmo/02.webp",
+  "/media/organic-glycerin-non-gmo/03.webp"
+ ],
+ "passion-fruit-face-neck-cream": [
+  "/media/passion-fruit-face-neck-cream/01.webp"
+ ],
+ "passion-fruit-face-neck-cream-8-8lb-size-8-8lbpassion-fruit-face-neck-cream-8-8lbpassion-fruit-face-neck-cream-3": [
+  "/media/passion-fruit-face-neck-cream/01.webp"
+ ],
+ "peppermint-essential-oil": [
+  "/media/peppermint-essential-oil/01.webp"
+ ],
+ "pet-clear-bottle-with-black-cap": [
+  "/media/pet-clear-bottle-with-black-cap/01.webp"
+ ],
+ "rejuvenating-night-cream": [
+  "/media/rejuvenating-night-cream/01.webp"
+ ],
+ "rosemary-essential-oil": [
+  "/media/rosemary-essential-oil/01.webp"
+ ],
+ "sandalwood-scrub": [
+  "/media/sandalwood-scrub/01.webp"
+ ],
+ "shea-butter-body-wash": [
+  "/media/shea-butter-body-wash/01.webp"
+ ],
+ "shea-butter-body-wash-2": [
+  "/media/shea-butter-body-wash-2/01.webp",
+  "/media/shea-butter-body-wash-2/02.webp",
+  "/media/shea-butter-body-wash-2/03.webp"
+ ],
+ "shea-butter-cleansing-bar": [
+  "/media/shea-butter-cleansing-bar/01.webp"
+ ],
+ "shea-butter-facial-wash": [
+  "/media/shea-butter-facial-wash/01.webp",
+  "/media/shea-butter-facial-wash/02.webp",
+  "/media/shea-butter-facial-wash/03.webp",
+  "/media/shea-butter-facial-wash/04.webp"
+ ],
+ "shea-butter-hair-scalp-oil": [
+  "/media/shea-butter-hair-scalp-oil/01.webp",
+  "/media/shea-butter-hair-scalp-oil/02.webp",
+  "/media/shea-butter-hair-scalp-oil/03.webp"
+ ],
+ "shea-butter-hair-scalp-oil-2": [
+  "/media/shea-butter-hair-scalp-oil-2/01.webp",
+  "/media/shea-butter-hair-scalp-oil-2/02.webp",
+  "/media/shea-butter-hair-scalp-oil-2/03.webp",
+  "/media/shea-butter-hair-scalp-oil-2/04.webp",
+  "/media/shea-butter-hair-scalp-oil-2/05.webp",
+  "/media/shea-butter-hair-scalp-oil-2/06.webp",
+  "/media/shea-butter-hair-scalp-oil-2/07.webp"
+ ],
+ "shea-butter-leave-in-conditioner": [
+  "/media/shea-butter-leave-in-conditioner/01.webp",
+  "/media/shea-butter-leave-in-conditioner/02.webp",
+  "/media/shea-butter-leave-in-conditioner/03.webp"
+ ],
+ "shea-butter-leave-in-conditioner-2": [
+  "/media/shea-butter-leave-in-conditioner-2/01.webp",
+  "/media/shea-butter-leave-in-conditioner-2/02.webp",
+  "/media/shea-butter-leave-in-conditioner-2/03.webp"
+ ],
+ "shea-butter-lip-balm": [
+  "/media/shea-butter-lip-balm/01.webp"
+ ],
+ "shea-butter-massage-body-oil": [
+  "/media/shea-butter-massage-body-oil/01.webp"
+ ],
+ "shea-butter-massage-oil": [
+  "/media/shea-butter-massage-oil/01.webp",
+  "/media/shea-butter-massage-oil/02.webp",
+  "/media/shea-butter-massage-oil/03.webp",
+  "/media/shea-butter-massage-oil/04.webp",
+  "/media/shea-butter-massage-oil/05.webp"
+ ],
+ "shea-butter-moisturizer": [
+  "/media/shea-butter-moisturizer/01.webp"
+ ],
+ "shea-butter-moisturizer-2": [
+  "/media/shea-butter-moisturizer-2/01.webp",
+  "/media/shea-butter-moisturizer-2/02.webp",
+  "/media/shea-butter-moisturizer-2/03.webp",
+  "/media/shea-butter-moisturizer-2/04.webp"
+ ],
+ "shea-butter-nail-cuticle-remedy": [
+  "/media/shea-butter-nail-cuticle-remedy/01.webp"
+ ],
+ "shea-butter-shampoo": [
+  "/media/shea-butter-shampoo/01.webp",
+  "/media/shea-butter-shampoo/02.webp",
+  "/media/shea-butter-shampoo/03.webp"
+ ],
+ "shea-butter-treatment-conditioner": [
+  "/media/shea-butter-treatment-conditioner/01.webp",
+  "/media/shea-butter-treatment-conditioner/02.webp",
+  "/media/shea-butter-treatment-conditioner/03.webp",
+  "/media/shea-butter-treatment-conditioner/04.webp"
+ ],
+ "shea-butter-treatment-conditioner-2": [
+  "/media/shea-butter-treatment-conditioner-2/01.webp"
+ ],
+ "shea-butter-with-olive-oil": [
+  "/media/shea-butter-with-olive-oil/01.webp"
+ ],
+ "shea-butter-with-olive-oil-2": [
+  "/media/shea-butter-with-olive-oil-2/01.webp",
+  "/media/shea-butter-with-olive-oil-2/02.webp",
+  "/media/shea-butter-with-olive-oil-2/03.webp"
+ ],
+ "shea-cocoa-butter-base-lotion": [
+  "/media/shea-cocoa-butter-base-lotion/01.webp",
+  "/media/shea-cocoa-butter-base-lotion/02.webp"
+ ],
+ "shea-feet-butter": [
+  "/media/shea-feet-butter/01.webp",
+  "/media/shea-feet-butter/02.webp",
+  "/media/shea-feet-butter/03.webp"
+ ],
+ "shea-feet-butter-2": [
+  "/media/shea-feet-butter-2/01.webp",
+  "/media/shea-feet-butter-2/02.webp",
+  "/media/shea-feet-butter-2/03.webp",
+  "/media/shea-feet-butter-2/04.webp"
+ ],
+ "sheaargan-oilsheaargan-oilsheaargan-oil": [
+  "/media/argan-shea-oil/01.webp",
+  "/media/argan-shea-oil/02.webp",
+  "/media/argan-shea-oil/03.webp"
+ ],
+ "skin-rejuvenating-night-cream-8-8lb-size-8-8lbskin-rejuvenating-night-cream-8-8lbnight-cream-3": [
+  "/media/rejuvenating-night-cream/01.webp"
+ ],
+ "skin-renewal-facial-cream": [
+  "/media/skin-renewal-facial-cream/01.webp",
+  "/media/skin-renewal-facial-cream/02.webp",
+  "/media/skin-renewal-facial-cream/03.webp",
+  "/media/skin-renewal-facial-cream/04.webp"
+ ],
+ "skin-renewal-facial-cream-2": [
+  "/media/skin-renewal-facial-cream-2/01.webp"
+ ],
+ "tea-tree-cream-shave": [
+  "/media/tea-tree-cream-shave/01.webp"
+ ],
+ "tea-tree-essential-oil": [
+  "/media/tea-tree-essential-oil/01.webp",
+  "/media/tea-tree-essential-oil/02.webp"
+ ],
+ "tea-tree-oil": [
+  "/media/tea-tree-oil/01.webp",
+  "/media/tea-tree-oil/02.webp",
+  "/media/tea-tree-oil/03.webp"
+ ],
+ "testers": [
+  "/media/testers/01.webp"
+ ],
+ "tropical-body-oil-with-argan": [
+  "/media/tropical-body-oil-with-argan/01.webp"
+ ],
+ "vanilla-fragrant-oil": [
+  "/media/vanilla-fragrant-oil/01.webp"
+ ],
+ "white-bottle-with-black-cap": [
+  "/media/white-bottle-with-black-cap/01.webp"
+ ],
+ "white-jars-with-lids": [
+  "/media/white-jars-with-lids/01.webp"
+ ],
+ "whole-shea-butter": [
+  "/media/whole-shea-butter/01.webp"
+ ],
+ "willow-bark-acne-face-cream": [
+  "/media/willow-bark-acne-face-cream/01.webp"
+ ],
+ "ylang-ylang-essential-oil": [
+  "/media/ylang-ylang-essential-oil/01.webp"
+ ]
 }
