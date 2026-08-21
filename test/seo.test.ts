@@ -18,9 +18,22 @@ const ROOT = path.resolve(__dirname, "..");
 
 describe("site origin", () => {
   it("points at the real brand domain over https, with no trailing slash", () => {
-    expect(SITE_URL).toBe("https://allnaturalscosmetics.com");
+    // Must match the Netlify project's PRIMARY domain (asn-shea → www),
+    // otherwise every canonical/OG/sitemap URL points at an apex→www redirect.
+    expect(SITE_URL).toBe("https://www.allnaturalscosmetics.com");
     expect(SITE_URL.endsWith("/")).toBe(false);
     expect(IS_PRODUCTION_SITE).toBe(true);
+  });
+
+  it("treats apex and www as the same production property", async () => {
+    // Regression guard: IS_PRODUCTION_SITE gates robots.txt. If it compared
+    // full strings, setting NEXT_PUBLIC_SITE_URL to the apex (or adding a
+    // trailing slash) would flip it false and quietly de-index production.
+    const src = fs.readFileSync(path.join(ROOT, "lib/seo/site.ts"), "utf8");
+    expect(src).toContain("allnaturalscosmetics.com");
+    expect(src).toContain("www.allnaturalscosmetics.com");
+    // Host comparison, not string equality.
+    expect(src).toMatch(/new URL\(SITE_URL\)\.host/);
   });
 
   it("no netlify.app origin is hardcoded anywhere in app/ or lib/", () => {

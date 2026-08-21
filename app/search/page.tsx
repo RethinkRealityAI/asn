@@ -5,7 +5,7 @@
  * collection-scoped subset — so results here are independent of whatever
  * page or category the visitor was previously browsing. The full FilterRail
  * (including the search box) is still available so results can be further
- * refined by category/price/concern.
+ * refined by category/price.
  *
  * Next.js 16: searchParams is a Promise.
  */

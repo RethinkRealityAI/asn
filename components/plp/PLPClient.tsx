@@ -62,7 +62,7 @@ export function PLPClient({
 }: PLPClientProps) {
   const [filters, setFilters] = useState<FilterState>(initial ?? {});
 
-  // Apply category + price + concern filters (sort is owned by ProductGrid)
+  // Apply category + price filters (sort is owned by ProductGrid)
   const filtered = useMemo(
     () => applyFilters(products, filters, collections),
     [products, filters, collections]

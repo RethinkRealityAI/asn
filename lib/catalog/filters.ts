@@ -13,7 +13,6 @@ export type Facets = {
     max: number | null;
     count: number;
   }[];
-  concerns: { tag: string; count: number }[];
 };
 
 export type SortKey = "featured" | "price-asc" | "price-desc" | "title";
@@ -21,7 +20,6 @@ export type SortKey = "featured" | "price-asc" | "price-desc" | "title";
 export type FilterState = {
   category?: string;
   price?: string;
-  concern?: string;
   /** Free-text search over title, productType and tags. */
   q?: string;
   sort?: SortKey;
@@ -41,19 +39,6 @@ const PRICE_BUCKETS: {
   { id: "60-plus", label: "$60+",       min: 60, max: null  },
 ];
 
-// ── Tags that are internal / ops metadata — never surfaced as concerns ─────────
-
-const SKIP_CONCERN_TAGS = new Set([
-  "front_spec_may2022",
-  "Spas & Salons",
-]);
-
-function isSkippedConcernTag(tag: string): boolean {
-  if (SKIP_CONCERN_TAGS.has(tag)) return true;
-  if (/^bulk/i.test(tag)) return true;
-  return false;
-}
-
 // ── deriveFacets ──────────────────────────────────────────────────────────────
 
 /**
@@ -61,7 +46,6 @@ function isSkippedConcernTag(tag: string): boolean {
  *
  * - categories: one entry per non-empty Collection
  * - priceBuckets: 4 fixed buckets keyed on priceRange.min.amount
- * - concerns: non-internal tags with counts, sorted by frequency then alpha
  */
 export function deriveFacets(
   products: Product[],
@@ -94,25 +78,8 @@ export function deriveFacets(
     count: bucketCounts.get(b.id) ?? 0,
   }));
 
-  // ── Concerns ─────────────────────────────────────────────────────────────
-  // Products carry cross-sell/category tags in their raw `tags` list (e.g. a
-  // product tagged "Combo Packages" is ALSO in the Combo Packages collection).
-  // Surfacing those as "concerns" produces a second, confusingly-identical
-  // chip for the same category — exclude any tag that IS a category title.
-  const categoryTitleSet = new Set(categories.map((c) => c.title));
-  const tagCounts = new Map<string, number>();
-  for (const product of products) {
-    for (const tag of product.tags) {
-      if (!tag || isSkippedConcernTag(tag) || categoryTitleSet.has(tag)) continue;
-      tagCounts.set(tag, (tagCounts.get(tag) ?? 0) + 1);
-    }
-  }
-  const concerns = [...tagCounts.entries()]
-    .filter(([, count]) => count > 0)
-    .map(([tag, count]) => ({ tag, count }))
-    .sort((a, b) => b.count - a.count || a.tag.localeCompare(b.tag));
+  return { categories, priceBuckets };
 
-  return { categories, priceBuckets, concerns };
 }
 
 // ── applyFilters ──────────────────────────────────────────────────────────────
@@ -124,7 +91,7 @@ export function deriveFacets(
  * `collections` is required when `filters.category` is set — pass the same
  * array returned by `deriveCollections`. It is optional otherwise.
  *
- * Filter precedence: category → price → concern → sort.
+ * Filter precedence: category → price → search → sort.
  * Unknown/stale filter values are treated as "no filter" (graceful degradation).
  */
 export function applyFilters(
@@ -165,11 +132,6 @@ export function applyFilters(
       });
     }
     // Unknown price id: degrade → no price filter applied (result unchanged)
-  }
-
-  // ── Concern filter ────────────────────────────────────────────────────────
-  if (filters.concern) {
-    result = result.filter((p) => p.tags.includes(filters.concern!));
   }
 
   // ── Search query ──────────────────────────────────────────────────────────

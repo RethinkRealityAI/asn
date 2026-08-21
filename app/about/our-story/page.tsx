@@ -10,7 +10,7 @@ import { STORY, MISSION, BELIEFS } from "@/lib/content/about";
 export const metadata: Metadata = {
   title: "Our story",
   description:
-    "The story behind Shea Allnaturals — from a Barrie salon in 2002 to the first Black Canadian-owned skincare line sold nationally, rooted in West-African tradition and made by hand. Our mission, beliefs and what we stand for.",
+    "The story behind Shea Allnaturals — from a Toronto salon in 2002 to the first Black Canadian-owned skincare line sold nationally, rooted in West-African tradition and made by hand. Our mission, beliefs and what we stand for.",
   alternates: { canonical: "/about/our-story" },
 };
 
@@ -35,6 +35,15 @@ export default function OurStoryPage() {
             <p key={p.slice(0, 24)}>{p}</p>
           ))}
         </div>
+
+        <figure className="mt-12 border-l-4 border-marigold pl-6 sm:pl-8">
+          <blockquote className="font-display text-xl font-medium leading-snug text-espresso sm:text-2xl">
+            &ldquo;{STORY.quote.text}&rdquo;
+          </blockquote>
+          <figcaption className="mt-4 text-sm font-semibold text-espresso/60">
+            — {STORY.quote.attribution}
+          </figcaption>
+        </figure>
       </section>
 
       {/* Values — green band */}

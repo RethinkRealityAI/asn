@@ -9,7 +9,7 @@
  *  - Skeleton shimmer placeholders for the initial paint
  *  - Empty state when filtered to zero products
  *
- * Receives a `products` array (already filtered by category/price/concern from
+ * Receives a `products` array (already filtered by category/price from
  * the parent). Handles sort + pagination internally.
  *
  * Never blue. Honors prefers-reduced-motion.
@@ -80,7 +80,7 @@ function EmptyState() {
 // ── Props ─────────────────────────────────────────────────────────────────────
 
 export interface ProductGridProps {
-  /** Pre-filtered product list (category/price/concern already applied by parent) */
+  /** Pre-filtered product list (category/price already applied by parent) */
   products: Product[];
   /** Whether to show skeletons for initial paint — set true on first server render */
   loading?: boolean;

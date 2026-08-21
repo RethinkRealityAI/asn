@@ -49,8 +49,8 @@ export function HeroOverlay({ showScrollCue = true }: HeroOverlayProps) {
           className="mt-5 max-w-md text-base sm:text-lg font-body leading-relaxed text-cream/85"
           style={{ textShadow: "0 1px 10px rgba(0,0,0,0.6)" }}
         >
-          Shea butter, argan, and cold-pressed botanical oils — crafted by
-          hand and bottled with intention.
+          Shea butter, argan, and other botanical fats and oils — crafted by
+          hand and packaged with intention.
         </p>
 
         {/* CTAs */}
