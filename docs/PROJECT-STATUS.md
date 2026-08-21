@@ -69,11 +69,18 @@ WordPress answers, mirror it for the missing content, then point the apex at
 Netlify.
 
 **Legacy links inside product descriptions.** 29 absolute links across 21
-product descriptions still point at `allnaturalscosmetics.com/product/…`
-(26) and `allnaturalskincare.ca` (3, a different and probably dead domain).
-They resolve only because the redirect map catches `/product/…`. They should be
-rewritten as relative `/products/…` links; the `allnaturalskincare.ca` ones
-need a destination decided.
+product descriptions.
+
+- **Fixed (3):** the `allnaturalskincare.ca` links — a different, dead domain,
+  so these were hard 404s. Rewritten to relative `/products/…` in
+  `neem-oil-acne-face-cream`, `whole-shea-butter` and `black-soap-facial-wash`.
+- **Outstanding (26):** links to `allnaturalscosmetics.com/product/…`,
+  `/services/` and `/2021/…` blog posts. Every one resolves today *via the
+  redirect map*, so they are not broken — but they are absolute links to the
+  apex domain, which makes them wrong the moment the apex question above is
+  answered either way. A verified rewrite plan (all 26 mapped to live
+  destinations, 0 unresolved) was produced during this pass; apply it once the
+  apex is confirmed, since relative links are correct in both cases.
 
 **Awards.** Trimmed to the three business/community honours. The Meritorious
 Service Medal, Senate of Canada 150 Award and 100 Accomplished Black Canadian
