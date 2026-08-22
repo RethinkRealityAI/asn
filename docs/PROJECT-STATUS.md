@@ -82,6 +82,38 @@ product descriptions.
   destinations, 0 unresolved) was produced during this pass; apply it once the
   apex is confirmed, since relative links are correct in both cases.
 
+**Combo descriptions — partially recovered from the Wayback Machine.** Seven
+live combos had a completely empty `descriptionHtml`. Archived captures of the
+old WooCommerce product pages (2025–2026) show why: those combos never carried a
+long description — the DESCRIPTION accordion is **absent entirely** on every one
+of them, matching what the original WooCommerce export shows. Only Combos 4, 8,
+10 and 11 ever had the "Pack includes one each of…" body copy.
+
+What the captures *did* preserve is each combo's WooCommerce **short
+description**, a one-line tagline that never made it into Shopify. All seven
+have now been written to the live store verbatim:
+
+| Combo | Restored tagline |
+| --- | --- |
+| 1 – Simply Loving Oils | You deserve this ultimate temptation! |
+| 2 – Baby Care | Finally, you can liberate your baby's bum from zinc and other chemicals in diaper rash products and his/her skin from petrolatum by-products. |
+| 3 – Argan Hair & Body | We offer this line in a combo because we would like you to try our Argan products! |
+| 5 – Ageless Care | With Babassu, watch dull, aged skin revitalized into robust healthy complexion! |
+| 6 – Youthful Face & Neck | With the Babassu melting like butter into your skin, what else is left to say! |
+| 7 – Acne Be Gone | Dedication to this regimen will ensure a clearer, cleaner, well-toned, youthful complexion. |
+| 9 – Healthy Nails & Cuticles | We think you will write a review after trying this combo! |
+
+Two side benefits from the same captures: every archived price matches Shopify
+exactly (no drift), and the old numbering is confirmed — old Combo 8 → new 7,
+old 9 → new 8, old 10 → new 9, the shift caused by the discontinued
+*Combo 7 – Healing Oils & Soaps* (tagline, for the record: "We've made it easier
+to try the healing oils of the world!").
+
+**Still needed from the client:** the actual pack contents and sizes for those
+seven, plus INCI across the whole combo set — the four combos that *do* have
+body copy carry no INCI either. Not recoverable from any archive; it has to come
+from Tim.
+
 **Awards.** Trimmed to the three business/community honours. The Meritorious
 Service Medal, Senate of Canada 150 Award and 100 Accomplished Black Canadian
 Women were removed: research confirmed via the Governor General's own recipient
