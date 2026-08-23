@@ -82,7 +82,7 @@ product descriptions.
   destinations, 0 unresolved) was produced during this pass; apply it once the
   apex is confirmed, since relative links are correct in both cases.
 
-**Combo descriptions — partially recovered from the Wayback Machine.** Seven
+**Combo descriptions — recovered in full.** Seven
 live combos had a completely empty `descriptionHtml`. Archived captures of the
 old WooCommerce product pages (2025–2026) show why: those combos never carried a
 long description — the DESCRIPTION accordion is **absent entirely** on every one
@@ -109,10 +109,56 @@ old 9 → new 8, old 10 → new 9, the shift caused by the discontinued
 *Combo 7 – Healing Oils & Soaps* (tagline, for the record: "We've made it easier
 to try the healing oils of the world!").
 
-**Still needed from the client:** the actual pack contents and sizes for those
-seven, plus INCI across the whole combo set — the four combos that *do* have
-body copy carry no INCI either. Not recoverable from any archive; it has to come
-from Tim.
+**Pack contents — read off the product photography.** The contents were never
+lost either: each combo's own hero shot is a flat-lay of the exact products in
+the pack, at high enough resolution to read every label. All seven now carry a
+"Pack includes one each of:" list in the same house style as Combos 4, 8, 10
+and 11.
+
+| Combo | Contents read from `public/media/<handle>/01.webp` |
+| --- | --- |
+| 1 – Simply Loving Oils | Black Jamaican Castor · Shea + Argan · Virgin Olive · Organic Argan · Sweet Almond · Tea Tree (six 100ml bottles) |
+| 2 – Baby Care | Shea Baby & Toddler Hair & Body Cleanser 8oz · All-Over Oil · Body & Bum Butter |
+| 3 – Argan Hair & Body | Argan Oil Shampoo 8oz/250ml · Argan Oil Conditioner 8oz/250ml · Argan Oil Body Butter · Argan Oil Hair & Locks Balm · 100% Organic Argan Oil 100ml |
+| 5 – Ageless Care | Babassu Natural Butter 200ml · Babassu Natural Butter 68ml · Black Soap & Coconut Oil Cleansing Bar |
+| 6 – Youthful Face & Neck | Shea Butter Facial Wash · Afrikan Beauty's Black Soap 120g · Babassu Natural Butter 68ml · Skin Renewal Facial Cream |
+| 7 – Acne Be Gone | Tea Tree Oil 100ml · Neem Oil Acne Face Cream 4oz/125ml · Neem Oil Acne Bar 120g |
+| 9 – Healthy Nails & Cuticles | Shea Butter Nail & Cuticle Remedy 120g · Afrikan Beauty's Black Soap 120g · Shea-Deep Cleansing Bar |
+
+Method, so this is auditable: Combo 4's photo was used as a control — it shows
+exactly the three products its existing description lists, confirming the shots
+are faithful inventories rather than styling. The one unlabelled item, a pink
+translucent bar in Combo 9, was identified as the **Shea-Deep Cleansing Bar** by
+elimination: the same bar appears in Combo 8, whose known four-item list
+accounts for every other object in frame. Every product identified resolves to a
+real catalogue SKU.
+
+**Two naming mismatches surfaced by this pass**, both worth a decision:
+
+- The bottle in Combo 1 is labelled **"Shea + Argan Oil"**; the store lists it as
+  **"Argan-Shea Oil"**. Descriptions use the label wording.
+- The tub in Combo 3 is labelled **"Argan Oil Hair & Locks Balm"**; the store
+  lists it as **"Argan oil Hair & Locks Butter"**. Descriptions use the label
+  wording, which also matches the "Hair Oils & Balm" collection rename.
+
+**Still needed from the client:**
+
+- **INCI** for all eleven combos. Not readable at this resolution and absent from
+  the four combos that already had body copy, so this genuinely has to come from
+  Tim.
+- **Two inferred sizes to confirm:** the Castor and Tea Tree bottles in Combo 1
+  are stated as 100ml. All six bottles are visibly identical in the shot and the
+  other four are confirmed 100ml by their labels and by the archived Combo 12
+  copy, but those two were not read directly.
+- **Unsized items:** All-Over Oil, Body & Bum Butter, Argan Oil Body Butter,
+  Argan Oil Hair & Locks Balm, Shea Butter Facial Wash, Skin Renewal Facial
+  Cream and the Shea-Deep Cleansing Bar are listed without a size because none
+  is legible on the label.
+- **Combo 4's stated body wash size (8oz)** disagrees with the bottle in its own
+  photo, which reads 12 fl oz. Pre-existing copy, not changed here.
+- Three of the bar soaps in these combos — Afrikan Beauty's Black Soap, the Neem
+  Oil Acne Bar and the Black Soap & Coconut Oil bar — are **not sold as
+  standalone SKUs**, which is the same gap as the doc's item #22.
 
 **Awards.** Trimmed to the three business/community honours. The Meritorious
 Service Medal, Senate of Canada 150 Award and 100 Accomplished Black Canadian
