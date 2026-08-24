@@ -47,6 +47,67 @@ This is the living "what's done / what's next" record. For architecture, convent
 
 ## ⚠️ Findings from the 2026-08 client review pass
 
+**Three bar soaps added as standalone SKUs.** The bars used across Combos 5, 6,
+7, 8 and 9 were only ever sold inside combos. All three are now live retail
+products at **$5.00 CAD**, matching *Shea Butter Cleansing Bar* — the only true
+retail bar already in the catalogue (Melt & Pour at $75 is a bulk base, and the
+$12/$15 facial washes are liquids, so neither is a comparable).
+
+| Product | Handle | Collections |
+| --- | --- | --- |
+| Afrikan Beauty's Black Soap (120g) | `afrikan-beautys-black-soap` | Cleansers & Shaving Bars · Washes & Soaps · Family Body Care · Family Face Care |
+| Shea-Neem Cleansing Bar (120g) | `shea-neem-cleansing-bar` | Cleansers & Shaving Bars · Washes & Soaps · Family Body Care · Family Face Care |
+| Neem Oil Acne Bar (120g) | `neem-oil-acne-bar` | Cleansers & Shaving Bars · Washes & Soaps · Family Face Care |
+
+Vendor, product type, tag scheme, weight handling and untracked inventory all
+mirror the existing bar. The Neem Oil Acne Bar is deliberately **not** in Family
+Body Care — it is an acne treatment bar — which is the one judgement call here.
+Washes & Soaps went 4 → 7 products, Cleansers & Shaving Bars 3 → 6.
+
+**Category audit — tag/collection integrity is clean.** All 116 products were
+checked for drift between their tags and their actual collection memberships.
+Every product matches, under the established name mapping (`Washes and Soaps` →
+*Washes & Soaps*, `Eye & Facial Moisturizers/Creams` → *Eye & Facial Creams*,
+`Bulk-*` and `Spas & Salons` → *Bulk & Wholesale*, `Tester` → *Testers*).
+
+**Multi-category placement already works and is in active use** — collections are
+manual, and products routinely sit in several. 100% Sweet Almond Oil is in six
+(Butters & Moisturizers, Eye & Facial Creams, Family Body Care, Family Face Care,
+Family Hair Care, Hair Oils & Balm); 100% Organic Argan Oil and Babassu Natural
+Butter are in five each. No code or data change was needed for this.
+
+Four things the audit did surface:
+
+- **Archived products still sit in collections**, inflating admin counts against
+  what the storefront actually renders (archived products are absent from the
+  Storefront API): `combo-7-healing-oils-soaps` and `combo-12-body-oils` in Combo
+  Packages, `shea-butter-massage-oil` in Butters & Moisturizers + Family Body
+  Care, `black-soap-facial-wash` in three collections. Harmless to shoppers,
+  misleading in admin. Left in place so un-archiving stays trivial.
+- **`Spas & Salons` is a tag with no collection** — carried by ~30 bulk products.
+  Either a vestigial WooCommerce tag or a B2B segment the client wants surfaced.
+  Worth asking.
+- **Thin categories:** Lip Care (1), Melt & Pour Soap (1), Testers (1), Family
+  Foot Care (2), Scrubs (2), Shampoos & Cleansers (2), Treatments & Conditioners
+  (3), Babies & Toddlers (3).
+- **Babies & Toddlers** is the one Notion category item not closed. The note says
+  "baby wash and other baby products to be confirmed/added there". The three
+  present products *are* the complete Shea Baby & Toddler line as it appears in
+  Combo 2's own photography (Hair & Body Cleanser, All-Over Oil, Body & Bum
+  Butter), so the "baby wash" is arguably already there as the Hair & Body
+  Cleanser. Needs a yes/no from the client rather than a guess.
+
+The Shopify default `frontpage` ("Home page") collection holds one stray bulk
+product but is explicitly filtered out in `lib/shopify/storefront/adapter.ts`,
+so it never reaches the site.
+
+**Name correction — Notion says "Larry", the correct name is "Lanre".** The
+2026-08-19 Notion summary records the media-page byline fix as *"Lame" → "Larry"*.
+That is a transcription error in the meeting summary. The Governor General's
+recipient record names **Lanre Tunji-Ajayi**, and the client's own prior copy
+agrees. The site uses *Lanre*. Flagged because Notion otherwise takes precedence
+over the review document.
+
 **Contact form — 2 unread submissions.** Both `/contact` and `/wholesale` post to
 **Netlify Forms** on the `asn-shea` project (not mailto — the
 `allnaturals@allnaturalscosmetics.ca` address in `ContactForm.tsx` is only the
@@ -156,9 +217,6 @@ real catalogue SKU.
   is legible on the label.
 - **Combo 4's stated body wash size (8oz)** disagrees with the bottle in its own
   photo, which reads 12 fl oz. Pre-existing copy, not changed here.
-- Three of the bar soaps in these combos — Afrikan Beauty's Black Soap, the Neem
-  Oil Acne Bar and the Black Soap & Coconut Oil bar — are **not sold as
-  standalone SKUs**, which is the same gap as the doc's item #22.
 
 **Awards.** Trimmed to the three business/community honours. The Meritorious
 Service Medal, Senate of Canada 150 Award and 100 Accomplished Black Canadian
