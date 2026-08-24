@@ -6,7 +6,7 @@
  * Strategy:
  *  1. await props.params to get the handle (Next 16 async params)
  *  2. Fetch collection via store.getCollection(handle) — notFound() if missing
- *  3. Build the product list from productHandles (getProduct in parallel)
+ *  3. Build the product list with a single collection-scoped query
  *  4. Derive collections from all products (needed for category facet resolution)
  *  5. Derive facets scoped to this collection's products
  *  6. Render PLPClient
@@ -24,7 +24,6 @@ import Link from "next/link";
 import { store } from "@/lib/shopify";
 import { deriveCollections } from "@/lib/catalog/collections";
 import { deriveFacets } from "@/lib/catalog/filters";
-import type { Product } from "@/lib/shopify/types";
 import { PLPClient } from "@/components/plp/PLPClient";
 
 // ── Static params: pre-build all collection routes ────────────────────────────
@@ -66,16 +65,19 @@ export default async function CollectionPage(props: {
   const col = await store.getCollection(handle);
   if (!col) notFound();
 
-  // Fetch collection products in parallel (filter out any null results)
-  const productResults = await Promise.all(
-    col.productHandles.map((h) => store.getProduct(h))
-  );
-  const products: Product[] = productResults.filter(
-    (p): p is Product => p != null
-  );
+  // Fetch this collection's products in ONE query.
+  //
+  // This used to map over col.productHandles calling getProduct() per handle —
+  // 48 round-trips for Bulk & Wholesale — and swallowed failures with
+  // `.filter(p => p != null)`. Because these pages are statically generated,
+  // any partial failure at build time baked a short or empty grid into the
+  // deployed HTML, which is what surfaced as "no products match these filters".
+  const [products, allProducts] = await Promise.all([
+    store.getProducts({ collection: handle }),
+    store.getProducts(),
+  ]);
 
   // Derive all collections (needed so category filter can resolve productHandles)
-  const allProducts = await store.getProducts();
   const collections = deriveCollections(allProducts);
 
   // Derive facets scoped to this collection's products

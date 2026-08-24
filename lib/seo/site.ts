@@ -10,8 +10,20 @@
  * origin automatically so previews never emit production canonicals.
  */
 
-/** Production origin — no trailing slash. */
-const PRODUCTION_URL = "https://allnaturalscosmetics.com";
+/**
+ * Production origin — no trailing slash.
+ *
+ * Must match the Netlify project's PRIMARY domain (asn-shea →
+ * https://www.allnaturalscosmetics.com). If this emits the apex while Netlify
+ * serves www as primary, every canonical/OG/sitemap URL points at a redirect.
+ */
+const PRODUCTION_URL = "https://www.allnaturalscosmetics.com";
+
+/** Hosts that are all "the real site" — apex and www are the same property. */
+const PRODUCTION_HOSTS = new Set([
+  "allnaturalscosmetics.com",
+  "www.allnaturalscosmetics.com",
+]);
 
 function resolveSiteUrl(): string {
   // Explicit override always wins.
@@ -32,8 +44,21 @@ function resolveSiteUrl(): string {
 /** Absolute origin for this deployment, no trailing slash. */
 export const SITE_URL = resolveSiteUrl();
 
-/** True only for the real production domain — gates indexing. */
-export const IS_PRODUCTION_SITE = SITE_URL === PRODUCTION_URL;
+/**
+ * True only for the real production domain — gates indexing in robots.ts.
+ *
+ * Compares HOSTS, not full strings: setting NEXT_PUBLIC_SITE_URL to the apex
+ * (or adding a trailing slash) must never flip this false, or robots.txt would
+ * quietly de-index production. Deploy previews still resolve to a
+ * *.netlify.app host and correctly report false.
+ */
+export const IS_PRODUCTION_SITE = (() => {
+  try {
+    return PRODUCTION_HOSTS.has(new URL(SITE_URL).host);
+  } catch {
+    return false;
+  }
+})();
 
 export const SITE_NAME = "Shea Allnaturals";
 export const LEGAL_NAME = "All Naturals Cosmetics Inc.";

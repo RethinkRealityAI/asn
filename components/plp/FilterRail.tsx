@@ -3,12 +3,12 @@
 /**
  * FilterRail
  *
- * Desktop: sticky left sidebar with category / concern / price chip sections.
+ * Desktop: sticky left sidebar with category / price chip sections.
  * Mobile: a "Filters" button that opens a slide-over sheet.
  *
  * Props:
- *  - facets:   Derived facets (categories, priceBuckets, concerns)
- *  - value:    Current FilterState (category/price/concern — NOT sort, that's in ProductGrid)
+ *  - facets:   Derived facets (categories, priceBuckets)
+ *  - value:    Current FilterState (category/price — NOT sort, that's in ProductGrid)
  *  - onChange: Callback when the user changes a filter
  *
  * Selected chips: clay/marigold background.
@@ -151,7 +151,7 @@ interface FilterPanelProps {
 }
 
 function FilterPanel({ facets, value, onChange, onClearAll, categoryNav }: FilterPanelProps) {
-  const hasActive = !!(value.category || value.price || value.concern || value.q?.trim());
+  const hasActive = !!(value.category || value.price || value.q?.trim());
 
   return (
     <div className="flex flex-col gap-6">
@@ -209,29 +209,6 @@ function FilterPanel({ facets, value, onChange, onClearAll, categoryNav }: Filte
         </section>
       )}
 
-      {/* ── Concern ──────────────────────────────────────────────────── */}
-      {facets.concerns.length > 0 && (
-        <section aria-label="Filter by concern">
-          <SectionHeading>Concern</SectionHeading>
-          <div className="flex flex-wrap gap-2">
-            {facets.concerns.map((c) => (
-              <Chip
-                key={c.tag}
-                label={c.tag}
-                count={c.count}
-                selected={value.concern === c.tag}
-                onClick={() =>
-                  onChange({
-                    ...value,
-                    concern: value.concern === c.tag ? undefined : c.tag,
-                  })
-                }
-              />
-            ))}
-          </div>
-        </section>
-      )}
-
       {/* ── Price ────────────────────────────────────────────────────── */}
       {facets.priceBuckets.length > 0 && (
         <section aria-label="Filter by price">
@@ -266,7 +243,7 @@ export function FilterRail({ facets, value, onChange, categoryNav }: FilterRailP
   const reducedMotion = usePrefersReducedMotion();
   const [sheetOpen, setSheetOpen] = useState(false);
 
-  const activeCount = [value.category, value.price, value.concern, value.q?.trim()].filter(
+  const activeCount = [value.category, value.price, value.q?.trim()].filter(
     Boolean
   ).length;
 

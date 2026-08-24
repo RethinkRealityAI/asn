@@ -32,7 +32,7 @@ export const ABOUT_SECTIONS: AboutSection[] = [
   {
     slug: "our-story",
     label: "Our story",
-    teaser: "From a Barrie salon to Canada's shelves — a family, a shea tree, and a promise.",
+    teaser: "From a Toronto salon to Canada's shelves — a family, a shea tree, and a promise.",
     decor: "shea",
     image: "/headers/our-story.webp",
   },
@@ -81,11 +81,15 @@ export const STORY = {
   lede:
     "For over two decades we've made small-batch skincare the old way — pure, cold-pressed oils, shea and black soap — sourced fairly from West Africa and blended by hand in Barrie, Ontario.",
   paragraphs: [
-    "Between 2000 and 2002, clients of a small African beauty-supply store and salon kept asking for the same thing: a natural alternative to processed skincare — something wholesome that would actually nourish the skin. The answer was already growing half a world away.",
-    "So in 2002, Lanre and her husband, Elder Timothy Tunji-Ajayi, travelled to their birth country of Nigeria and brought pure, unrefined shea butter into the Canadian market — founding All Naturals Cosmetics Inc. Their 100% Pure Shea Butter became the first unrefined shea butter sold in the Canadian mass market, and the brand became the first and only Black Canadian-owned product line stocked nationally by Walmart, Shoppers Drug Mart and health-food stores across the country.",
-    "More than twenty years on, the promise hasn't changed. Every jar still starts with raw shea nuts and botanical oils, sourced directly from the women-run cooperatives that have harvested them for generations. From there the butters and oils are cold-pressed, blended and small-batch finished by hand — here in Barrie, Ontario, by the family that started it.",
-    "We treat every formula like it's going on our own family's skin, because it is. No shortcuts, no shelf-life chemistry — just the land's best, distilled into products that work.",
+    "Between 2000 and 2002, customers of Afrikan Beauty Salon and Supply store located in Toronto, Ontario began asking for the same thing: a natural alternative to processed skincare — something wholesome that would genuinely nourish the skin. The answer was already growing half a world away.",
+    "In 2002, Lanre and her husband, Elder Timothy Tunji-Ajayi, travelled to their birth country of Nigeria and introduced pure, unrefined shea butter to the Canadian market, founding All Naturals Cosmetics Inc. Their 100% Pure Shea Butter became the first unrefined shea butter sold in the Canadian mass market. The brand also became the first and only Black Canadian-owned product line to be stocked nationally by Walmart, Shoppers Drug Mart, and health-food stores across the country.",
+    "More than 20 years later, that commitment remains unchanged. Every jar begins with raw shea nuts and botanical oils sourced directly from women-led cooperatives that have harvested these natural ingredients for generations. The butters and oils are then cold-pressed, blended, and finished in small batches by hand in Barrie, Ontario, by the same family that started the company.",
   ],
+  quote: {
+    text:
+      "We treat every formula as though it were going onto our own family's skin — because it is! No unnecessary shortcuts and no compromise on quality. Just nature's finest ingredients, thoughtfully crafted into products that nourish the skin and deliver results.",
+    attribution: "Timothy Tunji-Ajayi, CEO of All Naturals Cosmetics Inc.",
+  },
   values: [
     { label: "Fairly sourced", detail: "Raw shea and botanical oils bought directly from women-run West-African cooperatives." },
     { label: "Made by hand", detail: "Cold-pressed and small-batch blended in Barrie, Ontario." },
@@ -149,49 +153,36 @@ export interface Award {
 
 export const AWARDS = {
   eyebrow: "Awards & recognition",
-  title: "Honoured at home and nationally.",
+  title: "Recognised for building something first.",
   intro:
-    "Our founder and CEO, Lanre Tunji-Ajayi, has been recognised across Canada for business excellence, community development and philanthropy — and the brand itself broke new ground as the first Black Canadian-owned product line sold nationally in the mass market.",
+    "All Naturals Cosmetics broke new ground as the first Black Canadian-owned product line sold nationally in the mass market. The honours below were received by our founder, Lanre Tunji-Ajayi, for that work in business and community development.",
+  // The founder's national honours for sickle-cell advocacy — the Meritorious
+  // Service Medal, the Senate of Canada 150 Award and 100 Accomplished Black
+  // Canadian Women — were removed in 2026-08 at the client's request. They
+  // were awarded for founding the Sickle Cell Awareness Group of Ontario, a
+  // separate organisation, and presenting them here read as company honours.
   awards: [
-    {
-      title: "Meritorious Service Medal (MSM)",
-      detail: "Awarded by the Governor General of Canada for a remarkable contribution to the country.",
-      who: "Lanre Tunji-Ajayi",
-      image: "/awards/msm.webp",
-    },
-    {
-      title: "Senate of Canada 150 Award",
-      detail: "Recognising outstanding service and contribution to the community.",
-      who: "Lanre Tunji-Ajayi",
-      image: "/awards/senate-150.webp",
-    },
-    {
-      title: "100 Accomplished Black Canadian Women",
-      detail: "Named among Canada's 100 Accomplished Black Canadian (ABC) Women, 2018.",
-      who: "Lanre Tunji-Ajayi",
-      image: "/awards/abc-women.webp",
-    },
     {
       title: "African Canadian Achievement Award",
       detail: "For excellence in business.",
-      who: "Lanre Tunji-Ajayi",
+      who: "Lanre Tunji-Ajayi, founder",
       image: "/awards/african-canadian.webp",
     },
     {
       title: "Planet Africa Visionary Award of Excellence",
       detail: "Honouring visionary leadership and impact.",
-      who: "Lanre Tunji-Ajayi",
+      who: "Lanre Tunji-Ajayi, founder",
       image: "/awards/planet-africa.webp",
     },
     {
       title: "Community Development & Philanthropy Award",
       detail: "For sustained investment in community and giving back.",
-      who: "Lanre Tunji-Ajayi",
+      who: "Lanre Tunji-Ajayi, founder",
       image: "/awards/community.webp",
     },
   ] satisfies Award[],
   brandMilestone:
-    "First and only Black Canadian-owned product line to be sold nationally in Walmart, Shoppers Drug Mart and Canadian health-food stores.",
+    "First and only Black Canadian-owned product line to be sold nationally in Walmart, Shoppers Drug Mart, Jean Coutu, Pharmaplus and Canadian health-food stores.",
 } as const;
 
 // ── Making a difference ──────────────────────────────────────────────────────

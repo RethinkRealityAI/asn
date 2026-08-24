@@ -14,13 +14,13 @@
 
 import fs from "fs";
 import path from "path";
-import { parseRedirects } from "../lib/redirects/manifest";
+import { buildRedirectMap } from "../lib/redirects/build";
 
 const CSV = path.resolve(process.cwd(), "data/source/all_naturals_site_manifest.csv");
 const OUT = path.resolve(process.cwd(), "lib/redirects/redirects.generated.ts");
 
 const csv = fs.readFileSync(CSV, "utf-8");
-const map = parseRedirects(csv);
+const map = buildRedirectMap(csv);
 
 // Sort keys for a stable, review-friendly diff.
 const sorted = Object.fromEntries(Object.entries(map).sort(([a], [b]) => a.localeCompare(b)));

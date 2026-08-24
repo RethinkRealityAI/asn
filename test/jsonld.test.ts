@@ -44,7 +44,7 @@ const makeProduct = (overrides: Partial<Product> = {}): Product => ({
   ...overrides,
 });
 
-const SITE_URL = "https://asn-shea.netlify.app";
+const SITE_URL = "https://www.allnaturalscosmetics.com";
 
 // ── productJsonLd ─────────────────────────────────────────────────────────────
 describe("productJsonLd", () => {

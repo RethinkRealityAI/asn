@@ -261,8 +261,8 @@ export function ImageHero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ ease: WARM, duration: DUR.base, delay: 0.25 }}
           >
-            Shea butter, argan, and cold-pressed botanical oils — hand-crafted in
-            Barrie, Ontario and bottled with intention for skin that remembers.
+            Shea butter, argan, and other botanical fats and oils — hand-crafted
+            in Barrie, Ontario and packaged with intention for skin to remember.
           </motion.p>
 
           <motion.div

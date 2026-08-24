@@ -45,6 +45,199 @@ This is the living "what's done / what's next" record. For architecture, convent
 
 ---
 
+## ⚠️ Findings from the 2026-08 client review pass
+
+**Three bar soaps added as standalone SKUs.** The bars used across Combos 5, 6,
+7, 8 and 9 were only ever sold inside combos. All three are now live retail
+products at **$5.00 CAD**, matching *Shea Butter Cleansing Bar* — the only true
+retail bar already in the catalogue (Melt & Pour at $75 is a bulk base, and the
+$12/$15 facial washes are liquids, so neither is a comparable).
+
+| Product | Handle | Collections |
+| --- | --- | --- |
+| Afrikan Beauty's Black Soap (120g) | `afrikan-beautys-black-soap` | Cleansers & Shaving Bars · Washes & Soaps · Family Body Care · Family Face Care |
+| Shea-Neem Cleansing Bar (120g) | `shea-neem-cleansing-bar` | Cleansers & Shaving Bars · Washes & Soaps · Family Body Care · Family Face Care |
+| Neem Oil Acne Bar (120g) | `neem-oil-acne-bar` | Cleansers & Shaving Bars · Washes & Soaps · Family Face Care |
+
+Vendor, product type, tag scheme, weight handling and untracked inventory all
+mirror the existing bar. The Neem Oil Acne Bar is deliberately **not** in Family
+Body Care — it is an acne treatment bar — which is the one judgement call here.
+Washes & Soaps went 4 → 7 products, Cleansers & Shaving Bars 3 → 6.
+
+**Category audit — tag/collection integrity is clean.** All 116 products were
+checked for drift between their tags and their actual collection memberships.
+Every product matches, under the established name mapping (`Washes and Soaps` →
+*Washes & Soaps*, `Eye & Facial Moisturizers/Creams` → *Eye & Facial Creams*,
+`Bulk-*` and `Spas & Salons` → *Bulk & Wholesale*, `Tester` → *Testers*).
+
+**Multi-category placement already works and is in active use** — collections are
+manual, and products routinely sit in several. 100% Sweet Almond Oil is in six
+(Butters & Moisturizers, Eye & Facial Creams, Family Body Care, Family Face Care,
+Family Hair Care, Hair Oils & Balm); 100% Organic Argan Oil and Babassu Natural
+Butter are in five each. No code or data change was needed for this.
+
+Four things the audit did surface:
+
+- **Archived products still sit in collections**, inflating admin counts against
+  what the storefront actually renders (archived products are absent from the
+  Storefront API): `combo-7-healing-oils-soaps` and `combo-12-body-oils` in Combo
+  Packages, `shea-butter-massage-oil` in Butters & Moisturizers + Family Body
+  Care, `black-soap-facial-wash` in three collections. Harmless to shoppers,
+  misleading in admin. Left in place so un-archiving stays trivial.
+- **`Spas & Salons` is a tag with no collection** — carried by ~30 bulk products.
+  Either a vestigial WooCommerce tag or a B2B segment the client wants surfaced.
+  Worth asking.
+- **Thin categories:** Lip Care (1), Melt & Pour Soap (1), Testers (1), Family
+  Foot Care (2), Scrubs (2), Shampoos & Cleansers (2), Treatments & Conditioners
+  (3), Babies & Toddlers (3).
+- **Babies & Toddlers** is the one Notion category item not closed. The note says
+  "baby wash and other baby products to be confirmed/added there". The three
+  present products *are* the complete Shea Baby & Toddler line as it appears in
+  Combo 2's own photography (Hair & Body Cleanser, All-Over Oil, Body & Bum
+  Butter), so the "baby wash" is arguably already there as the Hair & Body
+  Cleanser. Needs a yes/no from the client rather than a guess.
+
+The Shopify default `frontpage` ("Home page") collection holds one stray bulk
+product but is explicitly filtered out in `lib/shopify/storefront/adapter.ts`,
+so it never reaches the site.
+
+**Name correction — Notion says "Larry", the correct name is "Lanre".** The
+2026-08-19 Notion summary records the media-page byline fix as *"Lame" → "Larry"*.
+That is a transcription error in the meeting summary. The Governor General's
+recipient record names **Lanre Tunji-Ajayi**, and the client's own prior copy
+agrees. The site uses *Lanre*. Flagged because Notion otherwise takes precedence
+over the review document.
+
+**Contact form — 2 unread submissions.** Both `/contact` and `/wholesale` post to
+**Netlify Forms** on the `asn-shea` project (not mailto — the
+`allnaturals@allnaturalscosmetics.ca` address in `ContactForm.tsx` is only the
+fallback link shown in the UI). The `contact` form has **2 submissions, most
+recently 2026-08-13**; `wholesale` has none. There is no sign a notification is
+configured, so those enquiries are sitting unread in the Netlify dashboard.
+**Action:** read them (Netlify → Forms → contact) and set up an email
+notification under Forms → Settings → Form notifications.
+
+**Is the old WordPress site still live on the apex?** Netlify reports the
+project's primary domain as `https://www.allnaturalscosmetics.com`, but web
+searches still surface `allnaturalscosmetics.com/media/`, `/about_anc/` and
+`/product/…` as live WordPress pages. Either those are stale index entries, or
+the **apex still serves the old site while www serves this one** — which would
+be duplicate content competing with the rebuild, and would also mean the
+"lost" media/About content is not lost at all. This could not be checked from
+the build environment (the domain is blocked by the egress proxy).
+**Action:** open `http://allnaturalscosmetics.com` (no www) in a browser. If
+WordPress answers, mirror it for the missing content, then point the apex at
+Netlify.
+
+**Legacy links inside product descriptions.** 29 absolute links across 21
+product descriptions.
+
+- **Fixed (3):** the `allnaturalskincare.ca` links — a different, dead domain,
+  so these were hard 404s. Rewritten to relative `/products/…` in
+  `neem-oil-acne-face-cream`, `whole-shea-butter` and `black-soap-facial-wash`.
+- **Outstanding (26):** links to `allnaturalscosmetics.com/product/…`,
+  `/services/` and `/2021/…` blog posts. Every one resolves today *via the
+  redirect map*, so they are not broken — but they are absolute links to the
+  apex domain, which makes them wrong the moment the apex question above is
+  answered either way. A verified rewrite plan (all 26 mapped to live
+  destinations, 0 unresolved) was produced during this pass; apply it once the
+  apex is confirmed, since relative links are correct in both cases.
+
+**Combo descriptions — recovered in full.** Seven
+live combos had a completely empty `descriptionHtml`. Archived captures of the
+old WooCommerce product pages (2025–2026) show why: those combos never carried a
+long description — the DESCRIPTION accordion is **absent entirely** on every one
+of them, matching what the original WooCommerce export shows. Only Combos 4, 8,
+10 and 11 ever had the "Pack includes one each of…" body copy.
+
+What the captures *did* preserve is each combo's WooCommerce **short
+description**, a one-line tagline that never made it into Shopify. All seven
+have now been written to the live store verbatim:
+
+| Combo | Restored tagline |
+| --- | --- |
+| 1 – Simply Loving Oils | You deserve this ultimate temptation! |
+| 2 – Baby Care | Finally, you can liberate your baby's bum from zinc and other chemicals in diaper rash products and his/her skin from petrolatum by-products. |
+| 3 – Argan Hair & Body | We offer this line in a combo because we would like you to try our Argan products! |
+| 5 – Ageless Care | With Babassu, watch dull, aged skin revitalized into robust healthy complexion! |
+| 6 – Youthful Face & Neck | With the Babassu melting like butter into your skin, what else is left to say! |
+| 7 – Acne Be Gone | Dedication to this regimen will ensure a clearer, cleaner, well-toned, youthful complexion. |
+| 9 – Healthy Nails & Cuticles | We think you will write a review after trying this combo! |
+
+Two side benefits from the same captures: every archived price matches Shopify
+exactly (no drift), and the old numbering is confirmed — old Combo 8 → new 7,
+old 9 → new 8, old 10 → new 9, the shift caused by the discontinued
+*Combo 7 – Healing Oils & Soaps* (tagline, for the record: "We've made it easier
+to try the healing oils of the world!").
+
+**Pack contents — read off the product photography.** The contents were never
+lost either: each combo's own hero shot is a flat-lay of the exact products in
+the pack, at high enough resolution to read every label. All seven now carry a
+"Pack includes one each of:" list in the same house style as Combos 4, 8, 10
+and 11.
+
+| Combo | Contents read from `public/media/<handle>/01.webp` |
+| --- | --- |
+| 1 – Simply Loving Oils | Black Jamaican Castor · Shea + Argan · Virgin Olive · Organic Argan · Sweet Almond · Tea Tree (six 100ml bottles) |
+| 2 – Baby Care | Shea Baby & Toddler Hair & Body Cleanser 8oz · All-Over Oil · Body & Bum Butter |
+| 3 – Argan Hair & Body | Argan Oil Shampoo 8oz/250ml · Argan Oil Conditioner 8oz/250ml · Argan Oil Body Butter · Argan Oil Hair & Locks Balm · 100% Organic Argan Oil 100ml |
+| 5 – Ageless Care | Babassu Natural Butter 200ml · Babassu Natural Butter 68ml · Black Soap & Coconut Oil Cleansing Bar |
+| 6 – Youthful Face & Neck | Shea Butter Facial Wash · Afrikan Beauty's Black Soap 120g · Babassu Natural Butter 68ml · Skin Renewal Facial Cream |
+| 7 – Acne Be Gone | Tea Tree Oil 100ml · Neem Oil Acne Face Cream 4oz/125ml · Neem Oil Acne Bar 120g |
+| 9 – Healthy Nails & Cuticles | Shea Butter Nail & Cuticle Remedy 120g · Afrikan Beauty's Black Soap 120g · Shea-Deep Cleansing Bar |
+
+Method, so this is auditable: Combo 4's photo was used as a control — it shows
+exactly the three products its existing description lists, confirming the shots
+are faithful inventories rather than styling. The one unlabelled item, a pink
+translucent bar in Combo 9, was identified as the **Shea-Deep Cleansing Bar** by
+elimination: the same bar appears in Combo 8, whose known four-item list
+accounts for every other object in frame. Every product identified resolves to a
+real catalogue SKU.
+
+**Two naming mismatches surfaced by this pass**, both worth a decision:
+
+- The bottle in Combo 1 is labelled **"Shea + Argan Oil"**; the store lists it as
+  **"Argan-Shea Oil"**. Descriptions use the label wording.
+- The tub in Combo 3 is labelled **"Argan Oil Hair & Locks Balm"**; the store
+  lists it as **"Argan oil Hair & Locks Butter"**. Descriptions use the label
+  wording, which also matches the "Hair Oils & Balm" collection rename.
+
+**Still needed from the client:**
+
+- **INCI** for all eleven combos. Not readable at this resolution and absent from
+  the four combos that already had body copy, so this genuinely has to come from
+  Tim.
+- **Two inferred sizes to confirm:** the Castor and Tea Tree bottles in Combo 1
+  are stated as 100ml. All six bottles are visibly identical in the shot and the
+  other four are confirmed 100ml by their labels and by the archived Combo 12
+  copy, but those two were not read directly.
+- **Unsized items:** All-Over Oil, Body & Bum Butter, Argan Oil Body Butter,
+  Argan Oil Hair & Locks Balm, Shea Butter Facial Wash, Skin Renewal Facial
+  Cream and the Shea-Deep Cleansing Bar are listed without a size because none
+  is legible on the label.
+- **Combo 4's stated body wash size (8oz)** disagrees with the bottle in its own
+  photo, which reads 12 fl oz. Pre-existing copy, not changed here.
+
+**Awards.** Trimmed to the three business/community honours. The Meritorious
+Service Medal, Senate of Canada 150 Award and 100 Accomplished Black Canadian
+Women were removed: research confirmed via the Governor General's own recipient
+record that the MSM was awarded to Lanre Tunji-Ajayi for founding the **Sickle
+Cell Awareness Group of Ontario**, a separate organisation. No award to All
+Naturals Cosmetics Inc. as a company could be found anywhere. The three
+retained awards are sourced only from the client's own prior copy — ask for
+certificates and years before presenting them as independently verifiable.
+
+**Press.** No Financial Post article found; the company's own bio page cites
+**National Post** (the Financial Post is its business section) — likely the
+same item misremembered. No Globe and Mail article could be corroborated. The
+ALIVE Magazine piece is real: *"Tropical Topical"*, **bylined by Lanre
+herself** (alive.com), so frame it as a contributed article, not coverage.
+
+**Sourcing community spelling.** The community is **Apaola** (not "Apaolo" or
+"Akpala") — already correct in `lib/content/about.ts`. Fufu, which received the
+cracker/separator machine in January 2024, appears to be a **different**
+community; worth confirming with the client.
+
 ## 🔜 Next steps (priority order)
 
 1. **Homeland product floats → transparent.** The 2 product shots in the green homeland scene read as cream cards (they have baked backdrops, unlike the transparent botanical cutouts). Background-remove them so they float cleanly. _(small)_

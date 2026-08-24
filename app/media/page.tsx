@@ -4,7 +4,7 @@ import Link from "next/link";
 import { LiteYouTube } from "@/components/media/LiteYouTube";
 import { AccentCorners } from "@/components/motion/AccentCorners";
 import { PageHeader } from "@/components/chrome/PageHeader";
-import { MEDIA_VIDEOS, PRESS, YT_CHANNEL, WEBCAST, ARTICLE } from "@/lib/content/media";
+import { MEDIA_VIDEOS, PRESS, YT_CHANNEL, ARTICLE } from "@/lib/content/media";
 
 export const metadata: Metadata = {
   title: "Media & Press",
@@ -64,30 +64,6 @@ export default function MediaPage() {
             ))}
           </div>
 
-          {/* Webcast callout — hosted off-site, link out */}
-          <a
-            href={WEBCAST.href}
-            target="_blank"
-            rel="noreferrer noopener"
-            className="group mt-10 flex flex-col gap-3 rounded-[1.5rem] border border-espresso/10 bg-cream/50 p-6 shadow-[var(--shadow-card)] transition-colors hover:border-clay/40 sm:flex-row sm:items-center sm:justify-between sm:gap-6"
-          >
-            <div className="flex items-start gap-4">
-              <span className="mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-clay text-cream">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5" aria-hidden="true">
-                  <path d="m10 8 6 4-6 4V8Z" /><rect x="2" y="4" width="20" height="16" rx="3" />
-                </svg>
-              </span>
-              <div>
-                <p className="text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-green">{WEBCAST.meta}</p>
-                <p className="mt-1 font-display text-lg font-semibold text-espresso">{WEBCAST.title}</p>
-                <p className="mt-1 text-sm leading-relaxed text-espresso/60">{WEBCAST.blurb}</p>
-              </div>
-            </div>
-            <span className="shrink-0 text-sm font-semibold text-clay transition-transform group-hover:translate-x-0.5">
-              Watch the talk →
-            </span>
-          </a>
-
           <div className="mt-8">
             <a
               href={YT_CHANNEL}
@@ -105,8 +81,7 @@ export default function MediaPage() {
       <section aria-label="Article" className="relative overflow-hidden border-t border-espresso/08 px-5 py-16 sm:px-8 lg:px-12 lg:py-20">
         <AccentCorners corners={{ tr: "castor", bl: "argan" }} size={120} opacity={0.07} />
         <article className="relative z-10 mx-auto max-w-3xl">
-          <p className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-marigold">From our founders</p>
-          <h2 className="mt-3 font-display text-3xl font-semibold leading-tight text-espresso sm:text-4xl lg:text-[2.75rem]">
+          <h2 className="font-display text-3xl font-semibold leading-tight text-espresso sm:text-4xl lg:text-[2.75rem]">
             {ARTICLE.title}
           </h2>
           <p className="mt-4 font-display text-lg italic leading-relaxed text-espresso/60 sm:text-xl">{ARTICLE.dek}</p>

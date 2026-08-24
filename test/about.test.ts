@@ -103,8 +103,19 @@ describe("About narrative content", () => {
     for (const b of BELIEFS.items) expect(b.toLowerCase()).toContain("we believe");
   });
 
+  it("carries no personal sickle-cell honours (removed 2026-08 at client request)", () => {
+    // The MSM, Senate of Canada 150 Award and 100 Accomplished Black Canadian
+    // Women were awarded to the founder for the Sickle Cell Awareness Group of
+    // Ontario — a separate organisation. Listing them on the company's awards
+    // page reads as company recognition, which the client asked us to remove.
+    const titles = AWARDS.awards.map((a) => a.title.toLowerCase()).join(" | ");
+    expect(titles).not.toContain("meritorious service");
+    expect(titles).not.toContain("senate");
+    expect(titles).not.toContain("accomplished black canadian");
+  });
+
   it("awards lists recognitions attributed to a recipient", () => {
-    expect(AWARDS.awards.length).toBeGreaterThanOrEqual(5);
+    expect(AWARDS.awards.length).toBeGreaterThanOrEqual(3);
     for (const a of AWARDS.awards) {
       expect(a.title.length).toBeGreaterThan(0);
       expect(a.detail.length).toBeGreaterThan(0);

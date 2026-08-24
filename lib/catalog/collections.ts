@@ -37,11 +37,14 @@ const CATEGORY_TITLES: Record<string, string> = {
   "Family Face Care": "Family Face Care",
   "Family Foot Care": "Family Foot Care",
   "Family Hair Care": "Family Hair Care",
-  "Hair oils / Lotions & Sprays": "Hair Oils, Lotions & Sprays",
+  // Renamed 2026-08 (client): the lotions and sprays were discontinued, so the
+  // category is now "Hair Oils & Balm". Both the new tag and the legacy one are
+  // mapped so the CSV-seeded mock catalog keeps resolving.
+  "Hair Oils & Balm": "Hair Oils & Balm",
+  "Hair oils / Lotions & Sprays": "Hair Oils & Balm",
   "Jars & Bottles": "Jars & Bottles",
   "Lip Care": "Lip Care",
   "Melt & Pour Soap": "Melt & Pour Soap",
-  "Men": "Men's Care",
   "Raw Materials": "Raw Materials",
   "Scrubs": "Scrubs",
   "Shampoos & Cleansers": "Shampoos & Cleansers",
@@ -53,7 +56,7 @@ const CATEGORY_TITLES: Record<string, string> = {
 /**
  * For each product, decide which retail category title(s) it belongs to.
  * We use productType first; then supplement with meaningful tags that add
- * cross-category memberships (e.g. a hair-care product that is also "Men").
+ * cross-category memberships (e.g. an oil that is also "Hair Oils & Balm").
  */
 function retailCategories(product: Product): string[] {
   const cats = new Set<string>();

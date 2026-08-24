@@ -57,16 +57,11 @@ describe("deriveFacets", () => {
     expect(b.max).toBeNull();
   });
 
-  it("concerns are derived from tags, skipping empty + internal tags", () => {
-    expect(facets.concerns.length).toBeGreaterThan(0);
-    for (const c of facets.concerns) {
-      expect(c.tag.length).toBeGreaterThan(0);
-      expect(c.count).toBeGreaterThan(0);
-      // Internal ops tag must not appear
-      expect(c.tag).not.toBe("front_spec_may2022");
-      // Bulk tags must not appear
-      expect(c.tag.toLowerCase()).not.toMatch(/^bulk/);
-    }
+  it("exposes no concern facet — the section was removed (client request 2026-08)", () => {
+    // Every product tag mirrors a category key ("Washes and Soaps",
+    // "Cleansers and Shaving Bars", "Men"), so the Concern rail only ever
+    // repeated the category list. Guard against it being reintroduced.
+    expect("concerns" in facets).toBe(false);
   });
 });
 
@@ -147,17 +142,6 @@ describe("applyFilters — price filter", () => {
   });
 });
 
-describe("applyFilters — concern filter", () => {
-  it("filter by a known concern tag returns products containing that tag", () => {
-    const tag = "Babies & Toddlers";
-    const result = applyFilters(products, { concern: tag });
-    expect(result.length).toBeGreaterThan(0);
-    for (const p of result) {
-      expect(p.tags).toContain(tag);
-    }
-  });
-});
-
 describe("applyFilters — sort", () => {
   it("sort:price-asc produces non-decreasing min prices", () => {
     const result = applyFilters(products, { sort: "price-asc" });
@@ -231,19 +215,3 @@ describe("applyFilters — search query (q)", () => {
   });
 });
 
-// ── deriveFacets: concerns must not duplicate category names ────────────────
-
-describe("deriveFacets — concerns exclude category-name tags", () => {
-  it("never includes a concern tag that exactly matches a collection title", () => {
-    const collectionTitles = new Set(collections.map((c) => c.title));
-    const facets = deriveFacets(products, collections);
-    const leaking = facets.concerns.filter((c) => collectionTitles.has(c.tag));
-    expect(leaking).toEqual([]);
-  });
-
-  it("still surfaces genuine descriptive tags that are not category names", () => {
-    const facets = deriveFacets(products, collections);
-    // Sanity: the concerns list isn't emptied out entirely by the exclusion.
-    expect(facets.concerns.length).toBeGreaterThan(0);
-  });
-});

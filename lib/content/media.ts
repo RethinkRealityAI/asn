@@ -52,15 +52,6 @@ export const PRESS: PressItem[] = [
   },
 ];
 
-/** External webcast (hosted off-site; link out rather than embed). */
-export const WEBCAST = {
-  title: "Beautiful Skin, Yours Naturally",
-  meta: "Whole Life Expo · Webcast",
-  blurb:
-    "Our full Whole Life Expo talk on pure, botanical skincare — hosted on the Expo's webcast archive.",
-  href: "http://www.wholelifeexpo.webcast.guru/F12-HD1AiQ1H/",
-};
-
 /** A long-form article from the company, preserved from the legacy media page. */
 export interface Article {
   title: string;
@@ -71,7 +62,7 @@ export interface Article {
 
 export const ARTICLE: Article = {
   title: "Cosmetics or Cosmeceuticals?",
-  byline: "Lame Tunji-Ajayi · VP, All Naturals Cosmetics Inc.",
+  byline: "Lanre Tunji-Ajayi · VP, All Naturals Cosmetics Inc.",
   dek: "On the difference between cosmetics and “cosmeceuticals,” what the label really means, and why it matters for brands and consumers alike.",
   paragraphs: [
     "Many store owners and consumers are confused by the term “cosmeceuticals,” which refers to the combination of cosmetics and pharmaceuticals. These products have active ingredients purporting to have medical or drug-like benefits that go beyond traditional personal care products.",
