@@ -17,6 +17,7 @@ const SECTIONS = [
       "Orders ship from our studio in Barrie, Ontario, and are typically dispatched within 1–3 business days; you'll receive tracking by email. We ship Canada-wide with Canada Post, and you choose the service at checkout — Regular, Expedited, Xpresspost or Priority. Rates are calculated live from the parcel's weight and your address, so you always see the real cost before you pay. Cross-border and international parcels are quoted the same way; heavy bulk orders over 30 kg ship by freight.",
       "Prefer not to ship? Local pickup at our Barrie studio is free — choose it at checkout, then call ahead to confirm your order is ready.",
       "All prices are in Canadian dollars and exclude tax. GST/HST (and PST where it applies) is added at checkout based on your province, and applies to the shipping charge as well.",
+      "A valid email address and phone number are both required to place an order. We use them only to confirm your order, send tracking, and reach you about delivery or pickup — never for anything else.",
       "If something isn't right, contact us within 30 days of delivery. Unopened products in original condition are eligible for a refund or exchange. For hygiene reasons, opened products can't be returned unless they arrived damaged or faulty — in which case we'll make it right.",
     ],
   },

@@ -98,7 +98,7 @@ Representative weights: retail jars 23 g – 1 kg · 5 lb 2 268 g ·
 
 ## Open merchant actions (no Admin API — must be done in the Shopify admin)
 
-**Status 2026-08-30: all four are still unset, and orders are being affected.**
+**Status 2026-09-01: phone is done; tax and notifications are still open.**
 Verified against all 454 Admin API mutations — there is no mutation for shop tax
 registration, staff notifications, or checkout form fields. `taxAppConfigure` is
 for third-party tax apps; the only tax mutations are B2B company-location and
@@ -154,27 +154,30 @@ Still `taxShipping: false`, which is wrong for Canada — GST/HST applies to the
 delivery charge when the goods are taxable. Do this at the same time as #1;
 on its own it changes nothing, because no tax is being charged at all yet.
 
-### 3. Phone number is optional, so some orders have none
-**Settings → Checkout → Customer contact method**
+### 3. Phone number — DONE (now mandatory)
 
-- Set **Customer contact method** to **Email** (makes email mandatory).
-- Set **Shipping address phone number** to **Required**.
+**Settings → Checkout → Customer contact method** — set to **Email**, with
+**Shipping address phone number = Required**. Both are needed: leaving contact
+method on "Phone number or email" lets a shopper check out with only one.
 
-Both settings are needed: leaving contact method on "Phone number or email" lets
-a shopper check out with only one of them.
+Confirmed mandatory as of 2026-09-01. The storefront now says so before the
+handoff rather than letting the checkout spring it on the shopper — see
+`lib/content/checkout.ts`, rendered by both the cart drawer and the cart page,
+and guarded by `test/checkout-contact.test.ts`. `/policies` states it too, and
+the wholesale form marks its required fields with a visible `*`.
 
-Note that phone is **not** missing everywhere — it is captured on the *address*,
-not the order record, so `order.phone` reads null even when a number exists:
+**Reading phone off an order — the gotcha.** Phone is stored on the *address*,
+not the order, so `order.phone` reads null even when a number was captured:
 
 | Order | `order.phone` | `shippingAddress.phone` |
 |---|---|---|
 | #1002 | null | +14162529885 |
 | #1003 | null | 5194973011 |
-| #1004 | null | *(none — customer skipped it)* |
+| #1004 | null | *(none — placed while the field was still optional)* |
 
-So exports keyed on `order.phone` will look empty for every order. Read the
-address phone instead. Making the field required fixes the genuinely missing
-case (#1004).
+An export keyed on `order.phone` looks empty for every order, including the ones
+that do have a number. Read `shippingAddress.phone` (falling back to
+`billingAddress.phone`) instead.
 
 ### 4. Order notifications are not reaching timothy@allnaturalscosmetics.ca
 **Settings → Notifications → Staff notifications → Add recipient**

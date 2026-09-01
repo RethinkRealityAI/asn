@@ -27,6 +27,7 @@ import { motion, AnimatePresence, type Variants } from "framer-motion";
 import { useCart } from "./CartProvider";
 import { CheckoutButton } from "./CheckoutButton";
 import { PICKUP } from "@/lib/content/pickup";
+import { CHECKOUT_CONTACT } from "@/lib/content/checkout";
 import { usePrefersReducedMotion } from "@/lib/motion/use-reduced-motion";
 import { WARM, DUR } from "@/lib/motion/easings";
 import { Button } from "@/components/ui/button";
@@ -247,6 +248,17 @@ export function CartDrawer() {
                 <p className="text-xs text-espresso/50">
                   Shipping and taxes calculated at checkout.
                 </p>
+
+                {/* Contact requirement — stated before the handoff, not sprung
+                    on the shopper at the payment step. */}
+                <div className="rounded-xl border border-marigold/35 bg-marigold/10 px-3 py-2.5">
+                  <p className="text-[13px] font-semibold leading-snug text-espresso">
+                    {CHECKOUT_CONTACT.note}
+                  </p>
+                  <p className="mt-1 text-xs leading-relaxed text-espresso/65">
+                    {CHECKOUT_CONTACT.reason}
+                  </p>
+                </div>
                 <div className="flex items-start gap-2 rounded-xl border border-green/20 bg-green/5 p-3 text-xs leading-relaxed text-espresso/70">
                   <span aria-hidden className="mt-0.5 text-sm">📍</span>
                   <span>

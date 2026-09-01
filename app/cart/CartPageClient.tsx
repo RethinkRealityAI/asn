@@ -15,6 +15,7 @@ import Image from "next/image";
 import { useCart } from "@/components/cart/CartProvider";
 import { CheckoutButton } from "@/components/cart/CheckoutButton";
 import { PICKUP } from "@/lib/content/pickup";
+import { CHECKOUT_CONTACT } from "@/lib/content/checkout";
 import { cn } from "@/lib/utils";
 
 // ── Money formatter ───────────────────────────────────────────────────────────
@@ -180,6 +181,17 @@ export function CartPageClient() {
                   </span>
                 </div>
               </div>
+            </div>
+
+            {/* Contact requirement — stated before the handoff, not sprung
+                on the shopper at the payment step. */}
+            <div className="rounded-xl border border-marigold/35 bg-marigold/10 px-3.5 py-3">
+              <p className="font-body text-sm font-semibold leading-snug text-espresso">
+                {CHECKOUT_CONTACT.note}
+              </p>
+              <p className="mt-1 font-body text-xs leading-relaxed text-espresso/65">
+                {CHECKOUT_CONTACT.reason}
+              </p>
             </div>
 
             {/* Checkout — Shopify hosted checkout */}
