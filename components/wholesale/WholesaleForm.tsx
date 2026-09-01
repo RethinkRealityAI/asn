@@ -35,6 +35,29 @@ const field =
   "w-full rounded-2xl border border-espresso/15 bg-white px-4 py-3 text-sm text-espresso placeholder:text-espresso/40 outline-none transition-colors focus:border-green/60 focus:ring-2 focus:ring-green/20";
 const labelCls = "text-xs font-semibold uppercase tracking-wider text-espresso/55";
 
+/**
+ * Visible required marker. The inputs already carry `required`, but that only
+ * surfaces as a browser popup after a failed submit — the asterisk says which
+ * fields matter before the shopper starts typing. aria-hidden because the
+ * input's own `required` is what assistive tech announces.
+ */
+function RequiredMark() {
+  return (
+    <span aria-hidden="true" className="ml-0.5 text-clay">
+      *
+    </span>
+  );
+}
+
+/** Matching marker for the fields that genuinely are not needed. */
+function OptionalMark() {
+  return (
+    <span className="ml-1 font-normal normal-case tracking-normal text-espresso/40">
+      (optional)
+    </span>
+  );
+}
+
 export function WholesaleForm() {
   const [selected, setSelected] = useState<string[]>([]);
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
@@ -143,29 +166,33 @@ export function WholesaleForm() {
       </fieldset>
 
       {/* Details */}
+      <p className="-mb-3 text-xs text-espresso/55">
+        Fields marked <span className="font-semibold text-clay">*</span> are required.
+        We need a phone number so we can reach you about your order.
+      </p>
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="flex flex-col gap-1.5">
-          <label htmlFor="wf-name" className={labelCls}>Your name</label>
+          <label htmlFor="wf-name" className={labelCls}>Your name<RequiredMark /></label>
           <input id="wf-name" name="name" type="text" required placeholder="Full name" className={field} />
         </div>
         <div className="flex flex-col gap-1.5">
-          <label htmlFor="wf-business" className={labelCls}>Business name</label>
+          <label htmlFor="wf-business" className={labelCls}>Business name<RequiredMark /></label>
           <input id="wf-business" name="business" type="text" required placeholder="Store, spa or company" className={field} />
         </div>
         <div className="flex flex-col gap-1.5">
-          <label htmlFor="wf-email" className={labelCls}>Email</label>
+          <label htmlFor="wf-email" className={labelCls}>Email<RequiredMark /></label>
           <input id="wf-email" name="email" type="email" required placeholder="you@business.com" className={field} />
         </div>
         <div className="flex flex-col gap-1.5">
-          <label htmlFor="wf-phone" className={labelCls}>Phone</label>
+          <label htmlFor="wf-phone" className={labelCls}>Phone<RequiredMark /></label>
           <input id="wf-phone" name="phone" type="tel" required placeholder="(705) 555-0123" className={field} />
         </div>
         <div className="flex flex-col gap-1.5">
-          <label htmlFor="wf-location" className={labelCls}>City / Province</label>
+          <label htmlFor="wf-location" className={labelCls}>City / Province<OptionalMark /></label>
           <input id="wf-location" name="location" type="text" placeholder="e.g. Toronto, ON" className={field} />
         </div>
         <div className="flex flex-col gap-1.5">
-          <label htmlFor="wf-volume" className={labelCls}>Estimated volume</label>
+          <label htmlFor="wf-volume" className={labelCls}>Estimated volume<OptionalMark /></label>
           <select id="wf-volume" name="volume" defaultValue="" className={cn(field, "cursor-pointer")}>
             <option value="" disabled>Select an estimate…</option>
             {VOLUMES.map((v) => <option key={v} value={v}>{v}</option>)}
