@@ -98,35 +98,97 @@ Representative weights: retail jars 23 g – 1 kg · 5 lb 2 268 g ·
 
 ## Open merchant actions (no Admin API — must be done in the Shopify admin)
 
-These three cannot be set through the API; the connector has no mutation for
-shop tax settings or checkout form fields.
+**Status 2026-08-30: all four are still unset, and orders are being affected.**
+Verified against all 454 Admin API mutations — there is no mutation for shop tax
+registration, staff notifications, or checkout form fields. `taxAppConfigure` is
+for third-party tax apps; the only tax mutations are B2B company-location and
+per-customer exemptions. These must be clicked in the admin.
 
-### 1. Require BOTH phone and email on every order
-**Settings → Checkout → Customer contact method**
+### 1. No sales tax is being collected — most urgent
+**Settings → Taxes and duties → Canada → Collect sales tax → Add region**
 
-- Set **Customer contact method** to **Email** (this makes email mandatory).
-- Set **Shipping address phone number** to **Required**.
+Every order so far has charged **$0.00 tax with zero tax lines**:
 
-Together these make email *and* phone mandatory for every order. Leaving contact
-method on "Phone number or email" lets a shopper check out with only one of
-them. (The only programmatic alternative is a checkout UI extension with a
-required `phone-field`, which needs a custom app — the settings toggle is the
-right fix and works on the current plan.)
+| Order | Ship to | Subtotal | Tax charged | Should have been |
+|---|---|---|---|---|
+| #1002 | Toronto, ON | $90.00 | $0.00 | ~$11.70 (13% HST) |
+| #1003 | Waterloo, ON | $101.00 | $0.00 | ~$13.13 (13% HST) |
+| #1004 | Calgary, AB | $48.00 | $0.00 | ~$2.40 (5% GST) |
+
+Roughly **$27 of tax was not collected** on those three orders, plus about $2.60
+more once tax on shipping is switched on (#2). That money is still owed if the
+business is registered, so it comes out of margin rather than the customer.
+
+This is *not* a product or order misconfiguration — `taxesIncluded: false`,
+every order `taxExempt: false`, and all 208 variants `taxable: true`. The single
+missing piece is the Canada tax registration itself: with no region registered,
+Shopify correctly charges nothing.
+
+**Re-test after fixing** — this probe should return non-zero tax (expect $3.38
+on $26 for Ontario). It only calculates; it creates nothing:
+
+```graphql
+mutation TaxProbe {
+  draftOrderCalculate(input: {
+    lineItems: [{ variantId: "gid://shopify/ProductVariant/54202452476117", quantity: 2 }]
+    shippingAddress: {
+      address1: "220 Bayview Dr", city: "Barrie", provinceCode: "ON",
+      countryCode: CA, zip: "L4N 4Y8", firstName: "Tax", lastName: "Probe"
+    }
+  }) {
+    calculatedDraftOrder {
+      totalTaxSet { shopMoney { amount } }
+      taxLines { title ratePercentage priceSet { shopMoney { amount } } }
+    }
+    userErrors { field message }
+  }
+}
+```
+
+As of 2026-08-30 it returns `totalTax: 0.00` and `taxLines: []`.
 
 ### 2. Charge tax on shipping
 **Settings → Taxes and duties → Canada → Charge tax on shipping rates** → ON
 
-Currently `taxShipping: false`, which is **wrong for Canada** — GST/HST applies
-to the delivery charge when the goods themselves are taxable, so the store is
-under-collecting on every shipped order.
+Still `taxShipping: false`, which is wrong for Canada — GST/HST applies to the
+delivery charge when the goods are taxable. Do this at the same time as #1;
+on its own it changes nothing, because no tax is being charged at all yet.
 
-### 3. Confirm the Canada tax registration
-**Settings → Taxes and duties → Canada → Collect sales tax**
+### 3. Phone number is optional, so some orders have none
+**Settings → Checkout → Customer contact method**
 
-Confirm the GST/HST number is entered and the regions are set, so Shopify
-applies 13% HST in Ontario, 5% GST in Alberta, 5% GST + 7% PST in BC, and so on.
-All 208 variants are already flagged `taxable: true`, and prices are
-tax-exclusive, so the only remaining variable is the registration itself.
+- Set **Customer contact method** to **Email** (makes email mandatory).
+- Set **Shipping address phone number** to **Required**.
+
+Both settings are needed: leaving contact method on "Phone number or email" lets
+a shopper check out with only one of them.
+
+Note that phone is **not** missing everywhere — it is captured on the *address*,
+not the order record, so `order.phone` reads null even when a number exists:
+
+| Order | `order.phone` | `shippingAddress.phone` |
+|---|---|---|
+| #1002 | null | +14162529885 |
+| #1003 | null | 5194973011 |
+| #1004 | null | *(none — customer skipped it)* |
+
+So exports keyed on `order.phone` will look empty for every order. Read the
+address phone instead. Making the field required fixes the genuinely missing
+case (#1004).
+
+### 4. Order notifications are not reaching timothy@allnaturalscosmetics.ca
+**Settings → Notifications → Staff notifications → Add recipient**
+
+Order emails currently go to the shop contact address,
+`allnaturalscosmetics@allnaturalscosmetics.ca` — `timothy@allnaturalscosmetics.ca`
+is not a recipient, so it receives nothing. Add it as a staff order-notification
+recipient (the recipient then has to confirm via the email Shopify sends).
+
+There is no Admin API for this, and webhook subscriptions only deliver to
+HTTP/EventBridge/PubSub endpoints, never email. If the admin setting is somehow
+unavailable, the fallback is a `orders/create` webhook into a Netlify function
+that sends the mail — more moving parts than the built-in feature, so only worth
+building if the setting cannot be used.
 
 ---
 
